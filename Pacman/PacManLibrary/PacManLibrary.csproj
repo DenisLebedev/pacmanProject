@@ -42,7 +42,8 @@
   <ItemGroup>
     <Compile Include="Chase.cs" />
     <Compile Include="Energizer.cs" />
-    <Compile Include="Game State.cs" />
+    <Compile Include="class1.cs" />
+    <Compile Include="GameState.cs" />
     <Compile Include="Ghost.cs" />
     <Compile Include="GhostPack.cs" />
     <Compile Include="ICollidable.cs" />

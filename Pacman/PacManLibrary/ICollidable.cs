@@ -8,5 +8,10 @@ namespace PacManLibrary
 {
     interface ICollidable
     {
+        //public event Collision;
+
+        int Points { get; set; }
+
+        void Collide();
     }
 }

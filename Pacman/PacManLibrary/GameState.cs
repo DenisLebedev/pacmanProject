@@ -12,8 +12,8 @@ namespace PacManLibrary
   
         public Pacman Pacman
         {
-            set;
-            private get;
+            private set;
+            get;
         }
         public GhostPack ghostPack
         {

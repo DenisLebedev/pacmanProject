@@ -8,5 +8,6 @@ namespace PacManLibrary
 {
     interface IGhostState
     {
+        void Move();
     }
 }

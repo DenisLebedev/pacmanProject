@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;using System.Drawing;
 using System.Timers;
 namespace PacManLibrary
 {
-    class Ghost
+    class Ghost : IMovable, ICollidable
     {
         private Pacman pacman;
         private Vector2 target;
@@ -43,6 +43,56 @@ namespace PacManLibrary
             get { return new Color(); }
         }
 
+        public Direction Direction
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public Vector2 Position
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public int Points
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+
+        public void Move()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Collide()
+        {
+            throw new NotImplementedException();
+        }
+
         public void Reset()
         {
 
@@ -52,6 +102,5 @@ namespace PacManLibrary
         {
 
         }
-
     }
 }

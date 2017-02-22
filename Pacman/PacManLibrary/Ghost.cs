@@ -97,6 +97,7 @@ namespace PacManLibrary
         public void ChangeState(IGhostState state)
         {
 
-        }
+        }
+
     }
 }

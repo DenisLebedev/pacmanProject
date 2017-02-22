@@ -14,7 +14,7 @@ namespace PacManLibrary
         {
 
         }
-        public void SetTuiles (Tile[,] tiles)
+        public void SetTiles (Tile[,] tiles)
         {
             this.maze = tiles;
         }

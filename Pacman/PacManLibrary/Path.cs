@@ -6,7 +6,24 @@ using System.Threading.Tasks;
 
 namespace PacManLibrary
 {
-    class Path
+    class Path : ICollidable 
     {
+        public int Points
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public void Collide()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

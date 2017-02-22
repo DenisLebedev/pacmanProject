@@ -15,7 +15,7 @@ namespace PacManLibrary
         {
             controller = gameState;
         }
-        public void Move (Directior dir)
+        public void Move (Direction dir)
         {
 
         } 

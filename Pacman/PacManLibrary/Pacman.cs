@@ -16,8 +16,9 @@ namespace PacManLibrary
         public Pacman (GameState gameState)
         {
             controller = gameState;
+            
 
-           
+
         }
         public Vector2 Position
         {

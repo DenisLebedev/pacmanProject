@@ -20,19 +20,24 @@ namespace PacManLibrary
         private IGhostState currentState;
         private static Timer scared;
 
-        static Ghost() { }
+        public delegate void PacmanDied();
+        public event PacmanDied deadPacman;
+
+        public delegate void Collision(ICollidable obj);
+        public event Collision collide;
+
+        static Ghost() { scared = new Timer(); }
 
         /*!!!!!*/
         public Ghost(GameState g, int x, int y, Vector2 target, IGhostState start, Color colour)
         {
+            pacman = new Pacman(g);
+            maze = new Maze();
             direction = new Direction();
-            this.target = target;
+            this.target = new Vector2(target.X, target.Y);
             currentState = start;
             this.colour = colour;
-            //scared
         }
-
-        /*DEL*/
 
         /*!!!!!!!! ref*/
         public IGhostState CurrenState
@@ -42,7 +47,7 @@ namespace PacManLibrary
 
         public Color Colour
         {
-            get { return new Color(); }
+            get { return colour; }
         }
 
         public Direction Direction
@@ -54,28 +59,17 @@ namespace PacManLibrary
 
         public Vector2 Position
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return new Vector2(target.X, target.Y); }
 
-            set
-            {
-                throw new NotImplementedException();
-            }
+            set { target = new Vector2(value.X, value.Y); }
         }
 
+        /*!!!!*/
         public int Points
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return 100; }
 
-            set
-            {
-                throw new NotImplementedException();
-            }
+            set { }
         }
 
 
@@ -96,7 +90,13 @@ namespace PacManLibrary
 
         public void ChangeState(IGhostState state)
         {
+            if(state is Chase)
+            {
 
+            }else if(state is Scared)
+            {
+                //timer
+            }
         }
 
     }

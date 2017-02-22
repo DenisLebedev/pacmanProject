@@ -13,7 +13,8 @@ namespace PacManLibrary
 
         public GhostPack()
         {
-
+            ghosts = new List<Ghost>();
+            
         }
 
         public bool CheckCollideGhosts(Vector2 target)
@@ -23,22 +24,26 @@ namespace PacManLibrary
 
         public void ResetGhosts()
         {
-
+            for (int i = 0; i < ghosts.Count; i++)
+                ghosts.ElementAt(i).Reset();
         }
 
         public void ScareGhosts()
         {
-
+            for (int i = 0; i < ghosts.Count; i++)
+                ghosts.ElementAt(i).ChangeState(
+                    ghosts.ElementAt(i).CurrenState);
         }
 
         public void Move()
         {
-
+            for (int i = 0; i < ghosts.Count; i++)
+                ghosts.ElementAt(i).Move();
         }
 
         public void Add (Ghost g)
         {
-
+            ghosts.Add(g);
         }
     }
 }

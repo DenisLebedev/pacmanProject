@@ -17,12 +17,19 @@ namespace PacManLibrary
 
         public  Chase(Ghost ghost, Maze maze, Vector2 target, Pacman pacman)
         {
+            this.ghost = ghost;
+            this.maze = maze;
+            this.target = new Vector2(target.X, target.Y);
+            this.pacman = pacman;
 
         }
 
         public void Move()
         {
-            throw new NotImplementedException();
+            Tile ghostPos = maze[(int)ghost.Position.X, (int)ghost.Position.Y];
+            Tile pacPos = maze[(int)pacman.Position.X, (int)pacman.Position.Y];
+
+
         }
     }
 

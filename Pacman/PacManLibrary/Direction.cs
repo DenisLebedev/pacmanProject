@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace PacManLibrary
 {
-    public class Class1
+    public enum Direction
     {
-        /*dfgfdg*/
-    }
+        Up, Down, Left, Right
+    };
 }

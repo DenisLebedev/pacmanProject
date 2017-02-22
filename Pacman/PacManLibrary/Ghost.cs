@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.Xna.Framework;using System.Drawing;
-using System.Timers;
+using Microsoft.Xna.Framework;
+using System.Drawing;
+using System.Timers;
+
 namespace PacManLibrary
 {
     class Ghost : IMovable, ICollidable
@@ -23,7 +25,7 @@ namespace PacManLibrary
         /*!!!!!*/
         public Ghost(GameState g, int x, int y, Vector2 target, IGhostState start, Color colour)
         {
-            direction = new Direction(x, y);
+            direction = new Direction();
             this.target = target;
             currentState = start;
             this.colour = colour;
@@ -45,15 +47,9 @@ namespace PacManLibrary
 
         public Direction Direction
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return direction; }
 
-            set
-            {
-                throw new NotImplementedException();
-            }
+            set{ direction = value; }
         }
 
         public Vector2 Position
@@ -98,9 +94,9 @@ namespace PacManLibrary
 
         }
 
-        public void ChangeState(IGhostState)
+        public void ChangeState(IGhostState state)
         {
 
-        }
+        }
     }
 }

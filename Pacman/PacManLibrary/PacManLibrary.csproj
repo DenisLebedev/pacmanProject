@@ -43,7 +43,7 @@
   <ItemGroup>
     <Compile Include="Chase.cs" />
     <Compile Include="Energizer.cs" />
-    <Compile Include="class1.cs" />
+    <Compile Include="Direction.cs" />
     <Compile Include="GameState.cs" />
     <Compile Include="Ghost.cs" />
     <Compile Include="GhostPack.cs" />

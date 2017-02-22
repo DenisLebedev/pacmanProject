@@ -37,7 +37,7 @@ namespace PacManLibrary
         {
             get{ return maze.GetLength(0); }
         }
-        public List<Tile> GetAvailableNieghbours(Vector2 position, Direction dir)
+        public List<Tile> GetAvailableNeighbours(Vector2 position, Direction dir)
         {
             List<Tile> available_tiles = new List<Tile>();
 
@@ -87,9 +87,7 @@ namespace PacManLibrary
             }
             if (chk)
             {
-                // won();
-                //won hhj = PacmanWon;
-               // PacmanWon += { 5; };
+                //PacmanWon
                 
             }
 

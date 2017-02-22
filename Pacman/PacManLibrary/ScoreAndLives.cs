@@ -13,9 +13,9 @@ namespace PacManLibrary
         {
             gameState = state;          
         }
-        public event Game GameOver;
         public delegate void Game(int x);
-        
+        public event Game GameOver;
+
         public int Lives
         {
             set;
@@ -35,8 +35,17 @@ namespace PacManLibrary
         }
         private void incrementScore(ICollidable colide)
         {
-            
+            if (colide is Pellet)
+            {
+                Score += 100;
+            }
+            else if (colide is Energizer)
+            {
+                Score += 500;
+            }
         }
+        //this will 
+       // private void 
 
         }
 }

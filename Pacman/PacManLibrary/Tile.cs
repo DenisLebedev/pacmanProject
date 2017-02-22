@@ -16,7 +16,7 @@ namespace PacManLibrary
             tile = new Vector2(x, y);
         }
 
-        public virtual Vector2 Position()
+        public Vector2 Position()
         {
             return new Vector2(tile.X, tile.Y);
         }

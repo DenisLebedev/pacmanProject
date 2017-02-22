@@ -11,7 +11,10 @@ namespace PacManLibrary
         private GameState gameState;
         public ScoreAndLives (GameState state)
         {
-            gameState = state;          
+            gameState = state;
+
+            //deadPacman += deadPacman;
+            gameState.Maze.PacmanWon += GameWon;
         }
         public delegate void Game(int x);
         public event Game GameOver;
@@ -45,7 +48,9 @@ namespace PacManLibrary
             }
         }
         //this will 
-       // private void 
-
+        public bool GameWon()
+        {
+            return false;
         }
+    }
 }

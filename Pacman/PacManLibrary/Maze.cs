@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace PacManLibrary
 {
+    public delegate bool won();
+    
     class Maze
     {
+        public event won PacmanWon;
         private Tile[,] maze;
 
         public Maze()
@@ -19,8 +22,6 @@ namespace PacManLibrary
         {
             this.maze = tiles;
         }
-        public delegate bool won();
-        public event won PacmanWon;
 
         public Tile this[int x,int y]
         {
@@ -79,6 +80,7 @@ namespace PacManLibrary
             {
                 for (int j = 0; j < maze.GetLength(0); j++)
                 {
+                    // i dont know what the indexes are ment to have
                     if (maze[i,j] != null)
                     {
                         chk = false;
@@ -87,8 +89,7 @@ namespace PacManLibrary
             }
             if (chk)
             {
-                //PacmanWon
-                
+                PacmanWon?.Invoke();
             }
 
            

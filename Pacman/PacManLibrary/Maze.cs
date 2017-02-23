@@ -18,6 +18,15 @@ namespace PacManLibrary
         {
 
         }
+        public Tile[,] loadMaze()
+        {
+
+
+
+
+
+            return null;
+        }
         public void SetTiles (Tile[,] tiles)
         {
             this.maze = tiles;

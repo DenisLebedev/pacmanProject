@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,21 +13,11 @@ namespace PacManLibrary
     class Maze
     {
         public event won PacmanWon;
-        private Tile[,] maze;
+        protected Tile[,] maze;
 
-        public Maze()
-        {
+        public Maze() { }
+       
 
-        }
-        public Tile[,] loadMaze()
-        {
-
-
-
-
-
-            return null;
-        }
         public void SetTiles (Tile[,] tiles)
         {
             this.maze = tiles;
@@ -50,20 +41,23 @@ namespace PacManLibrary
         public List<Tile> GetAvailableNeighbours(Vector2 position, Direction dir)
         {
             List<Tile> available_tiles = new List<Tile>();
-
+            string positionx = ""+ position.X;
+            int x = Int32.Parse(positionx);
+            string positiony = "" + position.Y;
+            int y = Int32.Parse(positiony);
             switch (dir)
             {
                 case Direction.Down:
-                    /*if (maze[(int)(position.Y + 1), position.X] != maze[1, 1])
+                    if (!(maze[x, y+1].Member() is Wall))
                     {
                         available_tiles.Add(maze[1, 1]);
-                    }*/
+                    }
                     break;
                 case Direction.Up:
-                    /* if (maze[(int)(position.Y + 1), position.X] != maze[1, 1])
+                     if (maze[x, y - 1].Member() is Wall )
                      {
                          available_tiles.Add(maze[1, 1]);
-                     }*/
+                     }
                     break;
                 case Direction.Left:
                     /* if (maze[(int)(position.Y + 1), position.X] != maze[1, 1])

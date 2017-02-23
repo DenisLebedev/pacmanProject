@@ -20,6 +20,7 @@ namespace PacManLibrary
         }
         public Vector2 Position
         {
+            set { position = new Vector2(value.X, value.Y); }
             get { return new Vector2(position.X, position.Y); }
         }
         public void Move (Direction dir)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PacManLibrary
 {
-    interface ICollidable
+    public interface ICollidable
     {
         //public event Collision;
 

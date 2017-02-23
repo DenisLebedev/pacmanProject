@@ -12,9 +12,27 @@ namespace PacManLibrary
         public Wall(int x, int y) : base(x, y)
         {
         }
-        public override Vector2 Position()
+
+        public override bool CanEnter()
         {
-            return new Vector2 (base.tile.X, base.tile.Y);
+            return false;
         }
+
+        public override void Collide()
+        {
+            
+        }
+
+        public override bool isEmpty()
+        {
+            return false;
+        }
+
+        public override ICollidable Member()
+        {
+            throw new NotImplementedException();
+        }
+
+
     }
 }

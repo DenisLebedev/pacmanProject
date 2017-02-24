@@ -9,6 +9,9 @@ using System.Timers;
 
 namespace PacManLibrary
 {
+    public delegate void PacmanDied();
+    public delegate void Collision(ICollidable obj);
+
     class Ghost : IMovable, ICollidable
     {
         private Pacman pacman;
@@ -18,12 +21,11 @@ namespace PacManLibrary
         private Direction direction;
         private Color colour;
         private IGhostState currentState;
+        private GhostState state;
         private static Timer scared;
 
-        public delegate void PacmanDied();
-        public event PacmanDied deadPacman;
 
-        public delegate void Collision(ICollidable obj);
+        public event PacmanDied deadPacman;       
         public event Collision collide;
 
         static Ghost() { scared = new Timer(); }
@@ -37,6 +39,9 @@ namespace PacManLibrary
             this.target = new Vector2(target.X, target.Y);
             currentState = start;
             this.colour = colour;
+
+            //Default
+            state = GhostState.Chase;
         }
 
         /*!!!!!!!! ref*/
@@ -75,7 +80,7 @@ namespace PacManLibrary
 
         public void Move()
         {
-            throw new NotImplementedException();
+            currentState.Move();
         }
 
         public void Collide()
@@ -88,15 +93,21 @@ namespace PacManLibrary
 
         }
 
-        public void ChangeState(IGhostState state)
+        public void ChangeState(GhostState state)
         {
-            if(state is Chase)
+            switch (state)
             {
+                case GhostState.Chase:
+                    state = GhostState.Scared;
+                    currentState = new Scared(this, maze);
+                    break;
 
-            }else if(state is Scared)
-            {
-                //timer
+                case GhostState.Scared:
+                    state = GhostState.Chase;
+                    currentState = new Chase(this, maze, pacman, target);
+                    break;
             }
+
         }
 
     }

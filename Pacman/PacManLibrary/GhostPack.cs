@@ -19,6 +19,12 @@ namespace PacManLibrary
 
         public bool CheckCollideGhosts(Vector2 target)
         {
+            for(int i = 0; i < ghosts.Count; i++)
+            {
+                //if
+                //ghosts.ElementAt(i).collide();
+            }
+
             return false;
         }
 
@@ -31,8 +37,10 @@ namespace PacManLibrary
         public void ScareGhosts()
         {
             for (int i = 0; i < ghosts.Count; i++)
-                ghosts.ElementAt(i).ChangeState(
-                    ghosts.ElementAt(i).CurrenState);
+            {
+                ghosts.ElementAt(i).ChangeState(GhostState.Scared);
+             
+            }
         }
 
         public void Move()

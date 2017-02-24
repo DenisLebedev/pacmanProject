@@ -15,7 +15,7 @@ namespace PacManLibrary
         private Vector2 target;
         private Pacman pacman;
 
-        public  Chase(Ghost ghost, Maze maze, Vector2 target, Pacman pacman)
+        public  Chase(Ghost ghost, Maze maze, Pacman pacman, Vector2 target)
         {
             this.ghost = ghost;
             this.maze = maze;
@@ -26,9 +26,35 @@ namespace PacManLibrary
 
         public void Move()
         {
+            List<Tile> places;
             Tile ghostPos = maze[(int)ghost.Position.X, (int)ghost.Position.Y];
-            Tile pacPos = maze[(int)pacman.Position.X, (int)pacman.Position.Y];
+            Tile targetPod = maze[(int)target.X, (int)target.Y];
 
+            if (target.X - ghost.Position.X > 0)
+            {
+                ghost.Direction = Direction.Left;
+                places = maze.GetAvailableNeighbours(ghost.Position, ghost.Direction);
+
+                if (places.Count == 0)
+                {
+                    if (target.Y - ghost.Position.Y > 0)
+                    {
+
+
+                    }
+                }
+            }
+            else if(target.X - ghost.Position.X < 0)
+            {
+                ghost.Direction = Direction.Right;
+                places = maze.GetAvailableNeighbours(ghost.Position, ghost.Direction);
+            }
+
+            
+
+
+            target.X = pacman.Position.X;
+            target.Y = pacman.Position.Y;
 
         }
     }

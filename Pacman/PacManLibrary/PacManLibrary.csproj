@@ -47,6 +47,7 @@
     <Compile Include="GameState.cs" />
     <Compile Include="Ghost.cs" />
     <Compile Include="GhostPack.cs" />
+    <Compile Include="GhostState.cs" />
     <Compile Include="ICollidable.cs" />
     <Compile Include="IGhostState.cs" />
     <Compile Include="IMovable.cs" />

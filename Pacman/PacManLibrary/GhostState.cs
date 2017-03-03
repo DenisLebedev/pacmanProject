@@ -8,6 +8,6 @@ namespace PacManLibrary
 {
     public enum GhostState
     {
-        Scared, Chase
+        Scared, Chase, Released
     };
 }

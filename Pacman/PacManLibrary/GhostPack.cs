@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections;
 
 namespace PacManLibrary
 {
-    class GhostPack
+    class GhostPack : IEnumerable<Ghost>
     {
         private List<Ghost> ghosts;
 
@@ -52,6 +53,16 @@ namespace PacManLibrary
         public void Add (Ghost g)
         {
             ghosts.Add(g);
+        }
+
+        public IEnumerator<Ghost> GetEnumerator()
+        {
+            return ghosts.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ghosts.GetEnumerator();
         }
     }
 }

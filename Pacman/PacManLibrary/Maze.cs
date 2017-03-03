@@ -13,7 +13,7 @@ namespace PacManLibrary
     class Maze
     {
         public event won PacmanWon;
-        protected Tile[,] maze;
+        private Tile[,] maze;
 
         public Maze() { }
        

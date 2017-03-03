@@ -23,7 +23,8 @@ namespace PacManLibrary
         private IGhostState currentState;
         private GhostState state;
         private static Timer scared;
-
+        //!
+        private Vector2 pos;
 
         public event PacmanDied deadPacman;       
         public event Collision collide;
@@ -42,6 +43,8 @@ namespace PacManLibrary
 
             //Default
             state = GhostState.Chase;
+
+            pos = new Vector2(x,y);
         }
 
         /*!!!!!!!! ref*/

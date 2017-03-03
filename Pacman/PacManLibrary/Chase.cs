@@ -35,12 +35,16 @@ namespace PacManLibrary
                 ghost.Direction = Direction.Left;
                 places = maze.GetAvailableNeighbours(ghost.Position, ghost.Direction);
 
-                if (places.Count == 0)
+                if (target.Y - ghost.Position.Y > 0 && places.Count == 0)
                 {
-                    if (target.Y - ghost.Position.Y > 0)
+                    ghost.Direction = Direction.Down;
+                    places = maze.GetAvailableNeighbours(ghost.Position, ghost.Direction);
+
+
+                    if (target.Y - ghost.Position.Y < 0 && places.Count == 0)
                     {
-
-
+                        ghost.Direction = Direction.Up;
+                        places = maze.GetAvailableNeighbours(ghost.Position, ghost.Direction);
                     }
                 }
             }

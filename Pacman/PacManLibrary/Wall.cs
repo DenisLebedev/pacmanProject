@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace PacManLibrary
 {
-    class Wall : Tile
+   public class Wall : Tile
     {
         public Wall(int x, int y) : base(x, y)
         {

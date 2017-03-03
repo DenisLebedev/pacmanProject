@@ -16,7 +16,7 @@ namespace PacManLibrary
             tile = new Vector2(x, y);
         }
 
-        public Vector2 Position
+        public virtual Vector2 Position
         {
             get { return new Vector2(tile.X, tile.Y); }
         }
@@ -25,7 +25,6 @@ namespace PacManLibrary
         public abstract bool CanEnter();
 
         public abstract void Collide();
-
     
         public abstract bool isEmpty();
 
@@ -33,5 +32,6 @@ namespace PacManLibrary
         {
             return Vector2.Distance(tile, goal);
         }
+
     }
 }

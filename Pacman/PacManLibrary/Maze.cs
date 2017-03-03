@@ -10,12 +10,36 @@ namespace PacManLibrary
 {
     public delegate bool won();
     
-    class Maze
+    public class Maze
     {
         public event won PacmanWon;
         private Tile[,] maze;
 
-        public Maze() { }
+        public Maze() {
+            maze = new Tile[23,26];
+            setArray();
+        }
+        private void setArray()
+        {
+            for (int i = 0; i < maze.GetLength(0); i++)
+            {
+                if (i == 0 || i == maze.GetLength(0) - 1)
+                { 
+                    for (int j = 0; j < maze.GetLength(1); j++)
+                    {
+                        maze[i, j] = new Wall(i, j);
+                    }
+                }//end of if              
+            }
+            for (int i = 1; i < 2; i++)
+            {
+                if (i == 1) { i = maze.GetLength(1) - 1; }
+                for (int j = 0; j < maze.GetLength(0) - 1; j++)
+                {
+                    maze[i, j] = new Wall(i, j);
+                }
+            }
+        }
        
 
         public void SetTiles (Tile[,] tiles)

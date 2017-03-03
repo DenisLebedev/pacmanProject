@@ -15,7 +15,8 @@ namespace PacManLibrary
 
         public Pacman (GameState gameState)
         {
-            controller = gameState;
+            this.controller = gameState;
+            this.maze = gameState.Maze;
  
         }
         public Vector2 Position
@@ -25,13 +26,43 @@ namespace PacManLibrary
         }
         public void Move (Direction dir)
         {
-            if (dir.Equals(Direction.Down))
+            List<Tile> allowed_moves = maze.GetAvailableNeighbours(position, dir);
+            directionChosen(dir)
+            for (int i = 0; i < allowed_moves.Count; i++)
             {
+                if (dir)
+                {
 
+                }
             }
+
         } 
+        private Direction directionChosen (Direction dir)
+        {
+            switch (dir)
+            {
+                case Direction.Down:
+                    return dir;
+                    break;
+                case Direction.Left:
+                    return dir;
+                    break;
+                case Direction.Up:
+                    return dir;
+                    break;
+                case Direction.Right:
+                    return dir;
+                    break;
+            }
+            return new Direction();
+        }
         public bool CheckCollisions()
         {
+            if (maze[(int)position.X, (int)position.Y] is Wall)
+            {
+                return true;
+            }
+
             return false;
         } 
         

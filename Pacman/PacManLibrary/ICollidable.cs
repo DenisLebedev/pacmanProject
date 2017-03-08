@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace PacManLibrary
 {
+    public delegate void CollisionEvent(ICollidable obj);
     public interface ICollidable
     {
-        //public event Collision;
+        event CollisionEvent Collision;
 
         int Points { get; set; }
 

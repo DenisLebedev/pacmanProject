@@ -11,6 +11,8 @@ namespace PacManLibrary
         private int points;
         private GhostPack ghosts;
 
+        public event CollisionEvent Collision;
+
         public Energizer (GhostPack ghosts)
         {
             this.ghosts = ghosts;

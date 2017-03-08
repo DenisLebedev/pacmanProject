@@ -37,7 +37,7 @@ namespace PacManLibrary
                 GameOver(Lives - 1); 
             }
         }
-        protected void IncrementScore(ICollidable colide)
+        public void IncrementScore(ICollidable colide)
         {
             if (colide is Pellet)
             {
@@ -53,6 +53,7 @@ namespace PacManLibrary
         {
             return false;
         }
+
 
     }
 }

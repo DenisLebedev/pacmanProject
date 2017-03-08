@@ -53,12 +53,12 @@ namespace PacManLibrary
                             if (substrings[j] == "p")
                             {
                                 this.board[i, j] = new Path(i, j);
-                                pellet.PelletEvent += scoreAndLives.IncrementScore();
+                                pellet.Collision += scoreAndLives.IncrementScore;
                             }
                             //pacman
                             if (substrings[j] == "P")
                             {
-                                this.board[i, j] = Pacman;
+                                this.board[i, j] = new Pacman(this) ;
                             }
                             //ghost
                             if (substrings[j] == "1" || substrings[j] == "2" ||

@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace PacManLibrary
 {
-    public delegate void PelletDelegate(ICollidable obj);
+
     public class Pellet : ICollidable
     {
       
 
         private int points;
 
-        public event PelletDelegate PelletEvent;
-
+      
+        public event CollisionEvent Collision;
 
         public int Points
         {
@@ -31,7 +31,7 @@ namespace PacManLibrary
 
         public void Collide()
         {
-            throw new NotImplementedException();
+            Collision?.Invoke(this);
         }
     }
 }

@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 namespace PacManLibrary
 {
     public abstract class Tile {
-
         protected Vector2 tile;
 
         public Tile (int x, int y)

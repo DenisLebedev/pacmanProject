@@ -6,10 +6,14 @@ using System.Threading.Tasks;
 
 namespace PacManLibrary
 {
-    class Pellet : ICollidable
+    public delegate void PelletDelegate(ICollidable obj);
+    public class Pellet : ICollidable
     {
+      
 
         private int points;
+
+        public event PelletDelegate PelletEvent;
 
 
         public int Points

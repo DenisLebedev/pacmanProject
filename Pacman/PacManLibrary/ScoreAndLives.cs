@@ -13,6 +13,7 @@ namespace PacManLibrary
         {
             gameState = state;
 
+
             //deadPacman += deadPacman;
             gameState.Maze.PacmanWon += GameWon;
         }
@@ -36,7 +37,7 @@ namespace PacManLibrary
                 GameOver(Lives - 1); 
             }
         }
-        private void incrementScore(ICollidable colide)
+        protected void IncrementScore(ICollidable colide)
         {
             if (colide is Pellet)
             {

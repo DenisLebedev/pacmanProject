@@ -53,7 +53,7 @@ namespace PacManLibrary
                             if (substrings[j] == "p")
                             {
                                 this.board[i, j] = new Path(i, j);
-                                pellet.PelletEvent += scoreAndLives.IncrementScore(new Path(i, j));
+                                pellet.PelletEvent += scoreAndLives.IncrementScore();
                             }
                             //pacman
                             if (substrings[j] == "P")

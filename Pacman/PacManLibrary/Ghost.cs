@@ -32,19 +32,27 @@ namespace PacManLibrary
         static Ghost() { scared = new Timer(); }
 
         /*!!!!!*/
-        public Ghost(GameState g, int x, int y, Vector2 target, IGhostState start, Color colour)
+        public Ghost(GameState g, Vector2 pos, Vector2 target, GhostState start, Color colour)
         {
             pacman = new Pacman(g);
+            this.pos = new Vector2(pos.X, pos.Y);
             maze = new Maze();
             direction = new Direction();
             this.target = new Vector2(target.X, target.Y);
-            currentState = start;
+            //currentState = start;
             this.colour = colour;
 
-            //Default
-            state = GhostState.Chase;
-
-            pos = new Vector2(x,y);
+            switch (start)
+            {
+                case GhostState.Chase:
+                    currentState = new Chase(this, g.Maze, g.Pacman, g.Pacman.Position);
+                    state = GhostState.Chase;
+                    break;
+                case GhostState.Scared:
+                    currentState = new Scared(this, g.Maze);
+                    state = GhostState.Scared;
+                    break;
+            }
         }
 
         /*!!!!!!!! ref*/
@@ -88,7 +96,7 @@ namespace PacManLibrary
 
         public void Collide()
         {
-            throw new NotImplementedException();
+            
         }
 
         public void Reset()

@@ -18,7 +18,7 @@ namespace PacManLibrary
             
         }
 
-        public bool CheckCollideGhosts(Vector2 target)
+        public void CheckCollideGhosts(Vector2 target)
         {
             for(int i = 0; i < ghosts.Count; i++)
             {
@@ -26,7 +26,6 @@ namespace PacManLibrary
                 //ghosts.ElementAt(i).collide();
             }
 
-            return false;
         }
 
         public void ResetGhosts()

@@ -12,9 +12,8 @@ namespace PacManLibrary
         public ScoreAndLives (GameState state)
         {
             gameState = state;
+            gameState.Board.Collision += 
 
-
-            //deadPacman += deadPacman;
             gameState.Maze.PacmanWon += GameWon;
         }
         public delegate void Game(int x);
@@ -41,7 +40,6 @@ namespace PacManLibrary
         {
             Score += colide.Points;
         }
-        //this will 
         public bool GameWon()
         {
             return false;

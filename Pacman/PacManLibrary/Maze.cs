@@ -15,10 +15,7 @@ namespace PacManLibrary
         public event won PacmanWon;
         private Tile[,] maze;
 
-        public Maze() {
-            maze = new Tile[23,26];
-            setArray();
-        }
+        public Maze() { }
         private void setArray()
         {
             for (int i = 0; i < maze.GetLength(0); i++)
@@ -51,11 +48,11 @@ namespace PacManLibrary
         {
             get
             {
-                return this.maze[x, y];
+                return this.maze[y, x];
             }
             set
             {
-                this[x, y] = value;
+                this[y, x] = value;
             }
         }
         public int Size
@@ -74,26 +71,26 @@ namespace PacManLibrary
                 case Direction.Down:
                     if (!(maze[x, y+1].Member() is Wall))
                     {
-                        available_tiles.Add(maze[1, 1]);
+                        available_tiles.Add(maze[x, y]);
                     }
                     break;
                 case Direction.Up:
-                     if (maze[x, y - 1].Member() is Wall )
+                     if (!(maze[x, y - 1].Member() is Wall ))
                      {
-                         available_tiles.Add(maze[1, 1]);
+                         available_tiles.Add(maze[x, y]);
                      }
                     break;
                 case Direction.Left:
-                    /* if (maze[(int)(position.Y + 1), position.X] != maze[1, 1])
+                     if (!(maze[x - 1, y].Member() is Wall))
                      {
-                         available_tiles.Add(maze[1, 1]);
-                     } */
+                         available_tiles.Add(maze[x, y]);
+                     } 
                     break;
                 case Direction.Right:
-                    /* if (maze[(int)(position.Y + 1), position.X] != maze[1, 1])
+                     if (!(maze[x + 1, y].Member() is Wall))
                      {
-                         available_tiles.Add(maze[1, 1]);
-                     } */
+                         available_tiles.Add(maze[x, y]);
+                     }
                     break;
 
             }
@@ -107,13 +104,12 @@ namespace PacManLibrary
             {
                 for (int j = 0; j < maze.GetLength(0); j++)
                 {
-                    // i dont know what the indexes are ment to have
-                    if (maze[i,j] )
+                   if (maze[i,j].Member() is Pellet || maze[i, j].Member() is Energizer)
                     {
                         chk = false;
                     }
                 }
-            }
+            }//end of for loop
             if (chk)
             {
                 PacmanWon?.Invoke();

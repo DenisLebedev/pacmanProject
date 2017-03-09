@@ -7,54 +7,48 @@ using System.Threading.Tasks;
 
 namespace PacManLibrary
 {
-    class Path : Tile, ICollidable 
+    class Path : Tile 
     {
         private int x;
         private int y;
+        ICollidable member;
 
-        public Path(int x, int y) : base(x, y)
+        public event CollisionEvent Collision;
+
+        public Path(int x, int y, ICollidable member) : base(x, y)
         {
             this.x = x;
             this.y = y;
-            
+            this.member = member;    
         }
-
-        public int Points
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
-
+        /// <summary>
+        /// Since this class knows it's points (x,y), this means it is a single
+        ///individual object that knows where it is in life so we are in the path
+        ///class which contains only Icollidable objects so yes it can always enter 
+        /// </summary>
         public override bool CanEnter()
         {
             return true;
         }
+        public override bool isEmpty()
+        {
+            if (member is Pellet || member is Energizer || member is Ghost)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
 
         public override void Collide()
         {
-            throw new NotImplementedException();
-        }
-
-        public override bool isEmpty()
-        {
-            return true;
+            member.Collide();
         }
 
         public override ICollidable Member()
         {
-            throw new NotImplementedException();
+            return member;  
         }
-        public override Vector2 Position
-        {
-         get { return new Vector2(x, y); }   
-        }
-       
     }
 }

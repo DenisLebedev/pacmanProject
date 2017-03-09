@@ -30,7 +30,7 @@ namespace PacManLibrary
 
         public void Collide()
         {
-            throw new NotImplementedException();
+            Collision?.Invoke(this);
         }
     }
 }

@@ -9,37 +9,33 @@ using PacManLibrary;
 
 namespace PacManLibrary
 {
-    class GameState
+     class GameState
     {
-        Tile[,] board;
-        GhostPack ghost;
-        Pen pen;
-        Maze maze;
-        Pellet pellet;
-        Energizer energizer;
-        Pacman pacman;
-        ScoreAndLives scoreAndLives;
+       private Tile[,] board;
 
        public GameState()
         {
-            board = new Tile[23, 23];
-            ghost = new GhostPack();
-            pen = new Pen();
-            maze = new Maze();
-            pellet = new Pellet();
-            energizer = new Energizer(ghost);
-            pacman = new Pacman(this);
-            scoreAndLives = new ScoreAndLives(this);
+            GameState game;
+            game = parse("..\\..\\..\\game_board.txt");
+            Maze.SetTiles(board);
         }
    
-        public  GameState parse (string fale)
+        public static GameState parse (string file)
         {
+            GameState game = new GameState();
+            GhostPack ghost = new GhostPack();
+            Pen pen = new Pen ();
+            Maze maze = new Maze();
+            Pellet pellet = new Pellet();
+            Energizer energizer = new Energizer(ghost);
+            Pacman pacman = new Pacman (game);
+            ScoreAndLives scoreAndLives = new ScoreAndLives(game);
             char deleimeter = ' ';
-            string[,] board = new string[23, 26];
+            Tile[,] board = new Tile [23,23]; 
             string[] readText = null;
             try
             {
-                readText = File.ReadAllLines("..\\..\\..\\game_board.txt");
+                readText = File.ReadAllLines(file);
                 for (int i = 0; i < 23; i++)
                 {
 
@@ -51,7 +47,7 @@ namespace PacManLibrary
                         {   //wall
                             if (substrings[j] == "w")
                             {
-                                this.board[i, j] = new Wall(i, j);
+                                board[i, j] = new Wall(i, j);
 
                             }
                             //path
@@ -98,33 +94,42 @@ namespace PacManLibrary
             {
                 Console.WriteLine("murphy's law" + a.Message);
             }
-            return this;
+            return new GameState() { Board = board, Pacman = pacman, GhostPack = ghost,
+                                     Pen = pen, Score = scoreAndLives, Maze = maze};
         }
+
+        public Tile[,] Board
+        {
+            get;
+            private set;
+        }
+            
   
         public Pacman Pacman
         {
-            get { return this.pacman; }
-            private set { this.pacman = value; }
+            get;
+            private set;
         }
-        public GhostPack ghostPack
+        public GhostPack GhostPack
         {
-            get { return this.ghost; }
-            private set { this.ghost = value; }
+            get;
+            private set;
         }
         public Maze Maze
         {
-            get { return this.maze; }
-            private set { this.maze = value; }
+            get;
+            private set;
         }
+
         public Pen Pen
         {
-            get { return this.pen; }
-            private set { this.pen = value; }
+            get;
+            private set;
         }
         public ScoreAndLives Score
         {
-            get { return this.scoreAndLives; }
-            private set { this.scoreAndLives = value; }
+            get;
+            private set;
         }
     }
 }

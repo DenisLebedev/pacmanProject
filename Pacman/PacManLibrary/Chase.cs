@@ -27,36 +27,9 @@ namespace PacManLibrary
         public void Move()
         {
 
-            /*List<Tile> places;
-            Tile ghostPos = maze[(int)ghost.Position.X, (int)ghost.Position.Y];
-            Tile targetPos = maze[(int)target.X, (int)target.Y];
-
-            if (target.X - ghost.Position.X > 0)
-            {
-                ghost.Direction = Direction.Left;
-                places = maze.GetAvailableNeighbours(ghost.Position, ghost.Direction);
-
-                if (target.Y - ghost.Position.Y > 0 && places.Count == 0)
-                {
-                    ghost.Direction = Direction.Down;
-                    places = maze.GetAvailableNeighbours(ghost.Position, ghost.Direction);
-
-
-                    if (target.Y - ghost.Position.Y < 0 && places.Count == 0)
-                    {
-                        ghost.Direction = Direction.Up;
-                        places = maze.GetAvailableNeighbours(ghost.Position, ghost.Direction);
-                    }
-                }
-            }
-            else if(target.X - ghost.Position.X < 0)
-            {
-                ghost.Direction = Direction.Right;
-                places = maze.GetAvailableNeighbours(ghost.Position, ghost.Direction);
-            }*/
-
-            Tile current = maze[(int)ghost.Position.X, (int)ghost.Position.Y];
             List<Tile> places = maze.GetAvailableNeighbours(ghost.Position, ghost.Direction);
+            Tile current = maze[(int)ghost.Position.X, (int)ghost.Position.Y];
+            places = maze.GetAvailableNeighbours(ghost.Position, ghost.Direction);
 
             if (places.Count == 0)
                 throw new Exception("I cannot go further.");
@@ -64,11 +37,14 @@ namespace PacManLibrary
             Random rand = new Random();
             int choice = rand.Next(places.Count);
             //determine direction
-            if (places[choice].Position.X == ghost.Position.X + 1)
+            if (places[choice].Position.X == ghost.Position.X + 1 
+                    && target.X - ghost.Position.X > 0)
                 ghost.Direction = Direction.Right;
-            else if (places[choice].Position.X == ghost.Position.X - 1)
+            else if (places[choice].Position.X == ghost.Position.X - 1
+                    && target.Y - ghost.Position.Y > 0)
                 ghost.Direction = Direction.Left;
-            else if (places[choice].Position.Y == ghost.Position.Y - 1)
+            else if (places[choice].Position.Y == ghost.Position.Y - 1
+                    && target.Y - ghost.Position.Y < 0)
                 ghost.Direction = Direction.Up;
             else
                 ghost.Direction = Direction.Down;

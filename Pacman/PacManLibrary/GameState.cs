@@ -96,6 +96,37 @@ namespace PacManLibrary
             }
             return new GameState() { Board = board, Pacman = pacman, GhostPack = ghost,
                                      Pen = pen, Score = scoreAndLives, Maze = maze};
+
+
+            /*string path = "..\\..\\..\\levels.csv";
+            string currentLine;
+            StreamReader sr = new StreamReader(path);
+            string[] line = null;          
+            int counter = 0;
+            int innerC = 0;
+            int lineCount = File.ReadLines(path).Count();
+            string[,] board = new string[lineCount, lineCount];
+            // currentLine will be null when the StreamReader reaches the end of file
+            while ((currentLine = sr.ReadLine()) != null)
+            {
+                line = currentLine.Split(',');
+                foreach (string str in line)
+                {
+                    board[counter, innerC] = str;
+                    innerC++;
+                }
+                innerC = 0;
+                counter++;
+            }
+
+            for (int i = 0; i < board.GetLength(0); i++)
+            {
+                Console.WriteLine();
+                for (int j = 0; j < board.GetLength(1); j++)
+                    Console.Write(board[i, j]);
+            }
+
+                    Console.Read()*/
         }
 
         public Tile[,] Board

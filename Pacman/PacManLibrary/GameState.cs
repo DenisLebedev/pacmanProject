@@ -16,6 +16,8 @@ namespace PacManLibrary
         Pen pen;
         Maze maze;
         Pellet pellet;
+        Energizer energizer;
+        Pacman pacman;
         ScoreAndLives scoreAndLives;
 
        public GameState()
@@ -25,9 +27,12 @@ namespace PacManLibrary
             pen = new Pen();
             maze = new Maze();
             pellet = new Pellet();
+            energizer = new Energizer(ghost);
+            pacman = new Pacman(this);
             scoreAndLives = new ScoreAndLives(this);
         }
-        public void csvReader()
+   
+        public  GameState parse (string fale)
         {
             char deleimeter = ' ';
             string[,] board = new string[23, 26];
@@ -46,30 +51,32 @@ namespace PacManLibrary
                         {   //wall
                             if (substrings[j] == "w")
                             {
-                                this.board[i, j] = new Wall(i,j);
+                                this.board[i, j] = new Wall(i, j);
 
                             }
                             //path
                             if (substrings[j] == "p")
                             {
-                                this.board[i, j] = new Path(i, j);
+                                // this.board[i, j] = new Pellet();
                                 pellet.Collision += scoreAndLives.IncrementScore;
                             }
                             //pacman
                             if (substrings[j] == "P")
                             {
-                                this.board[i, j] = new Pacman(this) ;
+                                //this.board[i, j] = pacman;
+                                pacman.Position = new Vector2(i, j);
                             }
                             //ghost
                             if (substrings[j] == "1" || substrings[j] == "2" ||
                                 substrings[j] == "3" || substrings[j] == "4")
                             {
-                                this.board[i, j] = ghost.Add(new Ghost(this, i, j, new Vector2(), GhostState.Chase, new Color()));
+                                //this.board[i, j] = ghost.Add(new Ghost(this, i, j, new Vector2(), GhostState.Chase, new Color()));
                             }
                             //energizer
                             if (substrings[j] == "e")
                             {
-                                this.board[i, j] = new Energizer(i,j);
+                                //this.board = new Energizer();
+                                energizer.Collision += scoreAndLives.IncrementScore;
                             }
 
 
@@ -86,59 +93,38 @@ namespace PacManLibrary
 
                 }//outter for
 
-                for (int i = 0; i < board.GetLength(0); i++)
-                {
-                    for (int j = 0; j < board.GetLength(1); j++)
-                    {
-
-                    }
-
-                }
-
             }
             catch (ArgumentException a)
             {
-                Console.WriteLine("fuck this sht" + a.Message);
+                Console.WriteLine("murphy's law" + a.Message);
             }
-
-            for (int i = 0; i < board.GetLength(0); i++)
-            {
-                for (int j = 0; j < board.GetLength(1); j++)
-                {
-                    
-                }
-              
-            }
-        }
-        public static GameState parse (string fale)
-        {
-            return null;
+            return this;
         }
   
         public Pacman Pacman
         {
-            get;
-            private set;
+            get { return this.pacman; }
+            private set { this.pacman = value; }
         }
         public GhostPack ghostPack
         {
-            private set;
-            get;
+            get { return this.ghost; }
+            private set { this.ghost = value; }
         }
         public Maze Maze
         {
-            private set { }
-            get { return Maze;}
+            get { return this.maze; }
+            private set { this.maze = value; }
         }
         public Pen Pen
         {
-            private set;
-            get;
+            get { return this.pen; }
+            private set { this.pen = value; }
         }
         public ScoreAndLives Score
         {
-            private set;
-            get;
+            get { return this.scoreAndLives; }
+            private set { this.scoreAndLives = value; }
         }
     }
 }

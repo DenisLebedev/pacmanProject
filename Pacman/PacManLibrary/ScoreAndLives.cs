@@ -39,14 +39,7 @@ namespace PacManLibrary
         }
         public void IncrementScore(ICollidable colide)
         {
-            if (colide is Pellet)
-            {
-                Score += 100;
-            }
-            else if (colide is Energizer)
-            {
-                Score += 500;
-            }
+            Score += colide.Points;
         }
         //this will 
         public bool GameWon()

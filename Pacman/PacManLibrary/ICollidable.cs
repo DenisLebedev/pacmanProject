@@ -11,7 +11,7 @@ namespace PacManLibrary
     {
         event CollisionEvent Collision;
 
-        int Points { get; set; }
+        int Points { get;}
 
         void Collide();
     }

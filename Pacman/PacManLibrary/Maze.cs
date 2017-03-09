@@ -108,7 +108,7 @@ namespace PacManLibrary
                 for (int j = 0; j < maze.GetLength(0); j++)
                 {
                     // i dont know what the indexes are ment to have
-                    if (maze[i,j] != null)
+                    if (maze[i,j] )
                     {
                         chk = false;
                     }

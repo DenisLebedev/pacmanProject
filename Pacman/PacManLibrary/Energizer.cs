@@ -16,7 +16,7 @@ namespace PacManLibrary
         public Energizer (GhostPack ghosts)
         {
             this.ghosts = ghosts;
-            this.points = 100;
+            this.points = 500;
         }
 
 
@@ -24,12 +24,7 @@ namespace PacManLibrary
         {
             get
             {
-                return points;
-            }
-
-            set
-            {
-                this.points = value;
+                return this.points;
             }
         }
 

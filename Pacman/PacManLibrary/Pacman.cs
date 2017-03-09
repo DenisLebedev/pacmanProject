@@ -27,7 +27,7 @@ namespace PacManLibrary
         public void Move (Direction dir)
         {
             List<Tile> allowed_moves = maze.GetAvailableNeighbours(position, dir);
-            directionChosen(dir)
+            directionChosen(dir);
             for (int i = 0; i < allowed_moves.Count; i++)
             {
                 if (dir)

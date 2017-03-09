@@ -12,7 +12,10 @@ namespace PacManLibrary
       
 
         private int points;
-
+        public Pellet()
+        {
+            this.points = 100;
+        }
       
         public event CollisionEvent Collision;
 
@@ -22,11 +25,7 @@ namespace PacManLibrary
             {
                 return this.points;
             }
-
-            set
-            {
-                this.points = value;
-            }
+            
         }
 
         public void Collide()

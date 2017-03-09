@@ -26,9 +26,10 @@ namespace PacManLibrary
 
         public void Move()
         {
-            List<Tile> places;
+
+            /*List<Tile> places;
             Tile ghostPos = maze[(int)ghost.Position.X, (int)ghost.Position.Y];
-            Tile targetPod = maze[(int)target.X, (int)target.Y];
+            Tile targetPos = maze[(int)target.X, (int)target.Y];
 
             if (target.X - ghost.Position.X > 0)
             {
@@ -52,9 +53,26 @@ namespace PacManLibrary
             {
                 ghost.Direction = Direction.Right;
                 places = maze.GetAvailableNeighbours(ghost.Position, ghost.Direction);
-            }
+            }*/
 
-            
+            Tile current = maze[(int)ghost.Position.X, (int)ghost.Position.Y];
+            List<Tile> places = maze.GetAvailableNeighbours(ghost.Position, ghost.Direction);
+
+            if (places.Count == 0)
+                throw new Exception("I cannot go further.");
+
+            Random rand = new Random();
+            int choice = rand.Next(places.Count);
+            //determine direction
+            if (places[choice].Position.X == ghost.Position.X + 1)
+                ghost.Direction = Direction.Right;
+            else if (places[choice].Position.X == ghost.Position.X - 1)
+                ghost.Direction = Direction.Left;
+            else if (places[choice].Position.Y == ghost.Position.Y - 1)
+                ghost.Direction = Direction.Up;
+            else
+                ghost.Direction = Direction.Down;
+            ghost.Position = places[choice].Position;
 
 
             target.X = pacman.Position.X;

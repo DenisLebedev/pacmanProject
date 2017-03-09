@@ -23,11 +23,9 @@ namespace PacManLibrary
         private IGhostState currentState;
         private GhostState state;
         private static Timer scared;
-        //!
-        private Vector2 pos;
 
         public event PacmanDied deadPacman;       
-        public event Collision collide;
+        public event CollisionEvent Collision;
 
         static Ghost() { scared = new Timer(); }
 
@@ -35,12 +33,13 @@ namespace PacManLibrary
         public Ghost(GameState g, Vector2 pos, Vector2 target, GhostState start, Color colour)
         {
             pacman = new Pacman(g);
-            this.pos = new Vector2(pos.X, pos.Y);
+            this.Position = new Vector2(pos.X, pos.Y);
             maze = new Maze();
             direction = new Direction();
             this.target = new Vector2(target.X, target.Y);
             //currentState = start;
             this.colour = colour;
+            this.Points = 300;
 
             switch (start)
             {
@@ -62,9 +61,7 @@ namespace PacManLibrary
         }
 
         public Color Colour
-        {
-            get { return colour; }
-        }
+        { get; }
 
         public Direction Direction
         {
@@ -77,16 +74,11 @@ namespace PacManLibrary
         {
             get { return new Vector2(target.X, target.Y); }
 
-            set { target = new Vector2(value.X, value.Y); }
+            set { target = value; }
         }
 
-        /*!!!!*/
-        public int Points
-        {
-            get { return 100; }
 
-            set { }
-        }
+        public int Points { get; }
 
 
         public void Move()
@@ -96,7 +88,8 @@ namespace PacManLibrary
 
         public void Collide()
         {
-            
+            if(pacman.Position.X == this.Position.X && pacman.Position.Y == this.Position.Y)
+                Collision(this);
         }
 
         public void Reset()

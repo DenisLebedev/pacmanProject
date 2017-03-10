@@ -71,7 +71,7 @@ namespace PacManLibrary
                                 Ghost temp = CreateGhost(substrings[j], i, j, game, pacman);
                                 ghost.Add(temp);
                                 temp.Collision += scoreAndLives.IncrementScore;
-                                temp.deadPacman += scoreAndLives.deadPacman;
+                                temp.DeadPacman += scoreAndLives.deadPacman;
 
                             }
                             //energizer
@@ -104,25 +104,28 @@ namespace PacManLibrary
                                      Pen = pen, Score = scoreAndLives, Maze = maze};
 
 
-            /*string path = "..\\..\\..\\levels.csv";
+            /*
+             string path = "..\\..\\..\\levels.csv";
             string currentLine;
-            StreamReader sr = new StreamReader(path);
-            string[] line = null;          
             int counter = 0;
             int innerC = 0;
             int lineCount = File.ReadLines(path).Count();
             string[,] board = new string[lineCount, lineCount];
-            // currentLine will be null when the StreamReader reaches the end of file
-            while ((currentLine = sr.ReadLine()) != null)
+
+            using (StreamReader sr = new StreamReader(path))
             {
-                line = currentLine.Split(',');
-                foreach (string str in line)
+                // currentLine will be null when the StreamReader reaches the end of file
+                while ((currentLine = sr.ReadLine()) != null)
                 {
-                    board[counter, innerC] = str;
-                    innerC++;
+                    IEnumerable<string> line = currentLine.Split(',');
+                    foreach (string str in line)
+                    {
+                        board[counter, innerC] = str;
+                        innerC++;
+                    }
+                    innerC = 0;
+                    counter++;
                 }
-                innerC = 0;
-                counter++;
             }
 
               */

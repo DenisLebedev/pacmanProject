@@ -24,7 +24,7 @@ namespace PacManLibrary
         private GhostState state;
         private static Timer scared;
 
-        public event PacmanDied deadPacman;       
+        public event PacmanDied DeadPacman;       
         public event CollisionEvent Collision;
 
         static Ghost()
@@ -84,6 +84,7 @@ namespace PacManLibrary
         public void Move()
         {
             currentState.Move();
+            this.Collide();
         }
 
         public void Collide()
@@ -91,8 +92,8 @@ namespace PacManLibrary
             if(pacman.Position.X == this.Position.X 
                 && pacman.Position.Y == this.Position.Y
                 && state == GhostState.Chase
-                && deadPacman != null)
-                deadPacman();
+                && DeadPacman != null)
+                DeadPacman();
             else if(pacman.Position.X == this.Position.X
                 && pacman.Position.Y == this.Position.Y
                 && state == GhostState.Scared

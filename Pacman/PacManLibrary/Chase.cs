@@ -50,8 +50,12 @@ namespace PacManLibrary
             ghost.Position = places[choice].Position;
 
 
-            target.X = pacman.Position.X;
-            target.Y = pacman.Position.Y;
+
+            if (target.X == ghost.Position.X && target.Y == ghost.Position.Y)
+            {
+                target.X = pacman.Position.X;
+                target.Y = pacman.Position.Y;
+            }
 
         }
     }

@@ -8,7 +8,7 @@ using System.Collections;
 
 namespace PacManLibrary
 {
-    class GhostPack : IEnumerable<Ghost>
+   public class GhostPack : IEnumerable<Ghost>
     {
         private List<Ghost> ghosts;
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PacManLibrary
 {
-    class Pacman
+   public class Pacman
     {
         private GameState controller;
         private Maze maze;

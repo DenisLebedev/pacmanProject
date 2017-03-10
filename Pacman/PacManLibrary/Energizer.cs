@@ -30,8 +30,10 @@ namespace PacManLibrary
 
         public void Collide()
         {
-            Collision?.Invoke(this);
-            
+            if (Collision != null) {
+                Collision(this);
+                ghosts.ScareGhosts();
+            }        
         }
     }
 }

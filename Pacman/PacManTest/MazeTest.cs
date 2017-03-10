@@ -11,7 +11,9 @@ namespace PacManTest
         [ExpectedException(typeof(NotImplementedException))]
         public void TestMethod1()
         {
-            GameState.Parse();
+            Maze maze = new Maze();
+
+            Tile w = new Wall(0,0);
             w.IsEmpty();
 
             //Console.WriteLine(" " + w.Position);

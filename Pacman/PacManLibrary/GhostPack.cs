@@ -38,7 +38,6 @@ namespace PacManLibrary
             for (int i = 0; i < ghosts.Count; i++)
             {
                 ghosts.ElementAt(i).ChangeState(GhostState.Scared);
-             
             }
         }
 

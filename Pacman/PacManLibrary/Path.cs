@@ -46,7 +46,15 @@ namespace PacManLibrary
 
         public override void Collide()
         {
-            member.Collide();
+            if (!this.IsEmpty())
+            {
+                member.Collide();
+                this.tile = null;
+
+            }
+            
+           
+         
         }
 
         public override ICollidable Member()

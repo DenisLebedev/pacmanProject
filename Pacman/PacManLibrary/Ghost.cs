@@ -134,8 +134,7 @@ namespace PacManLibrary
         {
             Timer t = (Timer)sender;
             t.Enabled = false;
-            this.ChangeState(GhostState.Chase);
-            
+            this.ChangeState(GhostState.Chase);         
         }
 
     }

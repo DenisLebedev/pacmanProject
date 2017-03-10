@@ -30,10 +30,12 @@ namespace PacManLibrary
         {
             return true;
         }
-
+        /// <summary>
+        /// The is empty method will check if a member
+        /// </summary>
         public override bool IsEmpty()
         {
-            if (member is Pellet || member is Energizer || member is Ghost)
+            if (member == null)
             {
                 return false;
             }

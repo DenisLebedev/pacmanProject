@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PacManLibrary
 {
-    interface IGhostState
+    public interface IGhostState
     {
         void Move();
     }

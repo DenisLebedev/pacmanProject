@@ -12,7 +12,7 @@ namespace PacManLibrary
     public delegate void PacmanDied();
     public delegate void Collision(ICollidable obj);
 
-    class Ghost : IMovable, ICollidable
+    public class Ghost : IMovable, ICollidable
     {
         private Pacman pacman;
         private Vector2 target;

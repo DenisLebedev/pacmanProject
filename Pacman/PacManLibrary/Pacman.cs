@@ -42,14 +42,14 @@ namespace PacManLibrary
                     break;
             }     
         } 
-        public bool CheckCollisions()
+        public void CheckCollisions()
         {
-            if (!true)
-            {
-                return true;
+          if (!(controller.Maze[(int)Position.X, (int)Position.Y].IsEmpty())){
+                //there is something here
+                controller.Maze[(int)Position.X, (int)Position.Y].Collide();
             }
+            //thre is nothing here
 
-            return false;
         } 
         
     }

@@ -34,34 +34,39 @@ namespace PacManLibrary
 
         public Ghost(GameState g, Vector2 pos, Vector2 target, GhostState start, Color colour)
         {
-            pacman = new Pacman(g);
+            this.pacman = g.Pacman;
             this.Position = new Vector2(pos.X, pos.Y);
-            maze = new Maze();
-            direction = new Direction();
+            this.maze = g.Maze;
+            this.pen = g.Pen;
             this.target = new Vector2(target.X, target.Y);
             this.colour = colour;
             this.Points = 300;
 
+            this.Direction = Direction.Left;
+            
             switch (start)
             {
                 case GhostState.Chase:
-                    currentState = new Chase(this, g.Maze, g.Pacman, g.Pacman.Position);
-                    state = GhostState.Chase;
+                    currentState = new Chase(this, g.Maze, g.Pacman, target);
+                    this.state = start;
                     break;
                 case GhostState.Scared:
                     currentState = new Scared(this, g.Maze);
-                    state = GhostState.Scared;
+                    this.state = start;
+                    scared.Interval = 9000;
+                    scared.Enabled = true;
+                    scared.Elapsed += UpdateState;
                     break;
             }
         }
 
-        public IGhostState CurrenState
+        public GhostState CurrenState
         {
-            get { return currentState; }
+            get { return state; }
         }
 
         public Color Colour
-        { get; }
+        { get { return colour; } }
 
         public Direction Direction
         {
@@ -114,16 +119,16 @@ namespace PacManLibrary
             switch (state)
             {
                 case GhostState.Chase:
-                    state = GhostState.Chase;
-                    currentState = new Chase(this, maze, pacman, target);  
-                    break;
-
-                case GhostState.Scared:
                     state = GhostState.Scared;
                     currentState = new Scared(this, maze);
                     scared.Interval = 9000;
                     scared.Enabled = true;
                     scared.Elapsed += UpdateState;
+                    break;
+
+                case GhostState.Scared:
+                    state = GhostState.Chase;
+                    currentState = new Chase(this, maze, pacman, target);  
                     break;
 
                 case GhostState.Released:

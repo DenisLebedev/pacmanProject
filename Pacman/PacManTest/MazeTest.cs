@@ -8,13 +8,14 @@ namespace PacManTest
     public class MazeTest
     {
         [TestMethod]
+        [ExpectedException(typeof(NotImplementedException))]
         public void TestMethod1()
         {
-            Maze maze = new Maze();
+            GameState.Parse();
+            w.IsEmpty();
 
-            Tile w = new Wall(0,0);
-
-            Assert.IsTrue(maze[0,0] is Wall);
+            //Console.WriteLine(" " + w.Position);
+           
           
         }
     }

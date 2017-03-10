@@ -31,6 +31,7 @@ namespace PacManLibrary
         public void Collide()
         {
             Collision?.Invoke(this);
+            
         }
     }
 }

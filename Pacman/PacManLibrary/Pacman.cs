@@ -44,9 +44,9 @@ namespace PacManLibrary
         } 
         public void CheckCollisions()
         {
-          if (!(controller.Maze[(int)Position.X, (int)Position.Y].IsEmpty())){
+          if (!(maze[(int)Position.X, (int)Position.Y].IsEmpty())){
                 //there is something here
-                controller.Maze[(int)Position.X, (int)Position.Y].Collide();
+                maze[(int)Position.X, (int)Position.Y].Collide();
             }
             //thre is nothing here
 

@@ -37,7 +37,7 @@ namespace PacManLibrary
         {
             if (member == null)
             {
-                return false;
+                return true;
             }
 
             return true;

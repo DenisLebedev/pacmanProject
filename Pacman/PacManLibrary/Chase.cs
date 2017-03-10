@@ -29,7 +29,6 @@ namespace PacManLibrary
 
             List<Tile> places = maze.GetAvailableNeighbours(ghost.Position, ghost.Direction);
             Tile current = maze[(int)ghost.Position.X, (int)ghost.Position.Y];
-            places = maze.GetAvailableNeighbours(ghost.Position, ghost.Direction);
 
             if (places.Count == 0)
                 throw new Exception("I cannot go further.");

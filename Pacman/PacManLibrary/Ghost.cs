@@ -27,9 +27,11 @@ namespace PacManLibrary
         public event PacmanDied deadPacman;       
         public event CollisionEvent Collision;
 
-        static Ghost() { scared = new Timer(); }
+        static Ghost()
+        {
+            scared = new Timer();
+        }
 
-        /*!!!!!*/
         public Ghost(GameState g, Vector2 pos, Vector2 target, GhostState start, Color colour)
         {
             pacman = new Pacman(g);
@@ -37,7 +39,6 @@ namespace PacManLibrary
             maze = new Maze();
             direction = new Direction();
             this.target = new Vector2(target.X, target.Y);
-            //currentState = start;
             this.colour = colour;
             this.Points = 300;
 
@@ -54,7 +55,6 @@ namespace PacManLibrary
             }
         }
 
-        /*!!!!!!!! ref*/
         public IGhostState CurrenState
         {
             get { return currentState; }
@@ -88,13 +88,21 @@ namespace PacManLibrary
 
         public void Collide()
         {
-            if(pacman.Position.X == this.Position.X && pacman.Position.Y == this.Position.Y)
+            if(pacman.Position.X == this.Position.X 
+                && pacman.Position.Y == this.Position.Y
+                && state == GhostState.Chase
+                && deadPacman != null)
+                deadPacman();
+            else if(pacman.Position.X == this.Position.X
+                && pacman.Position.Y == this.Position.Y
+                && state == GhostState.Scared
+                && Collision != null)
                 Collision(this);
         }
 
         public void Reset()
         {
-
+            pen.AddToPen(this);
         }
 
         public void ChangeState(GhostState state)
@@ -104,14 +112,29 @@ namespace PacManLibrary
                 case GhostState.Chase:
                     state = GhostState.Scared;
                     currentState = new Scared(this, maze);
+                    scared.Interval = 9000;
+                    scared.Enabled = true;
+                    scared.Elapsed += UpdateState;
                     break;
 
                 case GhostState.Scared:
                     state = GhostState.Chase;
+                    currentState = new Chase(this, maze, pacman, target);                   
+                    break;
+
+                case GhostState.Released:
+                    state = GhostState.Chase;
                     currentState = new Chase(this, maze, pacman, target);
                     break;
             }
+        }
 
+        private void UpdateState(object sender, ElapsedEventArgs e)
+        {
+            Timer t = (Timer)sender;
+            t.Enabled = false;
+            this.ChangeState(GhostState.Chase);
+            
         }
 
     }

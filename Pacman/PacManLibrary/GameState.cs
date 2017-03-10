@@ -17,7 +17,7 @@ namespace PacManLibrary
         {
             GameState game;
             game = parse("..\\..\\..\\game_board.txt");
-            Maze.SetTiles(board);
+            Maze.SetTiles(Board);
         }
    
         public static GameState parse (string file)

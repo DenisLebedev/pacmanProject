@@ -16,28 +16,6 @@ namespace PacManLibrary
         private Tile[,] maze;
 
         public Maze() { }
-        private void setArray()
-        {
-            for (int i = 0; i < maze.GetLength(0); i++)
-            {
-                if (i == 0 || i == maze.GetLength(0) - 1)
-                { 
-                    for (int j = 0; j < maze.GetLength(1); j++)
-                    {
-                        maze[i, j] = new Wall(i, j);
-                    }
-                }//end of if              
-            }
-            for (int i = 1; i < 2; i++)
-            {
-                if (i == 1) { i = maze.GetLength(1) - 1; }
-                for (int j = 0; j < maze.GetLength(0) - 1; j++)
-                {
-                    maze[i, j] = new Wall(i, j);
-                }
-            }
-        }
-       
 
         public void SetTiles (Tile[,] tiles)
         {
@@ -62,35 +40,50 @@ namespace PacManLibrary
         public List<Tile> GetAvailableNeighbours(Vector2 position, Direction dir)
         {
             List<Tile> available_tiles = new List<Tile>();
-            string positionx = ""+ position.X;
-            int x = Int32.Parse(positionx);
-            string positiony = "" + position.Y;
-            int y = Int32.Parse(positiony);
+            int x = (int)position.X;
+            int y = (int)position.Y;
+
             switch (dir)
             {
                 case Direction.Down:
-                    if (!(maze[x, y+1].Member() is Wall))
-                    {
-                        available_tiles.Add(maze[x, y]);
-                    }
+                    if (maze[x, y-1].IsEmpty())
+                    {available_tiles.Add(maze[x, y-1]);}//up
+
+                    if (maze[x-1, y].IsEmpty())
+                    { available_tiles.Add(maze[x-1, y]); }//left
+
+                    if (maze[x+1, y].IsEmpty())
+                    { available_tiles.Add(maze[x+1, y]); }//right
                     break;
                 case Direction.Up:
-                     if (!(maze[x, y - 1].Member() is Wall ))
-                     {
-                         available_tiles.Add(maze[x, y]);
-                     }
+                    if (maze[x, y + 1].IsEmpty())
+                    { available_tiles.Add(maze[x, y +1]); }//down
+
+                    if (maze[x - 1, y].IsEmpty())
+                    { available_tiles.Add(maze[x - 1, y]); }//left
+
+                    if (maze[x + 1, y].IsEmpty())
+                    { available_tiles.Add(maze[x+1, y]); }//right
                     break;
                 case Direction.Left:
-                     if (!(maze[x - 1, y].Member() is Wall))
-                     {
-                         available_tiles.Add(maze[x, y]);
-                     } 
+                    if (maze[x, y + 1].IsEmpty())
+                    { available_tiles.Add(maze[x, y + 1]); }//down
+
+                    if (maze[x, y-1].IsEmpty())
+                    { available_tiles.Add(maze[x, y-1]); }//up
+
+                    if (maze[x + 1, y].IsEmpty())
+                    { available_tiles.Add(maze[x + 1, y]); }//right
                     break;
                 case Direction.Right:
-                     if (!(maze[x + 1, y].Member() is Wall))
-                     {
-                         available_tiles.Add(maze[x, y]);
-                     }
+                    if (maze[x, y + 1].IsEmpty())
+                    { available_tiles.Add(maze[x, y + 1]); }//down
+
+                    if (maze[x - 1, y].IsEmpty())
+                    { available_tiles.Add(maze[x - 1, y]); }//left
+
+                    if (maze[x, y - 1].IsEmpty())
+                    { available_tiles.Add(maze[x, y - 1]); }//up
                     break;
 
             }
@@ -104,11 +97,13 @@ namespace PacManLibrary
             {
                 for (int j = 0; j < maze.GetLength(0); j++)
                 {
-                   if (maze[i,j].Member() is Pellet || maze[i, j].Member() is Energizer)
+                   if (!(maze[i,j].IsEmpty()))
                     {
                         chk = false;
+                        break;
                     }
                 }
+                if (!chk) { break;}
             }//end of for loop
             if (chk)
             {

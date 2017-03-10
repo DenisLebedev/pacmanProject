@@ -9,7 +9,7 @@ namespace PacManTest
     public class MazeTest
     {
         [TestMethod]
-        public void TestGameStateParsePacmanPosition()
+        public void TestGameStateParse_PacmanPosition()
         {
             GameState game1 = GetGameState();
             Pacman pacman = new Pacman(game1); //17, 11
@@ -18,7 +18,7 @@ namespace PacManTest
             Assert.AreEqual(game1.Pacman.Position, pacman.Position);
         }
         [TestMethod]
-        public void TestGameStateParsePelletPosition()
+        public void TestGameStateParse_PelletPosition()
         {
             GameState game1 = GetGameState();
             Pellet pellet = new Pellet();
@@ -29,14 +29,27 @@ namespace PacManTest
         }
         [TestMethod]
         //[ExpectedException(typeof(NotImplementedException))]
-        public void TestGameStateParseWallPosition()
+        public void TestGameStateParse_WallPosition()
         {
             GameState game1 = GetGameState();
             Tile path = new Wall(0, 0);
 
-            Console.WriteLine(" ======>  " + game1.Maze[0, 0].Member().ToString() + "    ||   "+ path.ToString());
+            Console.WriteLine(" ======> " + game1.Maze[0,0].ToString());
 
-            Assert.AreEqual(game1.Maze[1,1].ToString(), path.ToString());
+            Assert.AreEqual(game1.Maze[0,0].ToString(), path.ToString());
+        }
+        [TestMethod]
+        //[ExpectedException(typeof(NotImplementedException))]
+        public void TestGameStateParse_EnergizerPosition()
+        {
+            GameState game1 = GetGameState();
+            GhostPack ghosts = new GhostPack();
+            Energizer energizer = new Energizer(ghosts);
+            Tile path = new Path(3, 1, energizer);
+
+            Console.WriteLine(" ======> " + game1.Maze[3, 1].Member().ToString());
+
+            Assert.AreEqual(game1.Maze[3, 1].Member().ToString(), path.Member().ToString());
         }
         private GameState GetGameState()
         {

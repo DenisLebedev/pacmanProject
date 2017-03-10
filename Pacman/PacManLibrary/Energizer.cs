@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PacManLibrary
 {
-    class Energizer : ICollidable
+    public class Energizer : ICollidable
     {
         private int points;
         private GhostPack ghosts;

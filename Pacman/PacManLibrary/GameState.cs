@@ -11,16 +11,9 @@ namespace PacManLibrary
 {
      class GameState
     {
-       private Tile[,] board;
-
-       public GameState()
-        {
-            GameState game;
-            game = parse("..\\..\\..\\game_board.txt");
-            Maze.SetTiles(Board);
-        }
+      
    
-        public static GameState parse (string file)
+        public static GameState Parse (string file)
         {
             GameState game = new GameState();
             GhostPack ghost = new GhostPack();
@@ -100,7 +93,10 @@ namespace PacManLibrary
             {
                 Console.WriteLine("murphy's law" + a.Message);
             }
-            return new GameState() { Board = board, Pacman = pacman, GhostPack = ghost,
+            //setting up Maze classes setTiles method
+            maze.SetTiles(board);
+
+            return new GameState() { Pacman = pacman, GhostPack = ghost,
                                      Pen = pen, Score = scoreAndLives, Maze = maze};
 
 
@@ -155,11 +151,7 @@ namespace PacManLibrary
             return null;
         }
 
-        public Tile[,] Board
-        {
-            get;
-            private set;
-        }
+
             
   
         public Pacman Pacman

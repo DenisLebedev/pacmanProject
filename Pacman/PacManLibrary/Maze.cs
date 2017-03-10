@@ -15,7 +15,10 @@ namespace PacManLibrary
         public event Won PacmanWon;
         private Tile[,] maze;
 
-        public Maze() { }
+        public Maze() {
+
+            maze = new Tile[Size,Size];
+        }
 
         public void SetTiles (Tile[,] tiles)
         {

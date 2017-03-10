@@ -17,11 +17,11 @@ namespace PacManLibrary
         {
             
             GameState game = new GameState();
-            GhostPack ghost = new GhostPack();
-            Pen pen = new Pen ();
-            Maze maze = new Maze();
-            Pacman pacman = new Pacman (game);
-            ScoreAndLives scoreAndLives = new ScoreAndLives(game);
+            game.GhostPack = new GhostPack();
+            game.Pen = new Pen();
+            game.Maze = new Maze();            
+            game.Pacman = new Pacman(game);
+            game.Score = new ScoreAndLives(game);
 
             string[,] strArr = game.GetFinalArray(file);
 
@@ -34,38 +34,28 @@ namespace PacManLibrary
                     if (strArr[x, y] == "p")
                     {
                         Pellet temp = new Pellet();
-                        temp.Collision += scoreAndLives.IncrementScore;
+                        temp.Collision += game.Score.IncrementScore;
                         board[x, y] = new Path(x, y, temp);
                     } else if (strArr[x, y] == "w")
                     {
                         board[x, y] = new Wall(x, y);
                     } else if (strArr[x, y] == "e" )
                     {
-                        Energizer temp = new Energizer(ghost);
-                        temp.Collision += scoreAndLives.IncrementScore;
+                        Energizer temp = new Energizer(game.GhostPack);
+                        temp.Collision += game.Score.IncrementScore;
                         board[x, y] = new Path(x, y, temp);
                     } else if (strArr[x, y] == "P")
                     {
-                        pacman.Position = new Vector2(x,y);
+                        game.Pacman.Position = new Vector2(x,y);
                     } else if (strArr[x, y] == "1" || strArr[x, y] == "2"
                          || strArr[x, y] == "3" || strArr[x, y] == "4")
                     {
-                        ghost.Add(CreateGhost(strArr[x, y], x, y, game, pacman, scoreAndLives));
+                        game.GhostPack.Add(CreateGhost(strArr[x, y], x, y, game, game.Pacman, game.Score));
                     }
                 }
             }
-
-      
-
-            maze.SetTiles(board);
-            return new GameState()
-            {
-                Pacman = pacman,
-                GhostPack = ghost,
-                Pen = pen,
-                Score = scoreAndLives,
-                Maze = maze
-            };
+            game.Maze.SetTiles(board);
+            return game;
         }
 
         private static Ghost CreateGhost(string num, int x, int y, 

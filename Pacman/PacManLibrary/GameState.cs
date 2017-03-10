@@ -20,8 +20,6 @@ namespace PacManLibrary
             GhostPack ghost = new GhostPack();
             Pen pen = new Pen ();
             Maze maze = new Maze();
-            Pellet pellet = new Pellet();
-            Energizer energizer = new Energizer(ghost);
             Pacman pacman = new Pacman (game);
             ScoreAndLives scoreAndLives = new ScoreAndLives(game);
 

@@ -40,21 +40,15 @@ namespace PacManLibrary
                 return true;
             }
 
-            return true;
+            return false;
         }
-
-
         public override void Collide()
         {
             if (!this.IsEmpty())
             {
-                member.Collide();
-                this.tile = null;
-
-            }
-            
-           
-         
+                    member.Collide();
+                    this.member = null;
+            }      
         }
 
         public override ICollidable Member()

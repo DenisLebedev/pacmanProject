@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace PacManLibrary
 {
-    public delegate bool won();
+    public delegate bool Won();
     
     public class Maze
     {
-        public event won PacmanWon;
+        public event Won PacmanWon;
         private Tile[,] maze;
 
         public Maze() { }

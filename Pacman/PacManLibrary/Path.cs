@@ -30,7 +30,8 @@ namespace PacManLibrary
         {
             return true;
         }
-        public override bool isEmpty()
+
+        public override bool IsEmpty()
         {
             if (member is Pellet || member is Energizer || member is Ghost)
             {

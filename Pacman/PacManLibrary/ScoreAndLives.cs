@@ -6,34 +6,41 @@ using System.Threading.Tasks;
 
 namespace PacManLibrary
 {
+    public delegate void Game();
     class ScoreAndLives
     {
         private GameState gameState;
+        private int lives;
+        private int score;
         public ScoreAndLives (GameState state)
         {
             gameState = state;
-            gameState.Board.Collision += 
+            Lives = 3;
+            Score = 0;
 
-            gameState.Maze.PacmanWon += GameWon;
+            //subscribin to event of pacmanwon if there are no more
+            //ICollidable objects (pellets or energizers) on the maze
+            gameState.Maze.PacmanWon += GameWon;  
         }
-        public delegate void Game(int x);
+      
         public event Game GameOver;
 
         public int Lives
         {
-            set;
-            get;
+            set { lives = value; }
+            get { return this.lives; }
         }
         public int Score
         {
-            set;
-            get;
+            set { score = value; }
+            get { return score; }
         }
-        private void deadPacman()
+        public void deadPacman()
         {
-            if (GameOver != null)
+            Lives -= 1;
+            if (Lives == 0)
             {
-                GameOver(Lives - 1); 
+                GameOver?.Invoke();  //Console.WriteLine("GAME OVER!!!"); 
             }
         }
         public void IncrementScore(ICollidable colide)
@@ -42,9 +49,7 @@ namespace PacManLibrary
         }
         public bool GameWon()
         {
-            return false;
+            return true;
         }
-
-
     }
 }

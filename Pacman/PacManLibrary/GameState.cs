@@ -30,8 +30,9 @@ namespace PacManLibrary
             Energizer energizer = new Energizer(ghost);
             Pacman pacman = new Pacman (game);
             ScoreAndLives scoreAndLives = new ScoreAndLives(game);
+            Tile[,] board = new Tile[23, 23];
+
             char deleimeter = ' ';
-            Tile[,] board = new Tile [23,23]; 
             string[] readText = null;
             try
             {
@@ -44,7 +45,8 @@ namespace PacManLibrary
                     for (int j = 0; j < 23; j++)
                     {
                         try
-                        {   //wall
+                        {  
+                            //wall
                             if (substrings[j] == "w")
                             {
                                 board[i, j] = new Wall(i, j);
@@ -53,7 +55,7 @@ namespace PacManLibrary
                             //path
                             if (substrings[j] == "p")
                             {
-                                // this.board[i, j] = new Pellet();
+                                //board[i, j] = new Pellet();
                                 pellet.Collision += scoreAndLives.IncrementScore;
                             }
                             //pacman
@@ -66,7 +68,11 @@ namespace PacManLibrary
                             if (substrings[j] == "1" || substrings[j] == "2" ||
                                 substrings[j] == "3" || substrings[j] == "4")
                             {
-                                //this.board[i, j] = ghost.Add(new Ghost(this, i, j, new Vector2(), GhostState.Chase, new Color()));
+                                Ghost temp = CreateGhost(substrings[j], i, j, game, pacman);
+                                ghost.Add(temp);
+                                temp.Collision += scoreAndLives.IncrementScore;
+                                temp.deadPacman += scoreAndLives.deadPacman;
+
                             }
                             //energizer
                             if (substrings[j] == "e")
@@ -119,14 +125,31 @@ namespace PacManLibrary
                 counter++;
             }
 
-            for (int i = 0; i < board.GetLength(0); i++)
-            {
-                Console.WriteLine();
-                for (int j = 0; j < board.GetLength(1); j++)
-                    Console.Write(board[i, j]);
-            }
+              */
+        }
 
-                    Console.Read()*/
+        private static Ghost CreateGhost(string str, int x, int y,GameState game, Pacman pacman)
+        {
+            switch (str)
+            {
+                //red
+                case "1":
+                    return new Ghost(game, new Vector2(x,y),pacman.Position, 
+                            GhostState.Chase, new Color(255,0,0));
+                //green
+                case "2":
+                    return new Ghost(game, new Vector2(x, y), pacman.Position,
+                     GhostState.Chase, new Color(50, 205, 50)); ;
+                //hot pink
+                case "3":
+                    return new Ghost(game, new Vector2(x, y), pacman.Position,
+                     GhostState.Chase, new Color(255, 105, 180)); ;
+                //orange
+                case "4":
+                    return new Ghost(game, new Vector2(x, y), pacman.Position,
+                     GhostState.Chase, new Color(255, 165, 0)); ;
+            }
+            return null;
         }
 
         public Tile[,] Board

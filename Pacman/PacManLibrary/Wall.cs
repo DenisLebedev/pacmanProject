@@ -37,7 +37,7 @@ namespace PacManLibrary
         /// Since this class is a wall so a wall never contains
         /// something therefor makes it empty all the time        <========== check logic!
         /// </summary>
-        public override bool isEmpty()
+        public override bool IsEmpty()
         {
             throw new NotImplementedException();
         }

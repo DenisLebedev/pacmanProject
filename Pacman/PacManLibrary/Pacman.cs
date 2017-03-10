@@ -26,39 +26,25 @@ namespace PacManLibrary
         }
         public void Move (Direction dir)
         {
-            List<Tile> allowed_moves = maze.GetAvailableNeighbours(position, dir);
-            directionChosen(dir);
-            for (int i = 0; i < allowed_moves.Count; i++)
-            {
-                if (dir)
-                {
-
-                }
-            }
-
-        } 
-        private Direction directionChosen (Direction dir)
-        {
             switch (dir)
             {
                 case Direction.Down:
-                    return dir;
+                    Position = new Vector2(Position.X, Position.Y + 1);
                     break;
                 case Direction.Left:
-                    return dir;
+                    Position = new Vector2(Position.X -1, Position.Y);
                     break;
                 case Direction.Up:
-                    return dir;
+                    Position = new Vector2(Position.X, Position.Y - 1);
                     break;
                 case Direction.Right:
-                    return dir;
+                    Position = new Vector2(Position.X + 1, Position.Y);
                     break;
-            }
-            return new Direction();
-        }
+            }     
+        } 
         public bool CheckCollisions()
         {
-            if (maze[(int)position.X, (int)position.Y] is Wall)
+            if (!true)
             {
                 return true;
             }

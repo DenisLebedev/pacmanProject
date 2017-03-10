@@ -25,7 +25,7 @@ namespace PacManLibrary
 
         public abstract void Collide();
     
-        public abstract bool isEmpty();
+        public abstract bool IsEmpty();
 
         public virtual float GetDistance (Vector2 goal)
         {

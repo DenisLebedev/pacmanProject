@@ -35,20 +35,24 @@ namespace PacManLibrary
                 {
                     if (strArr[x, y] == "p")
                     {
-                        board[x, y] = new Path(x, y, new Pellet());
+                        Pellet temp = new Pellet();
+                        temp.Collision += scoreAndLives.IncrementScore;
+                        board[x, y] = new Path(x, y, temp);
                     } else if (strArr[x, y] == "w")
                     {
                         board[x, y] = new Wall(x, y);
                     } else if (strArr[x, y] == "e" )
                     {
-                        board[x, y] = new Path(x, y, new Energizer(ghost));
+                        Energizer temp = new Energizer(ghost);
+                        temp.Collision += scoreAndLives.IncrementScore;
+                        board[x, y] = new Path(x, y, temp);
                     } else if (strArr[x, y] == "P")
                     {
                         pacman.Position = new Vector2(x,y);
                     } else if (strArr[x, y] == "1" || strArr[x, y] == "2"
                          || strArr[x, y] == "3" || strArr[x, y] == "4")
                     {
-                        CreateGhost(strArr[x, y], x, y, game, pacman);
+                        ghost.Add(CreateGhost(strArr[x, y], x, y, game, pacman, scoreAndLives));
                     }
                 }
             }
@@ -66,7 +70,8 @@ namespace PacManLibrary
             };
         }
 
-        private Ghost CreateGhost(string num, int x, int y, GameState game, Pacman pacman)
+        private static Ghost CreateGhost(string num, int x, int y, 
+                           GameState game, Pacman pacman, ScoreAndLives scoreAndLives)
         {
             Ghost ghost = null;
 
@@ -75,7 +80,7 @@ namespace PacManLibrary
                 //red
                 case "1":
                     ghost = new Ghost(game, new Vector2(x, y), pacman.Position,
-                            GhostState.Chase, new Color(255, 0, 0));
+                            GhostState.Chase, new Color(255, 0, 0));              
                     break;
                 //green
                 case "2":
@@ -94,6 +99,15 @@ namespace PacManLibrary
                     break;
             }    
 
+            if(ghost != null)
+            {
+                ghost.Collision += scoreAndLives.IncrementScore;
+                ghost.DeadPacman += scoreAndLives.deadPacman;
+            }
+            else
+            {
+                throw new NullReferenceException("Cannot create a ghost object.");
+            }
 
             return ghost;
         }

@@ -89,16 +89,19 @@ namespace PacManLibrary
 
         public void Collide()
         {
-            if(pacman.Position.X == this.Position.X 
+            if (pacman.Position.X == this.Position.X
                 && pacman.Position.Y == this.Position.Y
                 && state == GhostState.Chase
                 && DeadPacman != null)
                 DeadPacman();
-            else if(pacman.Position.X == this.Position.X
+            else if (pacman.Position.X == this.Position.X
                 && pacman.Position.Y == this.Position.Y
                 && state == GhostState.Scared
                 && Collision != null)
+            {
                 Collision(this);
+                this.Reset();
+            }
         }
 
         public void Reset()

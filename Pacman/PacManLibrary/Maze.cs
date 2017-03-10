@@ -22,7 +22,7 @@ namespace PacManLibrary
             this.maze = tiles;
         }
 
-        public Tile this[int x,int y]
+        public Tile this[int y,int x]
         {
             get
             {

@@ -15,6 +15,7 @@ namespace PacManLibrary
    
         public static GameState Parse (string file)
         {
+            
             GameState game = new GameState();
             GhostPack ghost = new GhostPack();
             Pen pen = new Pen ();
@@ -24,66 +25,35 @@ namespace PacManLibrary
             Pacman pacman = new Pacman (game);
             ScoreAndLives scoreAndLives = new ScoreAndLives(game);
 
+            string[,] strArr = game.GetFinalArray(file);
 
-            
-            //helper variables for reading from file
-            string currentLine;
-            int i = 0;
-            int j = 0;
-            int lineCount = File.ReadLines(file).Count();
-            Tile[,] board = new Tile[lineCount, lineCount];
+            Tile[,] board = new Tile[strArr.GetLength(0), strArr.GetLength(1)];
 
-            using (StreamReader sr = new StreamReader(file))
+            for(int y = 0; y < board.GetLength(0); y++)
             {
-                // currentLine will be null when the StreamReader reaches the end of file
-                while ((currentLine = sr.ReadLine()) != null)
+                for(int x = 0; x < board.GetLength(1); x++)
                 {
-                    IEnumerable<string> line = currentLine.Split(',');
-                    foreach (string str in line)
+                    if (strArr[x, y] == "p")
                     {
-                    //wall
-                            if (str == "w")
-                            {
-                               // board[i, j] = new Wall(i, j);
-
-                            }
-                            //path
-                            if (str == "p")
-                            {
-                                //board[i, j] = new Pellet();
-                                pellet.Collision += scoreAndLives.IncrementScore;
-                            }
-                            //pacman
-                            if (str == "P")
-                            {
-                                //this.board[i, j] = pacman;
-                                pacman.Position = new Vector2(i, j);
-                            }
-                            //ghost
-                            if (str == "1" || str == "2" ||
-                                str == "3" || str == "4")
-                            {
-                                Ghost temp = CreateGhost(str, i, j, game, pacman);
-                                ghost.Add(temp);
-                                temp.Collision += scoreAndLives.IncrementScore;
-                                temp.DeadPacman += scoreAndLives.deadPacman;
-
-                            }
-                            //energizer
-                            if (str == "e")
-                            {
-                                //this.board = new Energizer();
-                                energizer.Collision += scoreAndLives.IncrementScore;
-                            }
-                        //board[i, j] = str;
-                        j++;
+                        board[x, y] = new Path(x, y, new Pellet());
+                    } else if (strArr[x, y] == "w")
+                    {
+                        board[x, y] = new Wall(x, y);
+                    } else if (strArr[x, y] == "e" )
+                    {
+                        board[x, y] = new Path(x, y, new Energizer(ghost));
+                    } else if (strArr[x, y] == "P")
+                    {
+                        pacman.Position = new Vector2(x,y);
+                    } else if (strArr[x, y] == "1" || strArr[x, y] == "2"
+                         || strArr[x, y] == "3" || strArr[x, y] == "4")
+                    {
+                        CreateGhost(strArr[x, y], x, y, game, pacman);
                     }
-                    j = 0;
-                    i++;
-                } 
-
-                
+                }
             }
+
+      
 
             maze.SetTiles(board);
             return new GameState()
@@ -96,32 +66,62 @@ namespace PacManLibrary
             };
         }
 
-        private static Ghost CreateGhost(string str, int x, int y,GameState game, Pacman pacman)
+        private Ghost CreateGhost(string num, int x, int y, GameState game, Pacman pacman)
         {
-            switch (str)
+            Ghost ghost = null;
+
+            switch (num)
             {
                 //red
                 case "1":
-                    return new Ghost(game, new Vector2(x,y),pacman.Position, 
-                            GhostState.Chase, new Color(255,0,0));
+                    ghost = new Ghost(game, new Vector2(x, y), pacman.Position,
+                            GhostState.Chase, new Color(255, 0, 0));
+                    break;
                 //green
                 case "2":
-                    return new Ghost(game, new Vector2(x, y), pacman.Position,
-                     GhostState.Chase, new Color(50, 205, 50)); ;
+                    ghost = new Ghost(game, new Vector2(x, y), pacman.Position,
+                     GhostState.Chase, new Color(50, 205, 50));
+                    break;
                 //hot pink
                 case "3":
-                    return new Ghost(game, new Vector2(x, y), pacman.Position,
-                     GhostState.Chase, new Color(255, 105, 180)); ;
+                    ghost = new Ghost(game, new Vector2(x, y), pacman.Position,
+                     GhostState.Chase, new Color(255, 105, 180));
+                    break;
                 //orange
                 case "4":
-                    return new Ghost(game, new Vector2(x, y), pacman.Position,
-                     GhostState.Chase, new Color(255, 165, 0)); ;
-            }
-            return null;
+                    ghost = new Ghost(game, new Vector2(x, y), pacman.Position,
+                     GhostState.Chase, new Color(255, 165, 0));
+                    break;
+            }    
+
+
+            return ghost;
         }
 
+        private string[,] GetFinalArray(string game)
+        {
+            string[] full = game.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            string[,] board = new string[full.GetLength(0), full.GetLength(0)];
+            string[][] Result = (from str in full
+                                 where (str != " ")
+                                 select str.Split(' ')).ToArray();
 
-            
+            //new string[] {str}.ToArray();
+            Console.WriteLine(Result[0][2]);
+            /*foreach (var str in Result)
+                Console.WriteLine(str[1]);*/
+
+            string[,] finalArr = new string[full.GetLength(0), full.GetLength(0)];
+            for (int i = 0; i < Result.Length; i++)
+            {
+                for (int j = 0; j < Result[i].Length; j++)
+                {
+                    finalArr[i, j] = Result[i][j];
+                }
+            }
+
+            return finalArr;
+        }            
   
         public Pacman Pacman
         {

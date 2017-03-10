@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PacManLibrary
 {
-    class Path : Tile 
+    public class Path : Tile 
     {
         private int x;
         private int y;

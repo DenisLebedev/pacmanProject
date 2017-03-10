@@ -108,11 +108,6 @@ namespace PacManLibrary
                                  where (str != " ")
                                  select str.Split(' ')).ToArray();
 
-            //new string[] {str}.ToArray();
-            Console.WriteLine(Result[0][2]);
-            /*foreach (var str in Result)
-                Console.WriteLine(str[1]);*/
-
             string[,] finalArr = new string[full.GetLength(0), full.GetLength(0)];
             for (int i = 0; i < Result.Length; i++)
             {

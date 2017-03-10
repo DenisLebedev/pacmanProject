@@ -114,16 +114,16 @@ namespace PacManLibrary
             switch (state)
             {
                 case GhostState.Chase:
+                    state = GhostState.Chase;
+                    currentState = new Chase(this, maze, pacman, target);  
+                    break;
+
+                case GhostState.Scared:
                     state = GhostState.Scared;
                     currentState = new Scared(this, maze);
                     scared.Interval = 9000;
                     scared.Enabled = true;
                     scared.Elapsed += UpdateState;
-                    break;
-
-                case GhostState.Scared:
-                    state = GhostState.Chase;
-                    currentState = new Chase(this, maze, pacman, target);                   
                     break;
 
                 case GhostState.Released:

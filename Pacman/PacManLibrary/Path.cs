@@ -33,9 +33,9 @@ namespace PacManLibrary
 
         public override bool IsEmpty()
         {
-            if (member is Pellet || member is Energizer || member is Ghost)
+            if (member == null)
             {
-                return false;
+                return true;
             }
 
             return true;

@@ -13,7 +13,7 @@ namespace PacManLibrary
     /// Pacman dies and they need to restart. The Pen releases Ghosts in a First-In-First-Out manner, after
     /// a time period has elapsed.
     /// </summary>
-    class Pen
+   public class Pen
     {
         private Queue<Ghost> ghosts; //fifo structure to release the appropriate ghost
         private List<Timer> timers; //multiple times since more than 1 Ghost may be in teh Pen

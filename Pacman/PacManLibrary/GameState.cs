@@ -9,7 +9,7 @@ using PacManLibrary;
 
 namespace PacManLibrary
 {
-     class GameState
+    public class GameState
     {
       
    
@@ -23,92 +23,17 @@ namespace PacManLibrary
             Energizer energizer = new Energizer(ghost);
             Pacman pacman = new Pacman (game);
             ScoreAndLives scoreAndLives = new ScoreAndLives(game);
-            Tile[,] board = new Tile[23, 23];
-
-            char deleimeter = ' ';
-            string[] readText = null;
-            try
-            {
-                readText = File.ReadAllLines(file);
-                for (int i = 0; i < 23; i++)
-                {
-
-                    String[] substrings = readText[i].Split(deleimeter);
-
-                    for (int j = 0; j < 23; j++)
-                    {
-                        try
-                        {  
-                            //wall
-                            if (substrings[j] == "w")
-                            {
-                                board[i, j] = new Wall(i, j);
-
-                            }
-                            //path
-                            if (substrings[j] == "p")
-                            {
-                                //board[i, j] = new Pellet();
-                                pellet.Collision += scoreAndLives.IncrementScore;
-                            }
-                            //pacman
-                            if (substrings[j] == "P")
-                            {
-                                //this.board[i, j] = pacman;
-                                pacman.Position = new Vector2(i, j);
-                            }
-                            //ghost
-                            if (substrings[j] == "1" || substrings[j] == "2" ||
-                                substrings[j] == "3" || substrings[j] == "4")
-                            {
-                                Ghost temp = CreateGhost(substrings[j], i, j, game, pacman);
-                                ghost.Add(temp);
-                                temp.Collision += scoreAndLives.IncrementScore;
-                                temp.DeadPacman += scoreAndLives.deadPacman;
-
-                            }
-                            //energizer
-                            if (substrings[j] == "e")
-                            {
-                                //this.board = new Energizer();
-                                energizer.Collision += scoreAndLives.IncrementScore;
-                            }
 
 
-                        }
-                        catch (FormatException a)
-                        {
-                            Console.WriteLine(a.GetBaseException());
-                        }
-                        catch (OverflowException ai)
-                        {
-                            Console.WriteLine(ai.GetBaseException());
-                        }
-                    }//inner for
-
-                }//outter for
-
-            }
-            catch (ArgumentException a)
-            {
-                Console.WriteLine("murphy's law" + a.Message);
-            }
-            //setting up Maze classes setTiles method
-            maze.SetTiles(board);
-
-            return new GameState() { Pacman = pacman, GhostPack = ghost,
-                                     Pen = pen, Score = scoreAndLives, Maze = maze};
-
-
-            /*
-             string path = "..\\..\\..\\levels.csv";
+            
+            //helper variables for reading from file
             string currentLine;
-            int counter = 0;
-            int innerC = 0;
-            int lineCount = File.ReadLines(path).Count();
-            string[,] board = new string[lineCount, lineCount];
+            int i = 0;
+            int j = 0;
+            int lineCount = File.ReadLines(file).Count();
+            Tile[,] board = new Tile[lineCount, lineCount];
 
-            using (StreamReader sr = new StreamReader(path))
+            using (StreamReader sr = new StreamReader(file))
             {
                 // currentLine will be null when the StreamReader reaches the end of file
                 while ((currentLine = sr.ReadLine()) != null)
@@ -116,15 +41,59 @@ namespace PacManLibrary
                     IEnumerable<string> line = currentLine.Split(',');
                     foreach (string str in line)
                     {
-                        board[counter, innerC] = str;
-                        innerC++;
+                    //wall
+                            if (str == "w")
+                            {
+                               // board[i, j] = new Wall(i, j);
+
+                            }
+                            //path
+                            if (str == "p")
+                            {
+                                //board[i, j] = new Pellet();
+                                pellet.Collision += scoreAndLives.IncrementScore;
+                            }
+                            //pacman
+                            if (str == "P")
+                            {
+                                //this.board[i, j] = pacman;
+                                pacman.Position = new Vector2(i, j);
+                            }
+                            //ghost
+                            if (str == "1" || str == "2" ||
+                                str == "3" || str == "4")
+                            {
+                                Ghost temp = CreateGhost(str, i, j, game, pacman);
+                                ghost.Add(temp);
+                                temp.Collision += scoreAndLives.IncrementScore;
+                                temp.DeadPacman += scoreAndLives.deadPacman;
+
+                            }
+                            //energizer
+                            if (str == "e")
+                            {
+                                //this.board = new Energizer();
+                                energizer.Collision += scoreAndLives.IncrementScore;
+                            }
+                        //board[i, j] = str;
+                        j++;
                     }
-                    innerC = 0;
-                    counter++;
-                }
+                    j = 0;
+                    i++;
+                } 
+
+                
             }
 
-              */
+            maze.SetTiles(board);
+            return new GameState()
+            {
+                Pacman = pacman,
+                GhostPack = ghost,
+                Pen = pen,
+                Score = scoreAndLives,
+                Maze = maze
+            };
         }
 
         private static Ghost CreateGhost(string str, int x, int y,GameState game, Pacman pacman)

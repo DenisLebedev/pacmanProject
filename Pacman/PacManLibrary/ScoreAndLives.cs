@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace PacManLibrary
 {
     public delegate void Game();
-    class ScoreAndLives
+    public class ScoreAndLives
     {
         private GameState gameState;
         private int lives;

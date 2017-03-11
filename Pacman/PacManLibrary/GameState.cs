@@ -15,7 +15,8 @@ namespace PacManLibrary
    
         public static GameState Parse (string file)
         {
-            
+            if (file == "") throw new ArgumentException("Empty String.");
+
             GameState game = new GameState();
             game.GhostPack = new GhostPack();
             game.Pen = new Pen();
@@ -51,6 +52,17 @@ namespace PacManLibrary
                          || strArr[x, y] == "3" || strArr[x, y] == "4")
                     {
                         game.GhostPack.Add(CreateGhost(strArr[x, y], x, y, game, game.Pacman, game.Score));
+                        Tile temp = new Path(x, y, null);
+                        board[x, y] = temp;
+                    }
+                    else if (strArr[x, y] == "x")
+                    {
+                        Tile temp = new Path(x, y, null);
+                        game.Pen.AddTile(temp);
+                        board[x, y] = temp;
+                    } else if (strArr[x, y] == "m")
+                    {
+                        board[x, y] = new Path(x, y, null);
                     }
                 }
             }

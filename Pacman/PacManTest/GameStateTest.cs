@@ -8,6 +8,13 @@ namespace PacManTest
     [TestClass]
     public class GameStateTest
     {
+        /// <summary>
+        /// In order to test if the static method Parse was
+        /// able to properly place all the objects in the correct place
+        /// when reading from the file I tested if pacman was placed in the
+        /// correct spot on the board by creating a new pacman object giving
+        /// it the position in which the GameStates' pacman is ment to be
+        /// </summary>
         [TestMethod]
         public void TestGameStateParse_PacmanPosition()
         {
@@ -17,6 +24,10 @@ namespace PacManTest
 
             Assert.AreEqual(game1.Pacman.Position, pacman.Position);
         }
+        /// <summary>
+        /// Similarly like the test above I test if particuallar point
+        /// on the board holds a pellet object.
+        /// </summary>
         [TestMethod]
         public void TestGameStateParse_PelletPosition()
         {
@@ -25,21 +36,24 @@ namespace PacManTest
             Tile path = new Path(1, 1, pellet);
 
 
-            Assert.AreEqual(game1.Maze[1,1].Member().ToString(), path.Member().ToString());
+            Assert.AreEqual(game1.Maze[1, 1].Member().ToString(), path.Member().ToString());
         }
+        /// <summary>
+        /// This method will see if the parse method placed a wall object
+        /// in the correct place, using a point that is not on the borders.
+        /// </summary>
         [TestMethod]
-        //[ExpectedException(typeof(NotImplementedException))]
         public void TestGameStateParse_WallPosition()
         {
             GameState game1 = GetGameState();
-            Tile path = new Wall(0, 0);
+            Tile path = new Wall(3, 3);
 
-            Console.WriteLine(" ======> " + game1.Maze[0,0].ToString());
-
-            Assert.AreEqual(game1.Maze[0,0].ToString(), path.ToString());
+            Assert.AreEqual(game1.Maze[3, 3].ToString(), path.ToString());
         }
+        /// <summary>
+        /// This method will tes if the 
+        /// </summary>
         [TestMethod]
-        //[ExpectedException(typeof(NotImplementedException))]
         public void TestGameStateParse_EnergizerPosition()
         {
             GameState game1 = GetGameState();
@@ -51,7 +65,13 @@ namespace PacManTest
 
             Assert.AreEqual(game1.Maze[3, 1].Member().ToString(), path.Member().ToString());
         }
-
+        /// <summary>
+        /// This test method is reponsible for testing 
+        /// the Pacman prop in GameState. In order to test it
+        /// the position of pacman is set through the GameState
+        /// using the prop and it will be compared to a vector with 
+        /// the same position.
+        /// </summary>
         [TestMethod]
         public void TestPacManProp()
         {
@@ -70,19 +90,21 @@ namespace PacManTest
 
             Assert.AreEqual(game1.Maze[1, 1].Member().ToString(), new Pellet().ToString());
         }
+
         [TestMethod]
         public void TestPenProp()
         {
             GameState game1 = GetGameState();
-            game1.Maze[1, 1].Member().ToString();
-
-            Console.WriteLine(game1.Pen);
 
             Assert.AreEqual(game1.Pen.ToString(), new Pen().ToString());
         }
 
 
-
+        /// <summary>
+        /// This is a helper method in order to create a GameState
+        /// object for use within this test class.
+        /// </summary>
+        /// <returns></returns>
         private GameState GetGameState()
         {
             return GameState.Parse
@@ -112,3 +134,4 @@ w w w w w w w w w w w w w w w w w w w w w w w");
         }
 
     }
+}

@@ -80,18 +80,7 @@ namespace PacManTest
 
             Assert.AreEqual(game1.Pen.ToString(), new Pen().ToString());
         }
-        [TestMethod]
-        public void TestScoreProp()
-        {
-            GameState game1 = GetGameState();
-            game1.Maze[1, 1].Member().ToString();
 
-            game1.Score.Lives -= 1;
-
-            Console.WriteLine(game1.Score.Lives);
-
-            Assert.AreEqual(game1.Score.Lives, 2);
-        }
 
 
         private GameState GetGameState()

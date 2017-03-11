@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="GhostTest.cs" />
     <Compile Include="MazeTest.cs" />
+    <Compile Include="ScoreAndLivesTest.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

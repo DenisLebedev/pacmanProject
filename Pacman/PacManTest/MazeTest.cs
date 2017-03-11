@@ -51,6 +51,49 @@ namespace PacManTest
 
             Assert.AreEqual(game1.Maze[3, 1].Member().ToString(), path.Member().ToString());
         }
+
+        [TestMethod]
+        public void TestPacManProp()
+        {
+            GameState game1 = GetGameState();
+            game1.Pacman.Position = new Vector2(1, 1);
+
+            Assert.AreEqual(game1.Pacman.Position, new Vector2(1, 1));
+        }
+        [TestMethod]
+        public void TestMazeProp()
+        {
+            GameState game1 = GetGameState();
+            game1.Maze[1, 1].Member().ToString();
+
+            Console.WriteLine(game1.Maze[1, 1].Member().ToString());
+
+            Assert.AreEqual(game1.Maze[1, 1].Member().ToString(), new Pellet().ToString());
+        }
+        [TestMethod]
+        public void TestPenProp()
+        {
+            GameState game1 = GetGameState();
+            game1.Maze[1, 1].Member().ToString();
+
+            Console.WriteLine(game1.Pen);
+
+            Assert.AreEqual(game1.Pen.ToString(), new Pen().ToString());
+        }
+        [TestMethod]
+        public void TestScoreProp()
+        {
+            GameState game1 = GetGameState();
+            game1.Maze[1, 1].Member().ToString();
+
+            game1.Score.Lives -= 1;
+
+            Console.WriteLine(game1.Score.Lives);
+
+            Assert.AreEqual(game1.Score.Lives, 2);
+        }
+
+
         private GameState GetGameState()
         {
             return GameState.Parse

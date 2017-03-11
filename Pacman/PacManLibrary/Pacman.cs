@@ -30,15 +30,19 @@ namespace PacManLibrary
             {
                 case Direction.Down:
                     Position = new Vector2(Position.X, Position.Y + 1);
+                    CheckCollisions();
                     break;
                 case Direction.Left:
                     Position = new Vector2(Position.X -1, Position.Y);
+                    CheckCollisions();
                     break;
                 case Direction.Up:
                     Position = new Vector2(Position.X, Position.Y - 1);
+                    CheckCollisions();
                     break;
                 case Direction.Right:
                     Position = new Vector2(Position.X + 1, Position.Y);
+                    CheckCollisions();
                     break;
             }     
         } 

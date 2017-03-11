@@ -61,10 +61,29 @@ namespace PacManTest
                 GhostState.Scared, new Color(255, 0, 0));
 
             ghost.Reset();
-            Assert.AreEqual(ghost.Position.X + ghost.Position.Y, 30);
+            Assert.AreNotEqual(ghost.Position.X + ghost.Position.Y, 30);
         }
 
+        [TestMethod]
+        public void TestChangeState()
+        {
+            Ghost ghost = new Ghost(GetGameState(), new Vector2(10, 10), new Vector2(15, 15),
+                GhostState.Scared, new Color(255, 0, 0));
 
+            ghost.ChangeState(GhostState.Chase);
+            Console.WriteLine(ghost.CurrenState + "<=== | ===> " +  GhostState.Chase);
+            Assert.AreEqual(ghost.CurrenState, GhostState.Chase);
+        }
+
+        [TestMethod]
+        public void TestMove()
+        {
+            Ghost ghost = new Ghost(GetGameState(), new Vector2(10, 10), new Vector2(15, 15),
+                GhostState.Scared, new Color(255, 0, 0));
+
+            ghost.Move();
+            Assert.AreNotEqual(ghost.Position.X + ghost.Position.Y, 30);
+        }
 
 
         private GameState GetGameState()

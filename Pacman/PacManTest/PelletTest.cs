@@ -7,7 +7,9 @@ namespace PacManTest
     [TestClass]
     public class PelletTesting
     {
-
+        /// <summary>
+        /// Testing the 
+        /// </summary>
         [TestMethod]
         public void tesPelletConstructer()
         {

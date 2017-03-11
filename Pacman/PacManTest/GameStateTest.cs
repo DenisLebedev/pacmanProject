@@ -59,9 +59,7 @@ namespace PacManTest
             GameState game1 = GetGameState();
             GhostPack ghosts = new GhostPack();
             Energizer energizer = new Energizer(ghosts);
-            Tile path = new Path(3, 1, energizer);
-
-            Console.WriteLine(" ======> " + game1.Maze[3, 1].Member().ToString());
+            Tile path = new Path(3, 1, energizer);        
 
             Assert.AreEqual(game1.Maze[3, 1].Member().ToString(), path.Member().ToString());
         }

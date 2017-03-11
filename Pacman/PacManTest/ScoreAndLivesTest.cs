@@ -8,10 +8,7 @@ namespace PacManTest
     [TestClass]
     public class ScoreAndLivesTest
     {
-        [TestMethod]
-        public void TestMethod1()
-        {
-        }
+
         [TestMethod]
         public void TestScoreProp()
         {

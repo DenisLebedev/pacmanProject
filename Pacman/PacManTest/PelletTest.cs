@@ -7,12 +7,7 @@ namespace PacManTest
     [TestClass]
     public class PelletTesting
     {
-        [TestMethod]
-        public void testPelletCollide()
-        {
-            Pellet pellet = new Pellet();
-            pellet.Collide();
-        }
+
         [TestMethod]
         public void tesPelletConstructer()
         {
@@ -24,10 +19,10 @@ namespace PacManTest
         [TestMethod]
         public void TestCollidPellet()
         {
-            
 
-           // Pellet pellet = new Pellet();
-           // pellet.Collide();
+            Pellet pellet = new Pellet();
+
+            Assert.AreEqual(pellet, new Pellet());
            
         }
     }

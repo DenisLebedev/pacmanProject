@@ -55,7 +55,7 @@
   <ItemGroup>
     <Compile Include="EnergizerTest.cs" />
     <Compile Include="GhostTest.cs" />
-    <Compile Include="MazeTest.cs" />
+    <Compile Include="GameStateTest.cs" />
     <Compile Include="ScoreAndLivesTest.cs" />
     <Compile Include="PelletTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

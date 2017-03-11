@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 namespace PacManTest
 {
     [TestClass]
-    public class MazeTest
+    public class GameStateTest
     {
         [TestMethod]
         public void TestGameStateParse_PacmanPosition()

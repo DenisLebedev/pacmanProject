@@ -137,7 +137,6 @@ namespace PacManLibrary
                     currentState = new Chase(this, maze, pacman, target);
                     break;
             }
-            Console.WriteLine(this.state + "<");
         }
 
         private void UpdateState(object sender, ElapsedEventArgs e)

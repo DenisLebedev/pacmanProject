@@ -119,7 +119,9 @@ namespace PacManTest
             Ghost ghost = new Ghost(game, new Vector2(10, 10), new Vector2(15, 15),
             GhostState.Chase, new Color(255, 0, 0));
 
-            game.Maze[3, 1].Collide();
+            game.GhostPack.Add(ghost);
+
+          //  game.Maze[3, 1].Collide();
 
             Console.WriteLine(ghost.CurrenState + "\t" + game.Maze[3,1].Member());
             Assert.AreEqual(game.Score.Score, 500);

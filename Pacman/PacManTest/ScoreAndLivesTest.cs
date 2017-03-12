@@ -5,12 +5,18 @@ using Microsoft.Xna.Framework;
 
 namespace PacManTest
 {
+    /// <summary>
+    /// Most of all events are tested in PacmanTest.cs. 
+    /// This class purpose is to test what is left. 
+    /// We gonna test our properties and the only events
+    /// left.
+    /// </summary>
     [TestClass]
     public class ScoreAndLivesTest
     {
 
         [TestMethod]
-        public void TestScoreProp()
+        public void TestLifeProp()
         {
             GameState game1 = GetGameState();
 
@@ -18,12 +24,20 @@ namespace PacManTest
             game1.Score.Lives -= 1;
             game1.Pacman.Position = new Vector2(1, 1);
 
-            Console.WriteLine(game1.GhostPack);
-
-
-            //Console.WriteLine(game1.Score.Lives);
-
             Assert.AreEqual(game1.Score.Lives, 2);
+        }
+
+        /// <summary>
+        /// The method will trigger and action and the points should be incremented
+        /// </summary>
+        [TestMethod]
+        public void TestPointsProp()
+        {
+            GameState game1 = GetGameState();
+
+            game1.Pacman.Move(Direction.Right);
+
+            Assert.AreEqual(game1.Score.Score, 100);
         }
 
         [TestMethod]
@@ -40,10 +54,26 @@ namespace PacManTest
             
         }
 
+        /// <summary>
+        /// The method will test if the current pacman will loose all his health
+        /// because we did not finishing to implement the game we cannot restart
+        /// the entire game/maze. The method will only print a message that you can see
+        /// from the ouput of this method. The implementation will be done in the second phase.
+        /// When our health is at 0 we should trigger an event in our game to let it know,
+        /// but we are implementing that in the second phase. So a message is enough for now.
+        /// </summary>
         [TestMethod]
         public void TestGameOver()
         {
             GameState g = MyGameState();
+            Ghost ghost = new Ghost(g, new Vector2(4, 1), new Vector2(4, 1),
+                GhostState.Chase, new Color(255, 0, 0));
+            ghost.Collision += g.Score.IncrementScore;
+            ghost.DeadPacman += g.Score.DeadPacman;
+            ghost.Collide();
+            ghost.Collide();
+            ghost.Collide();
+            Assert.AreEqual(g.Score.Lives, 0);
 
 
         }

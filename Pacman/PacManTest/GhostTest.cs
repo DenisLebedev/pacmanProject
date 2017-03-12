@@ -51,7 +51,7 @@ namespace PacManTest
         {
             GameState game = GetGameState();
             Ghost ghost = new Ghost(game, new Vector2(11, 10), new Vector2(15, 15),
-                GhostState.Scared, new Color(255, 0, 0));
+                GhostState.Chase, new Color(255, 0, 0));
 
             
 

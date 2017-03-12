@@ -41,7 +41,6 @@ namespace PacManLibrary
             if (Lives < 1)
             {
                 if (GameOver != null) GameOver(); 
-                Console.WriteLine("GAME OVER!!!"); 
             }
         }
         public void IncrementScore(ICollidable colide)

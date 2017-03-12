@@ -54,8 +54,6 @@ namespace PacManLibrary
             if (places.Count == 0)
                 throw new Exception("I cannot go further.");
 
-            Console.WriteLine();
-
             Random rand = new Random();
             int choice = rand.Next(places.Count);
             //determine direction

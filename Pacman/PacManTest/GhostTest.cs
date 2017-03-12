@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using PacManLibrary;
 using Microsoft.Xna.Framework;
+using System.Timers;
 
 namespace PacManTest
 {
@@ -93,10 +94,10 @@ namespace PacManTest
         {
             return GameState.Parse
 (@"w w w w w w
-w p p 1 p w
 w p p p p w
 w p p p p w
-w P p p p w
+w p p p p w
+w P 1 p p w
 w w w w w w");
         }
 

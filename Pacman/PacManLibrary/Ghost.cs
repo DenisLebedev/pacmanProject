@@ -34,6 +34,9 @@ namespace PacManLibrary
         private GhostState state;
         private static Timer scared;
 
+        /// <summary>
+        /// If pacman is hitted by a Ghost while in Chase mode he loses a life.
+        /// </summary>
         public event PacmanDied DeadPacman;
         public event CollisionEvent Collision;
 
@@ -60,7 +63,7 @@ namespace PacManLibrary
         public Ghost(GameState g, Vector2 pos, Vector2 target, GhostState start, Color colour)
         {
             this.pacman = g.Pacman;
-            this.Position = new Vector2(pos.X, pos.Y);
+            this.pos = new Vector2(pos.X, pos.Y);
             this.maze = g.Maze;
             this.pen = g.Pen;
             this.colour = colour;
@@ -114,8 +117,8 @@ namespace PacManLibrary
         /// <returns></returns>
         private Direction MovePosition(Direction dir)
         {
-            if (pos.Y + 1 >= maze.Size || pos.X >= maze.Size
-                || pos.Y < 0 || pos.X < 0)
+            if (pos.Y + 1 >= maze.Size || pos.X + 1 >= maze.Size
+                || pos.Y - 1 < 0 || pos.X - 1 < 0)
                 throw new IndexOutOfRangeException("The ghost cannot go away from the maze.");
 
             switch (dir)
@@ -176,14 +179,24 @@ namespace PacManLibrary
         /// </summary>
         public void Collide()
         {
+            Console.WriteLine("Pac: " + pacman.Position.X + ", " + pacman.Position.Y +
+                              " Ghost: " + this.Position.X + ", " + this.Position.Y);
+
             if (pacman.Position.X == this.Position.X
                 && pacman.Position.Y == this.Position.Y
-                && state == GhostState.Chase
-                && DeadPacman != null)
-                DeadPacman();
+                && CurrenState == GhostState.Chase)
+            {
+                Console.WriteLine("DeadPacman if is null");
+                if (DeadPacman != null)
+                {
+                    Console.WriteLine("Event Trig");
+                    DeadPacman();
+
+                }
+            }
             else if (pacman.Position.X == this.Position.X
                 && pacman.Position.Y == this.Position.Y
-                && state == GhostState.Scared
+                && CurrenState == GhostState.Scared
                 && Collision != null)
             {
                 Collision(this);
@@ -229,7 +242,6 @@ namespace PacManLibrary
                     currentState = new Chase(this, maze, pacman, pacman.Position);
                     break;
             }
-            Console.WriteLine(this.state + "<");
         }
 
         private void UpdateState(object sender, ElapsedEventArgs e)

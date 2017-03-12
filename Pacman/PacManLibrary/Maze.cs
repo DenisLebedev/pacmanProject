@@ -141,7 +141,6 @@ namespace PacManLibrary
                 {
                    if (!(maze[i,j].IsEmpty()))
                     {
-                        Console.WriteLine("found a pellet");
                         chk = false;
                         break;
                         

@@ -37,33 +37,42 @@ namespace PacManLibrary
                         Pellet temp = new Pellet();
                         temp.Collision += game.Score.IncrementScore;
                         board[x, y] = new Path(x, y, temp);
-                    } else if (strArr[x, y] == "w")
+                    }
+                    else if (strArr[x, y] == "w")
                     {
                         board[x, y] = new Wall(x, y);
-                    } else if (strArr[x, y] == "e" )
+                    }
+                    else if (strArr[x, y] == "e")
                     {
                         Energizer temp = new Energizer(game.GhostPack);
                         temp.Collision += game.Score.IncrementScore;
                         board[x, y] = new Path(x, y, temp);
-                    } else if (strArr[x, y] == "P")
+                    }
+                    else if (strArr[x, y] == "P")
                     {
-                        game.Pacman.Position = new Vector2(x,y);
-                    } else if (strArr[x, y] == "1" || strArr[x, y] == "2"
-                         || strArr[x, y] == "3" || strArr[x, y] == "4")
+                        game.Pacman.Position = new Vector2(x, y);
+                        board[x, y] = new Path(x, y, null);
+                    }
+                    else if (strArr[x, y] == "1" || strArr[x, y] == "2"
+                       || strArr[x, y] == "3" || strArr[x, y] == "4")
                     {
                         game.GhostPack.Add(CreateGhost(strArr[x, y], x, y, game, game.Pacman, game.Score));
                         Tile temp = new Path(x, y, null);
                         board[x, y] = temp;
+                        if (strArr[x, y] != "1")
+                            game.Pen.AddTile(temp);
                     }
                     else if (strArr[x, y] == "x")
                     {
                         Tile temp = new Path(x, y, null);
                         game.Pen.AddTile(temp);
                         board[x, y] = temp;
-                    } else if (strArr[x, y] == "m")
+                    }
+                    else if (strArr[x, y] == "m")
                     {
                         board[x, y] = new Path(x, y, null);
                     }
+
                 }
             }
             game.Maze.SetTiles(board);

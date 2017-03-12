@@ -39,7 +39,6 @@ namespace PacManLibrary
             {
                 return true;
             }
-
             return false;
         }
         public override void Collide()

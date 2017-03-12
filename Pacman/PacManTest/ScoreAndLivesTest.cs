@@ -48,9 +48,16 @@ namespace PacManTest
                 GhostState.Chase, new Color(255, 0, 0));
             ghost.Collision += g.Score.IncrementScore;
             ghost.DeadPacman += g.Score.DeadPacman;
+            Console.WriteLine("Actual PacMan Pos: " + g.Pacman.Position);
             try
             {
                 g.Pacman.Move(Direction.Up);
+                g.GhostPack.ScareGhosts();
+                //ghost.ChangeState(GhostState.Scared);
+                Console.WriteLine(g.Score.Score);
+                g.Pacman.Move(Direction.Right);
+                g.GhostPack.CheckCollideGhosts(new Vector2(2,2));
+                Console.WriteLine(g.Score.Score);
                 //g.Pacman.Move(Direction.Left);
                 Console.WriteLine(g.Pacman.Position);
             }catch(Exception e)
@@ -67,8 +74,8 @@ namespace PacManTest
             return GameState.Parse
 (@"w w w w w w
 w p p p p w
-w p 1 p p w
-w E p p p w
+w p p p p w
+w e 1 p p w
 w P p p p w
 w w w w w w");
         }

@@ -179,11 +179,13 @@ namespace PacManLibrary
         /// </summary>
         public void Collide()
         {
-            Console.WriteLine("Pac: " + pacman.Position.X + ", " + pacman.Position.Y +
-                              " Ghost: " + this.Position.X + ", " + this.Position.Y);
+            this.Collide(pacman.Position);
+        }
 
-            if (pacman.Position.X == this.Position.X
-                && pacman.Position.Y == this.Position.Y)
+        public void Collide(Vector2 targetPos)
+        {
+            if (targetPos.X == this.Position.X
+                && targetPos.Y == this.Position.Y)
             {
                 if (CurrenState == GhostState.Chase
                     && DeadPacman != null)
@@ -195,8 +197,6 @@ namespace PacManLibrary
                     this.Reset();
                 }
             }
-
-
         }
 
         /// <summary>
@@ -220,7 +220,6 @@ namespace PacManLibrary
             {
                 case GhostState.Chase:
                     this.state = GhostState.Chase;
-
                     currentState = new Chase(this, maze, pacman, pacman.Position);
                     break;
 
@@ -239,6 +238,13 @@ namespace PacManLibrary
             }
         }
 
+        /// <summary>
+        /// This method should be trigger in 9 seconds if the Ghost is in
+        /// Scare mode. If the ghost is scared after 9 seconds he sould switch
+        /// mode to Chase mode.
+        /// </summary>
+        /// <param name="sender">Sendder event object in this case the timer object trigger the event.</param>
+        /// <param name="e">ElapsedEventArgs represent the data and all the manipulation possible with the given event.</param>
         private void UpdateState(object sender, ElapsedEventArgs e)
         {
             Timer t = (Timer)sender;

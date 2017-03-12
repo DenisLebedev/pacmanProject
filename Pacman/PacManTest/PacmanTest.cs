@@ -104,12 +104,9 @@ namespace PacManTest
 
             game.Pacman.Move(Direction.Down);
 
-            game.Pacman.Position = new Vector2(9, 11);
-            game.GhostPack.CheckCollideGhosts(new Vector2(9, 11));
-
-            Console.WriteLine(game.Score.Score);
-
-
+            game.Pacman.Position = new Vector2(10, 11);
+            game.GhostPack.CheckCollideGhosts(game.Pacman.Position);
+          
             Assert.AreEqual(game.Score.Score, 800);
         }
         private GameState GetGameState()

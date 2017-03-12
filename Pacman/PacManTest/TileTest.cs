@@ -150,12 +150,11 @@ namespace PacManTest
             Ghost ghost = new Ghost(game, new Vector2(10, 10), new Vector2(15, 15),
             GhostState.Chase, new Color(255, 0, 0));
 
-            Pacman pacman = new Pacman(game);
-
             game.GhostPack.Add(ghost);
             //move pacman to place a ghost is sure tobe.
-            game.Pacman.Position = new Vector2(10, 10);   
-            game.GhostPack.CheckCollideGhosts(pacman.Position);
+            game.Pacman.Position = new Vector2(10, 10); 
+              
+            game.GhostPack.CheckCollideGhosts(game.Pacman.Position);
 
             Assert.AreEqual(game.Score.Lives, 2);
         }

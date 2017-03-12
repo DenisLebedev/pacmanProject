@@ -90,7 +90,7 @@ namespace PacManLibrary
         }
 
         /// <summary>
-        /// Allow us tp iterate through the list
+        /// Allow us to iterate through the list
         /// </summary>
         /// <returns></returns>
         IEnumerator IEnumerable.GetEnumerator()

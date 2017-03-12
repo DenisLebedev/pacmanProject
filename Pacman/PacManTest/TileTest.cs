@@ -61,15 +61,16 @@ namespace PacManTest
         }
         /// <summary>
         /// This method will test the is empty method in The tile abstract
-        /// class. This test case will test a wall tile which throws a 
-        /// NotImplementedException.
+        /// class. This test case will test a wall tile which the expected 
+        /// result will be false.
         /// </summary>
         [TestMethod]
-        [ExpectedException(typeof(NotImplementedException))]
         public void TileIsEMpty2Test()
         {
             GameState game = GetGameState();
-            game.Maze[0, 0].IsEmpty();
+            Console.WriteLine(game.Maze[0, 0].IsEmpty());
+
+            Assert.AreEqual(game.Maze[0, 0].IsEmpty(), false);
         }
         /// <summary>
         /// This test case will test the collide event, in this test I will 
@@ -112,6 +113,11 @@ namespace PacManTest
 
             Assert.AreEqual(game.Score.Score, 500);
         }
+        /// <summary>
+        /// This test case will show how the event to change the state of the ghost
+        /// when an energizer is collided on will change the state of the ghost to
+        /// scare mode.
+        /// </summary>
         [TestMethod]
         public void Colide4Test()
         {
@@ -120,11 +126,30 @@ namespace PacManTest
             GhostState.Chase, new Color(255, 0, 0));
 
             game.GhostPack.Add(ghost);
+            game.Maze[3, 1].Collide();
 
-          //  game.Maze[3, 1].Collide();
+            Assert.AreEqual(ghost.CurrenState,GhostState.Scared);
+        }
+        [TestMethod]
+        public void Colide5Test()
+        {
+            GameState game = GetGameState();
+            Ghost ghost = new Ghost(game, new Vector2(10, 10), new Vector2(15, 15),
+            GhostState.Chase, new Color(255, 0, 0));
 
-            Console.WriteLine(ghost.CurrenState + "\t" + game.Maze[3,1].Member());
-            Assert.AreEqual(game.Score.Score, 500);
+            Pacman pacman = new Pacman(game);
+
+            game.GhostPack.Add(ghost);
+            game.Pacman.Position = new Vector2(1, 1);
+            ghost.Position = new Vector2(1, 1);
+
+            game.Pacman.CheckCollisions();
+           
+
+            Console.WriteLine(game.Pacman.Position + "\t" + game.GhostPack.CheckCollideGhosts() 
+                + "\n" + game.Score.Lives);
+
+            Assert.AreEqual(1, 1);
         }
 
 

@@ -18,7 +18,7 @@ namespace PacManLibrary
             Lives = 3;
             Score = 0;
 
-            //subscribin to event of pacmanwon if there are no more
+            //subscribing to event of pacmanwon if there are no more
             //ICollidable objects (pellets or energizers) on the maze
             gameState.Maze.PacmanWon += GameWon;  
         }
@@ -35,12 +35,13 @@ namespace PacManLibrary
             set { score = value; }
             get { return score; }
         }
-        public void deadPacman()
+        public void DeadPacman()
         {
             Lives -= 1;
             if (Lives == 0)
             {
-                GameOver?.Invoke();  //Console.WriteLine("GAME OVER!!!"); 
+                //GameOver?.Invoke();  
+                Console.WriteLine("GAME OVER!!!"); 
             }
         }
         public void IncrementScore(ICollidable colide)

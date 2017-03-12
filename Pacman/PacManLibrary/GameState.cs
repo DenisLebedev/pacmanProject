@@ -102,7 +102,7 @@ namespace PacManLibrary
             if(ghost != null)
             {
                 ghost.Collision += scoreAndLives.IncrementScore;
-                ghost.DeadPacman += scoreAndLives.deadPacman;
+                ghost.DeadPacman += scoreAndLives.DeadPacman;
             }
             else
             {

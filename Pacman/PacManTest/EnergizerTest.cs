@@ -32,21 +32,6 @@ namespace PacManTest
             Assert.AreEqual(e.Points, 500);
         }
         /// <summary>
-        /// This method will test the Points proprety to check
-        /// if we are allowed to write from it (set).
-        /// </summary>
-        /*
-        [TestMethod]
-        [ExpectedException(typeof(Exception))]
-        public void EnerGizerPointsPropWriteTest()
-        {
-            GhostPack gp = new GhostPack();
-            Energizer e = new Energizer(gp);
-          //  e.Points = 100;
-            
-        }
-        */
-        /// <summary>
         /// This is a helper method in order to create a GameState
         /// object for use within this test class.
         /// </summary>

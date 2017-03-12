@@ -41,30 +41,10 @@ namespace PacManTest
         }
 
         [TestMethod]
-        public void TestEnergizerAndGhostEating()
+        public void TestGameOver()
         {
             GameState g = MyGameState();
-            Ghost ghost = new Ghost(g, new Vector2(3, 2), new Vector2(4, 1),
-                GhostState.Chase, new Color(255, 0, 0));
-            ghost.Collision += g.Score.IncrementScore;
-            ghost.DeadPacman += g.Score.DeadPacman;
-            Console.WriteLine("Actual PacMan Pos: " + g.Pacman.Position);
-            try
-            {
-                g.Pacman.Move(Direction.Up);
-                g.GhostPack.ScareGhosts();
-                //ghost.ChangeState(GhostState.Scared);
-                Console.WriteLine(g.Score.Score);
-                g.Pacman.Move(Direction.Right);
-                g.GhostPack.CheckCollideGhosts(new Vector2(2,2));
-                Console.WriteLine(g.Score.Score);
-                //g.Pacman.Move(Direction.Left);
-                Console.WriteLine(g.Pacman.Position);
-            }catch(Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-            //Assert.AreEqual(g.Score.Lives, 2);
+
 
         }
 

@@ -81,9 +81,22 @@ namespace PacManLibrary
 
                 }
             }
+            game.Score.GameOver += GameOver;
             game.Maze.SetTiles(board);
             return game;
         }
+
+        /// <summary>
+        /// When pacman lose all his life the game should reset so
+        /// take a new file input, but to do so the method should send
+        /// a message to the current program to resend the file. The main
+        /// game program is not given/done yet so a message is gonna be printed.
+        /// </summary>
+        private static void GameOver()
+        {
+            Console.WriteLine("You loose looser.");
+        }
+
         /// <summary>
         /// This helper class is used to create a ghost objec inorder to
         /// add a ghost to the Tile[,] array being set up in the static Parse

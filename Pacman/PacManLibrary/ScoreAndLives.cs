@@ -38,9 +38,9 @@ namespace PacManLibrary
         public void DeadPacman()
         {
             Lives -= 1;
-            if (Lives == 0)
+            if (Lives < 1)
             {
-                //GameOver?.Invoke();  
+                if (GameOver != null) GameOver(); 
                 Console.WriteLine("GAME OVER!!!"); 
             }
         }

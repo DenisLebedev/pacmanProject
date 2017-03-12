@@ -44,7 +44,7 @@ namespace PacManLibrary
         {
             get
             {
-                if (x < 0 || y < 0 || Size < y || Size < x)
+                if (x < 0 || y < 0 || y > Size || x > Size)
                 {
                     throw new IndexOutOfRangeException("index out of bounds");
                 }
@@ -81,43 +81,43 @@ namespace PacManLibrary
             switch (dir)
             {
                 case Direction.Down:
-                    if (maze[x, y-1].IsEmpty())
+                    if (!maze[x, y-1].IsEmpty())
                     {available_tiles.Add(maze[x, y-1]);}//up
 
-                    if (maze[x-1, y].IsEmpty())
+                    if (!maze[x-1, y].IsEmpty())
                     { available_tiles.Add(maze[x-1, y]); }//left
 
-                    if (maze[x+1, y].IsEmpty())
+                    if (!maze[x+1, y].IsEmpty())
                     { available_tiles.Add(maze[x+1, y]); }//right
                     break;
                 case Direction.Up:
-                    if (maze[x, y + 1].IsEmpty())
+                    if (!maze[x, y + 1].IsEmpty())
                     { available_tiles.Add(maze[x, y +1]); }//down
 
-                    if (maze[x - 1, y].IsEmpty())
+                    if (!maze[x - 1, y].IsEmpty())
                     { available_tiles.Add(maze[x - 1, y]); }//left
 
-                    if (maze[x + 1, y].IsEmpty())
+                    if (!maze[x + 1, y].IsEmpty())
                     { available_tiles.Add(maze[x+1, y]); }//right
                     break;
                 case Direction.Left:
-                    if (maze[x, y + 1].IsEmpty())
+                    if (!maze[x, y + 1].IsEmpty())
                     { available_tiles.Add(maze[x, y + 1]); }//down
 
-                    if (maze[x, y-1].IsEmpty())
+                    if (!maze[x, y-1].IsEmpty())
                     { available_tiles.Add(maze[x, y-1]); }//up
 
-                    if (maze[x + 1, y].IsEmpty())
+                    if (!maze[x + 1, y].IsEmpty())
                     { available_tiles.Add(maze[x + 1, y]); }//right
                     break;
                 case Direction.Right:
-                    if (maze[x, y + 1].IsEmpty())
+                    if (!maze[x, y + 1].IsEmpty())
                     { available_tiles.Add(maze[x, y + 1]); }//down
 
-                    if (maze[x - 1, y].IsEmpty())
+                    if (!maze[x - 1, y].IsEmpty())
                     { available_tiles.Add(maze[x - 1, y]); }//left
 
-                    if (maze[x, y - 1].IsEmpty())
+                    if (!maze[x, y - 1].IsEmpty())
                     { available_tiles.Add(maze[x, y - 1]); }//up
                     break;
 

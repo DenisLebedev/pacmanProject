@@ -39,7 +39,7 @@ namespace PacManLibrary
         /// </summary>
         public override bool IsEmpty()
         {
-            throw new NotImplementedException();
+            return false;
         }
         /// <summary>
         /// A wall cannot have an ICollidable object so

@@ -72,11 +72,11 @@ namespace PacManLibrary
             switch (start)
             {
                 case GhostState.Chase:
-                    currentState = new Chase(this, g.Maze, g.Pacman, target);
+                    this.currentState = new Chase(this, g.Maze, g.Pacman, target);
                     this.state = start;
                     break;
                 case GhostState.Scared:
-                    currentState = new Scared(this, g.Maze);
+                    this.currentState = new Scared(this, g.Maze);
                     this.state = start;
                     scared.Interval = 9000;
                     scared.Enabled = true;

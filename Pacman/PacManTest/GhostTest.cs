@@ -79,10 +79,20 @@ namespace PacManTest
         public void TestMove()
         {
             Ghost ghost = new Ghost(GetGameState(), new Vector2(10, 10), new Vector2(15, 15),
-                GhostState.Scared, new Color(255, 0, 0));
-
-            ghost.Move();
-            Assert.AreNotEqual(ghost.Position.X + ghost.Position.Y, 30);
+                GhostState.Chase, new Color(255, 0, 0));
+            try
+            {
+                ghost.Move();
+                Console.WriteLine("X: " + ghost.Position.X + " Y:" + ghost.Position.Y);
+                ghost.Move();
+                Console.WriteLine("X: " + ghost.Position.X + " Y:" + ghost.Position.Y);
+                ghost.Move();
+                Console.WriteLine("X: " + ghost.Position.X + " Y:" + ghost.Position.Y);
+            }catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            Assert.AreNotEqual(ghost.Position, new Vector2(15, 15));
         }
 
 

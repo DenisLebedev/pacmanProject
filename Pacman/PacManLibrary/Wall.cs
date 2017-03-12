@@ -7,6 +7,11 @@ using Microsoft.Xna.Framework;
 
 namespace PacManLibrary
 {
+    /// <summary>
+    /// The wall class represents a wall object that is derived from
+    /// a Tile abstract class. A wall cannot be entered in and is empty
+    /// becaus it does not contain any member object like pellet or energizer.
+    /// </summary>
    public class Wall : Tile
     {
 

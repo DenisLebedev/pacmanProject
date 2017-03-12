@@ -11,8 +11,14 @@ namespace PacManLibrary
 {
     public class GameState
     {
-      
-   
+
+        /// <summary>
+        /// The static Parse method will take in a string variable and
+        /// will set the Tile[,] two dimentional array depending on how the
+        /// file is set up and will create and add the objects needed acordingly.
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
         public static GameState Parse (string file)
         {
             if (file == "") throw new ArgumentException("Empty String.");
@@ -78,7 +84,18 @@ namespace PacManLibrary
             game.Maze.SetTiles(board);
             return game;
         }
-
+        /// <summary>
+        /// This helper class is used to create a ghost objec inorder to
+        /// add a ghost to the Tile[,] array being set up in the static Parse
+        /// method.
+        /// </summary>
+        /// <param name="num"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="game"></param>
+        /// <param name="pacman"></param>
+        /// <param name="scoreAndLives"></param>
+        /// <returns></returns>
         private static Ghost CreateGhost(string num, int x, int y, 
                            GameState game, Pacman pacman, ScoreAndLives scoreAndLives)
         {
@@ -139,8 +156,11 @@ namespace PacManLibrary
             }
 
             return finalArr;
-        }            
-  
+        }
+        /// <summary>
+        /// The Pacman proprety is read only and will return the 
+        /// GameStates Pacman object.
+        /// </summary>
         public Pacman Pacman
         {
             get;

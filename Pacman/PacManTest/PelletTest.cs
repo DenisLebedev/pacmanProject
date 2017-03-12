@@ -4,6 +4,13 @@ using PacManLibrary;
 
 namespace PacManTest
 {
+    /// <summary>
+    /// This test class is to demonstrate you ae able to create
+    /// Pellet objects and read the points a Pellet object is 
+    /// worth. The Collide method is being tested elsewhere, it
+    /// is being tested in the PacmanTest cases aswell as in the
+    /// TileTest cases.
+    /// </summary>
     [TestClass]
     public class PelletTesting
     {

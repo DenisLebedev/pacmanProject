@@ -41,6 +41,15 @@ namespace PacManLibrary
             }
             return false;
         }
+        /// <summary>
+        /// The Collide method is design to call the collide method
+        /// of its child classes (pellet and energizer) depending on 
+        /// the typ of memeber (local private variable of type ICollidoble).
+        /// It will only invoke the Collide method if and only if IsEMpty() 
+        /// return false, once that happens it will set that member to null
+        /// that represents that the objects collide method was already called
+        /// once before.
+        /// </summary>
         public override void Collide()
         {
             if (!this.IsEmpty())
@@ -49,7 +58,11 @@ namespace PacManLibrary
                     this.member = null;
             }      
         }
-
+        /// <summary>
+        /// The Member method will return the IColidable object, which
+        /// represents either a pellet or an energizer.
+        /// </summary>
+        /// <returns></returns>
         public override ICollidable Member()
         {
             return member;  

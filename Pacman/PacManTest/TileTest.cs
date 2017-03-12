@@ -5,6 +5,13 @@ using Microsoft.Xna.Framework;
 
 namespace PacManTest
 {
+    /// <summary>
+    /// In this test class the Tile abstract class will be tested as wall
+    /// as the Colide method that is overriden by Path and its children 
+    /// Pellet and Energizer. Moreover, these tests for Collide will test the
+    /// event handlers in the ScoreLives class as well due to them being 
+    /// depandent on one another.
+    /// </summary>
     [TestClass]
     public class TileTest
     {

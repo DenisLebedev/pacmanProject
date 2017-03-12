@@ -5,6 +5,11 @@ using Microsoft.Xna.Framework;
 
 namespace PacManTest
 {
+    /// <summary>
+    /// in this test class Pacman class willbe tested as well as some event handlers
+    /// in ScoreLives. For exmaple, when pacman moves and eats an energizr he then can
+    /// eat a ghost, all this was tested bellow.
+    /// </summary>
     [TestClass]
     public class PacmanTest
     {

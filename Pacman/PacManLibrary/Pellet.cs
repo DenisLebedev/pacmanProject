@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace PacManLibrary
 {
-
+    /// <summary>
+    /// The Pellet class represents a single pellet object
+    /// that contains its worth (points) and is an ICollidable object which
+    /// means it must implemant the Collide event and when the Collide method is 
+    /// invoked the event is fired.
+    /// </summary>
     public class Pellet : ICollidable
     {
         private int points;

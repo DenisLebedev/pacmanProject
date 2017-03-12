@@ -183,25 +183,20 @@ namespace PacManLibrary
                               " Ghost: " + this.Position.X + ", " + this.Position.Y);
 
             if (pacman.Position.X == this.Position.X
-                && pacman.Position.Y == this.Position.Y
-                && CurrenState == GhostState.Chase)
+                && pacman.Position.Y == this.Position.Y)
             {
-                Console.WriteLine("DeadPacman if is null");
-                if (DeadPacman != null)
-                {
-                    Console.WriteLine("Event Trig");
+                if (CurrenState == GhostState.Chase
+                    && DeadPacman != null)
                     DeadPacman();
-
+                else if (CurrenState == GhostState.Scared
+                    && Collision != null)
+                {
+                    Collision(this);
+                    this.Reset();
                 }
             }
-            else if (pacman.Position.X == this.Position.X
-                && pacman.Position.Y == this.Position.Y
-                && CurrenState == GhostState.Scared
-                && Collision != null)
-            {
-                Collision(this);
-                this.Reset();
-            }
+
+
         }
 
         /// <summary>

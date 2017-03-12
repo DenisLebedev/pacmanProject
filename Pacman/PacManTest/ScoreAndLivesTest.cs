@@ -29,19 +29,36 @@ namespace PacManTest
         [TestMethod]
         public void TestRemoveLive()
         { 
-            //Issue: DeadPacman event is NULL~ (from the ghost Collision Method)
             GameState g = MyGameState();
-            Ghost ghost = new Ghost(g, new Vector2(4, 1), new Vector2(1, 1),
+            Ghost ghost = new Ghost(g, new Vector2(4, 1), new Vector2(4, 1),
                 GhostState.Chase, new Color(255, 0, 0));
-
-            ghost.Collide();
-            g.GhostPack.Add(ghost);
-
-            g.GhostPack.CheckCollideGhosts(new Vector2());
-            
+            ghost.Collision += g.Score.IncrementScore;
+            ghost.DeadPacman += g.Score.DeadPacman;
+            ghost.Collide();          
  
-            Console.WriteLine(g.Score.Lives);
+            Assert.AreEqual(g.Score.Lives, 2);
             
+        }
+
+        [TestMethod]
+        public void TestEnergizerAndGhostEating()
+        {
+            GameState g = MyGameState();
+            Ghost ghost = new Ghost(g, new Vector2(3, 2), new Vector2(4, 1),
+                GhostState.Chase, new Color(255, 0, 0));
+            ghost.Collision += g.Score.IncrementScore;
+            ghost.DeadPacman += g.Score.DeadPacman;
+            try
+            {
+                g.Pacman.Move(Direction.Up);
+                //g.Pacman.Move(Direction.Left);
+                Console.WriteLine(g.Pacman.Position);
+            }catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            //Assert.AreEqual(g.Score.Lives, 2);
+
         }
 
 
@@ -50,9 +67,9 @@ namespace PacManTest
             return GameState.Parse
 (@"w w w w w w
 w p p p p w
-w p p p p w
+w p 1 p p w
 w E p p p w
-w P 1 p p w
+w P p p p w
 w w w w w w");
         }
 

@@ -76,23 +76,56 @@ namespace PacManTest
         }
 
         [TestMethod]
-        public void TestMove()
+        public void TestMoveChase()
         {
-            Ghost ghost = new Ghost(GetGameState(), new Vector2(10, 10), new Vector2(17, 15),
+            GameState g = MyGameState();
+            Ghost ghost = new Ghost(g, new Vector2(4, 4), new Vector2(2, 3),
                 GhostState.Chase, new Color(255, 0, 0));
             try
             {
+
+                Console.WriteLine(g.Maze[0,0]);
+                Console.WriteLine(g.Maze[0,1]);
+                /*Console.WriteLine("Pacman posx: " + g.Pacman.Position.X + " Pacman posy: " + g.Pacman.Position.Y);
+
+                for(int i =0; i < 20; i++)
+                {
+                    Console.WriteLine("X: " + ghost.Position.X + " Y:" + ghost.Position.Y);
+                    ghost.Move();
+                }
+
+                /*ghost.Move();
+                Console.WriteLine("X: " + ghost.Position.X + " Y:" + ghost.Position.Y);
+                ghost.Move();
+                Console.WriteLine("X: " + ghost.Position.X + " Y:" + ghost.Position.Y);
+                ghost.Move();
+                Console.WriteLine("X: " + ghost.Position.X + " Y:" + ghost.Position.Y);
                 ghost.Move();
                 Console.WriteLine("X: " + ghost.Position.X + " Y:" + ghost.Position.Y);
                 ghost.Move();
                 Console.WriteLine("X: " + ghost.Position.X + " Y:" + ghost.Position.Y);
                 ghost.Move();
                 Console.WriteLine("X: " + ghost.Position.X + " Y:" + ghost.Position.Y);
-            }catch(Exception e)
+                ghost.Move();
+                Console.WriteLine("X: " + ghost.Position.X + " Y:" + ghost.Position.Y*/
+            }
+            catch(Exception e)
             {
                 Console.WriteLine(e.Message);
             }
             Assert.AreNotEqual(ghost.Position, new Vector2(15, 15));
+        }
+
+
+        private GameState MyGameState()
+        {//2 3
+            return GameState.Parse
+(@"w w w w w w
+w w p 1 p w
+w p p p p w
+w p p P p w
+w p p p p w
+w w w w w w");
         }
 
 

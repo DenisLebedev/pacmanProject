@@ -56,14 +56,11 @@ namespace PacManLibrary
             Random rand = new Random();
             int choice = rand.Next(places.Count);
             //determine direction
-            if (places[choice].Position.X == ghost.Position.X + 1
-                    && target.X - ghost.Position.X > 0)
+            if (target.X - ghost.Position.X > 0)
                 ghost.Direction = Direction.Right;
-            else if (places[choice].Position.X == ghost.Position.X - 1
-                    && target.Y - ghost.Position.Y > 0)
+            else if (target.Y - ghost.Position.Y > 0)
                 ghost.Direction = Direction.Left;
-            else if (places[choice].Position.Y == ghost.Position.Y - 1
-                    && target.Y - ghost.Position.Y < 0)
+            else if (target.Y - ghost.Position.Y < 0)
                 ghost.Direction = Direction.Up;
             else
                 ghost.Direction = Direction.Down;
@@ -73,6 +70,8 @@ namespace PacManLibrary
 
             if (target.X == ghost.Position.X && target.Y == ghost.Position.Y)
             {
+                Console.WriteLine("Hit The Target");
+                Console.WriteLine(target.X + " " + ghost.Position.X + "--"+ target.Y + ghost.Position.Y);
                 target.X = pacman.Position.X;
                 target.Y = pacman.Position.Y;
             }

@@ -52,23 +52,31 @@ namespace PacManLibrary
             {
                 case Direction.Down:
                     if (maze[(int)Position.X + 1, (int)Position.Y].CanEnter())
-                        Position = new Vector2(Position.X+1, Position.Y );
-                    CheckCollisions();
+                    {
+                        Position = new Vector2(Position.X + 1, Position.Y);
+                        CheckCollisions();
+                    }
                     break;
                 case Direction.Left:
-                    if (maze[(int)Position.X , (int)Position.Y - 1].CanEnter())
-                        Position = new Vector2(Position.X, Position.Y-1);
-                    CheckCollisions();
+                    if (maze[(int)Position.X, (int)Position.Y - 1].CanEnter())
+                    {
+                        Position = new Vector2(Position.X, Position.Y - 1);
+                        CheckCollisions();
+                    }
                     break;
                 case Direction.Up:
                     if (maze[(int)Position.X - 1, (int)Position.Y].CanEnter())
-                    Position = new Vector2(Position.X-1, Position.Y);
-                    CheckCollisions();
+                    {
+                        Position = new Vector2(Position.X - 1, Position.Y);
+                        CheckCollisions();
+                    }
                     break;
                 case Direction.Right:
-                    if (maze[(int)Position.X, (int)Position.Y +1].CanEnter())
-                        Position = new Vector2(Position.X, Position.Y+1);
-                    CheckCollisions();
+                    if (maze[(int)Position.X, (int)Position.Y + 1].CanEnter())
+                    {
+                        Position = new Vector2(Position.X, Position.Y + 1);
+                        CheckCollisions();
+                    }
                     break;
             }     
         } 

@@ -78,7 +78,7 @@ namespace PacManTest
         [TestMethod]
         public void TestMove()
         {
-            Ghost ghost = new Ghost(GetGameState(), new Vector2(10, 10), new Vector2(15, 15),
+            Ghost ghost = new Ghost(GetGameState(), new Vector2(10, 10), new Vector2(17, 15),
                 GhostState.Chase, new Color(255, 0, 0));
             try
             {

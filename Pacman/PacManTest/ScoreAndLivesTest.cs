@@ -15,6 +15,9 @@ namespace PacManTest
     public class ScoreAndLivesTest
     {
 
+        /// <summary>
+        /// The method will test if our property Life is working
+        /// </summary>
         [TestMethod]
         public void TestLifeProp()
         {
@@ -76,6 +79,29 @@ namespace PacManTest
             Assert.AreEqual(g.Score.Lives, 0);
 
 
+        }
+
+        [TestMethod]
+        public void TestPacmanWon()
+        {
+            GameState g = EmptyGame();
+            try
+            {
+                g.Maze.CheckMembersLeft();
+            }catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+        }
+
+        private GameState EmptyGame()
+        {
+            return GameState.Parse
+            (@"w P m w
+w m m w
+w m m w
+w m m w");
         }
 
 

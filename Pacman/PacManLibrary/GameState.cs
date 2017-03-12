@@ -23,6 +23,7 @@ namespace PacManLibrary
         {
             if (file == "") throw new ArgumentException("Empty String.");
 
+            //Initialization of variables by Properties
             GameState game = new GameState();
             game.GhostPack = new GhostPack();
             game.Pen = new Pen();
@@ -82,8 +83,20 @@ namespace PacManLibrary
                 }
             }
             game.Score.GameOver += GameOver;
+            game.Maze.PacmanWon += PacmanWon;
             game.Maze.SetTiles(board);
             return game;
+        }
+
+        /// <summary>
+        /// The method return true when the event is trigger
+        /// because pacman won.
+        /// </summary>
+        /// <returns></returns>
+        private static bool PacmanWon()
+        {
+            Console.WriteLine("Lucky Man~");
+            return true;
         }
 
         /// <summary>
@@ -151,14 +164,24 @@ namespace PacManLibrary
             return ghost;
         }
 
+        /// <summary>
+        /// The method gonna split our given string to an Multidimensional array
+        /// with LINQ. 
+        /// </summary>
+        /// <param name="game">The string is the actual game board</param>
+        /// <returns></returns>
         private string[,] GetFinalArray(string game)
         {
+            //getting all the lines
             string[] full = game.Split(new char[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            //the actual size of your array
             string[,] board = new string[full.GetLength(0), full.GetLength(0)];
+            //The LINQ return a Jagged array a conversion is needed
             string[][] Result = (from str in full
                                  where (str != " ")
                                  select str.Split(' ')).ToArray();
 
+            //Conversion of the array
             string[,] finalArr = new string[full.GetLength(0), full.GetLength(0)];
             for (int i = 0; i < Result.Length; i++)
             {

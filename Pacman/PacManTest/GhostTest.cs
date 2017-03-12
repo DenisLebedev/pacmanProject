@@ -6,9 +6,17 @@ using System.Timers;
 
 namespace PacManTest
 {
+    /// <summary>
+    /// The class will test all the methods of a ghost in 
+    /// Scare and Chase mode either. All the events are tested
+    /// somwhere else like Pacman.
+    /// </summary>
     [TestClass]
     public class GhostTest
     {
+        /// <summary>
+        /// The method will test if our property Colour is working
+        /// </summary>
         [TestMethod]
         public void TestPropColour()
         {
@@ -18,6 +26,9 @@ namespace PacManTest
             Assert.AreEqual(ghost.Colour.R, 255);
         }
 
+        /// <summary>
+        /// The method will test if our property current state is working
+        /// </summary>
         [TestMethod]
         public void TestPropCurrentState()
         {
@@ -27,6 +38,9 @@ namespace PacManTest
             Assert.AreEqual(ghost.CurrenState, GhostState.Scared);
         }
 
+        /// <summary>
+        /// The method will test if our property Direction is working
+        /// </summary>
         [TestMethod]
         public void TestPropDirection()
         {
@@ -37,6 +51,9 @@ namespace PacManTest
             Assert.AreEqual(ghost.Direction, Direction.Up);
         }
 
+        /// <summary>
+        /// The method will test if our property Point is working
+        /// </summary>
         [TestMethod]
         public void TestPropPoint()
         {
@@ -46,22 +63,23 @@ namespace PacManTest
             Assert.AreEqual(ghost.Points, 300);
         }
 
+        /// <summary>
+        /// The method will test if our property Position is working
+        /// </summary>
         [TestMethod]
         public void TestPropPosition()
         {
             GameState game = GetGameState();
             Ghost ghost = new Ghost(game, new Vector2(11, 10), new Vector2(15, 15),
-                GhostState.Chase, new Color(255, 0, 0));
-
-            
-
-            Console.WriteLine(game.Maze[5,5].Member());
-
-
-
+                GhostState.Scared, new Color(255, 0, 0));
+         
             Assert.AreEqual(ghost.Position, new Vector2(11, 10));
         }
 
+
+        /// <summary>
+        /// The method will test if our ghost actually go to our pen
+        /// </summary>
         [TestMethod]
         public void TestMoveToPen()
         {
@@ -72,17 +90,25 @@ namespace PacManTest
             Assert.AreNotEqual(ghost.Position.X + ghost.Position.Y, 30);
         }
 
+        /// <summary>
+        /// The method will test if ChangeState is wroking 
+        /// as it should be.
+        /// </summary>
         [TestMethod]
         public void TestChangeState()
         {
             Ghost ghost = new Ghost(GetGameState(), new Vector2(10, 10), new Vector2(15, 15),
                 GhostState.Scared, new Color(255, 0, 0));
 
+            //Ghost is scared and gonna be Chased now.
             ghost.ChangeState(GhostState.Chase);
-            Console.WriteLine(ghost.CurrenState + "<=== | ===> " +  GhostState.Chase);
             Assert.AreEqual(ghost.CurrenState, GhostState.Chase);
         }
 
+        /// <summary>
+        /// The method will test if the Ghost really run 
+        /// to our pacmam, but the event it tested somewhere else
+        /// </summary>
         [TestMethod]
         public void TestMoveChase()
         {
@@ -93,6 +119,24 @@ namespace PacManTest
             //The target is close to our Ghost so one move is enough
             ghost.Move();
             Assert.AreEqual(ghost.Position, new Vector2(1, 2));
+        }
+
+        /// <summary>
+        /// The method will test if the Ghost really run 
+        /// away but do not chase our pacmam
+        /// </summary>
+        [TestMethod]
+        public void TestMoveScare()
+        {
+            GameState g = MyGameState();
+            g.Pacman.Position = new Vector2(3,2);
+            Ghost ghost = new Ghost(g, new Vector2(2, 2), new Vector2(3, 2),
+                GhostState.Scared, new Color(255, 0, 0));
+
+            //The target is at the Pacman position so he should not chase him bu run away
+            ghost.Move();
+            Console.WriteLine(ghost.Position);
+            Assert.AreNotEqual(ghost.Position, new Vector2(3, 2));
         }
 
 

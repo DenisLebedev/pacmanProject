@@ -135,22 +135,20 @@ namespace PacManLibrary
         public void CheckMembersLeft()
         {
             bool chk = true;
-            for (int i = 0; i < maze.GetLength(0); i++)
+            for (int i = 0; i < maze.GetLength(0) && chk; i++)
             {
-                for (int j = 0; j < maze.GetLength(0); j++)
+                for (int j = 0; j < maze.GetLength(1) && chk; j++)
                 {
-                   if (!(maze[i,j].IsEmpty()))
-                    {
-                        chk = false;
-                        break;
-                        
-                    }
+                    Console.WriteLine("I: " + i + " J: " + j);
+                    if (maze[i, j].IsEmpty())
+                        chk = true;
+                    else 
+                        chk = false;                                    
                 }
-                if (!chk) { break;}
             }//end of for loop
             if (chk)
             {
-                PacmanWon?.Invoke();
+                if (PacmanWon != null) PacmanWon();
             }
 
            

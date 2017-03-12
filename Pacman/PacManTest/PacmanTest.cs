@@ -26,15 +26,48 @@ namespace PacManTest
         /// <summary>
         /// This test case will truy to move the pacman up, however since
         /// the tile above pacmans starting position [17,11] is a wall, the Wall
-        /// class will throw an exception because the pacman cannot
+        /// class will not allow the pacman to move so he's position will not change
         /// </summary>
         [TestMethod]
         public void PacmanMove2Test()
         {
             GameState game = GetGameState();
             game.Pacman.Move(Direction.Up);
-            Console.WriteLine(game.Pacman.Position + "\t" + game.Maze[16,11].ToString());
 
+            Assert.AreEqual(game.Pacman.Position, new Vector2(17, 11));
+        }
+        /// <summary>
+        /// This test case will test if the score in ScoreLives
+        /// class is incremnted when pacman moves ontop of a pellet, the
+        /// expected result is the scoe will be 100.
+        /// </summary>
+        [TestMethod]
+        public void CheckCollisionTest()
+        {
+            GameState game = GetGameState();
+            game.Pacman.Move(Direction.Right);
+
+            Console.WriteLine(game.Score.Score);
+
+            Assert.AreEqual(game.Score.Score, 100);
+        }
+        /// <summary>
+        /// This test case will move pacman twice right and once left
+        /// in order to verify if when he collides with a pellet they are
+        /// removed and no loner fire an event to increment the score.
+        /// The expected result is 200 since he moved over only two pellets.
+        /// </summary>
+        [TestMethod]
+        public void CheckCollision2Test()
+        {
+            GameState game = GetGameState();
+            //move R,R,L,R
+            game.Pacman.Move(Direction.Right);
+            game.Pacman.Move(Direction.Right);
+            game.Pacman.Move(Direction.Left);
+            game.Pacman.Move(Direction.Right);
+
+            Assert.AreEqual(game.Score.Score, 200);
         }
         private GameState GetGameState()
         {

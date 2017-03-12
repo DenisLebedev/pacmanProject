@@ -18,16 +18,5 @@ namespace PacManTest
             Assert.AreEqual(pellet.Points, 100);
 
         }
-        /*
-        [TestMethod]
-        public void TestCollidPellet()
-        {
-
-            Pellet pellet = new Pellet();
-
-            Assert.AreEqual(pellet, new Pellet());
-           
-        }
-        */
     }
 }

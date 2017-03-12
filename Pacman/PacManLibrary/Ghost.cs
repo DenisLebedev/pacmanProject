@@ -107,39 +107,8 @@ namespace PacManLibrary
         {
             get { return direction; }
 
-            set { direction = MovePosition(value); }
+            set { direction = value; }
         }
-
-        /// <summary>
-        /// The method will update the position of our Ghost depending on the direction given.
-        /// </summary>
-        /// <param name="dir">dir tells where gonna be the next mvoe of our ghost so we update his Position vector</param>
-        /// <returns></returns>
-        private Direction MovePosition(Direction dir)
-        {
-            if (pos.Y + 1 >= maze.Size || pos.X + 1 >= maze.Size
-                || pos.Y - 1 < 0 || pos.X - 1 < 0)
-                throw new IndexOutOfRangeException("The ghost cannot go away from the maze.");
-
-            switch (dir)
-            {
-                case Direction.Up:
-                    pos.Y -= 1;
-                    break;
-                case Direction.Down:
-                    pos.Y += 1;
-                    break;
-                case Direction.Left:
-                    pos.X -= 1;
-                    break;
-                case Direction.Right:
-                    pos.X += 1;
-                    break;
-            }
-
-            return dir;
-        }
-
 
         /// <summary>
         /// The Position property returns a vector of the

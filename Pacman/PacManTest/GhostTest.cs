@@ -92,7 +92,6 @@ namespace PacManTest
 
             //The target is close to our Ghost so one move is enough
             ghost.Move();
-
             Assert.AreEqual(ghost.Position, new Vector2(1, 2));
         }
 

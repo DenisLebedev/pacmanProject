@@ -71,7 +71,7 @@ namespace PacManLibrary
             if (target.X == ghost.Position.X && target.Y == ghost.Position.Y)
             {
                 Console.WriteLine("Hit The Target");
-                Console.WriteLine(target.X + " " + ghost.Position.X + "--"+ target.Y + ghost.Position.Y);
+                Console.WriteLine(target.X + " " + ghost.Position.X + "--"+ target.Y + " " + ghost.Position.Y);
                 target.X = pacman.Position.X;
                 target.Y = pacman.Position.Y;
             }

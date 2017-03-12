@@ -79,14 +79,14 @@ namespace PacManTest
         public void TestMoveChase()
         {
             GameState g = MyGameState();
-            Ghost ghost = new Ghost(g, new Vector2(4, 4), new Vector2(2, 3),
+            Ghost ghost = new Ghost(g, new Vector2(1, 1), new Vector2(4, 4),
                 GhostState.Chase, new Color(255, 0, 0));
             try
             {
 
-                Console.WriteLine(g.Maze[0,0]);
-                Console.WriteLine(g.Maze[0,1]);
-                /*Console.WriteLine("Pacman posx: " + g.Pacman.Position.X + " Pacman posy: " + g.Pacman.Position.Y);
+                /*Console.WriteLine(g.Maze[0,0]);
+                Console.WriteLine(g.Maze[1,1]);*/
+                Console.WriteLine("Pacman posx: " + g.Pacman.Position.X + " Pacman posy: " + g.Pacman.Position.Y);
 
                 for(int i =0; i < 20; i++)
                 {
@@ -121,7 +121,7 @@ namespace PacManTest
         {//2 3
             return GameState.Parse
 (@"w w w w w w
-w w p 1 p w
+w p p 1 p w
 w p p p p w
 w p p P p w
 w p p p p w

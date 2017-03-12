@@ -69,6 +69,19 @@ namespace PacManTest
 
             Assert.AreEqual(game.Score.Score, 200);
         }
+        [TestMethod]
+        public void CheckCollision3Test()
+        {
+            GameState game = GetGameState();
+            game.Pacman.Position = new Vector2(2,1);
+            //move R,R,L,R
+            game.Pacman.Move(Direction.Down);
+
+            Console.WriteLine(game.Score.Score + "\t" + game.Pacman.Position  + "\n" + 
+                game.Maze[ (int)game.Pacman.Position.X,(int) game.Pacman.Position.Y].Member());
+
+            Assert.AreEqual(game.Score.Score, 500);
+        }
         private GameState GetGameState()
         {
             return GameState.Parse

@@ -79,9 +79,9 @@ namespace PacManLibrary
         /// </summary>
         public void CheckCollisions()
         {
-          if (!(maze[(int)Position.Y, (int)Position.X].IsEmpty())){
+          if (!(maze[(int)Position.X, (int)Position.Y].IsEmpty())){
                 //there is something here
-                maze[(int)Position.Y, (int)Position.X].Collide();
+                maze[(int)Position.X, (int)Position.Y].Collide();
             }
             //thre is nothing here
 

@@ -8,7 +8,8 @@ namespace PacManTest
     public class PelletTesting
     {
         /// <summary>
-        /// Testing the 
+        /// Testing the pellet class if it creates it properly by assigning
+        /// the points in the constructer.
         /// </summary>
         [TestMethod]
         public void tesPelletConstructer()

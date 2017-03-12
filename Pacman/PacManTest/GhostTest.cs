@@ -51,7 +51,7 @@ namespace PacManTest
             Ghost ghost = new Ghost(GetGameState(), new Vector2(10, 10), new Vector2(15, 15),
                 GhostState.Scared, new Color(255, 0, 0));
 
-            Assert.AreEqual(ghost.Position.X + ghost.Position.Y, 30);
+            Assert.AreEqual(ghost.Position, new Vector2(10, 10));
         }
 
         [TestMethod]
@@ -79,52 +79,24 @@ namespace PacManTest
         public void TestMoveChase()
         {
             GameState g = MyGameState();
-            Ghost ghost = new Ghost(g, new Vector2(1, 1), new Vector2(4, 4),
+            Ghost ghost = new Ghost(g, new Vector2(1, 1), new Vector2(1, 2),
                 GhostState.Chase, new Color(255, 0, 0));
-            try
-            {
 
-                /*Console.WriteLine(g.Maze[0,0]);
-                Console.WriteLine(g.Maze[1,1]);*/
-                Console.WriteLine("Pacman posx: " + g.Pacman.Position.X + " Pacman posy: " + g.Pacman.Position.Y);
+            //The target is close to our Ghost so one move is enough
+            ghost.Move();
 
-                for(int i =0; i < 20; i++)
-                {
-                    Console.WriteLine("X: " + ghost.Position.X + " Y:" + ghost.Position.Y);
-                    ghost.Move();
-                }
-
-                /*ghost.Move();
-                Console.WriteLine("X: " + ghost.Position.X + " Y:" + ghost.Position.Y);
-                ghost.Move();
-                Console.WriteLine("X: " + ghost.Position.X + " Y:" + ghost.Position.Y);
-                ghost.Move();
-                Console.WriteLine("X: " + ghost.Position.X + " Y:" + ghost.Position.Y);
-                ghost.Move();
-                Console.WriteLine("X: " + ghost.Position.X + " Y:" + ghost.Position.Y);
-                ghost.Move();
-                Console.WriteLine("X: " + ghost.Position.X + " Y:" + ghost.Position.Y);
-                ghost.Move();
-                Console.WriteLine("X: " + ghost.Position.X + " Y:" + ghost.Position.Y);
-                ghost.Move();
-                Console.WriteLine("X: " + ghost.Position.X + " Y:" + ghost.Position.Y*/
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-            Assert.AreNotEqual(ghost.Position, new Vector2(15, 15));
+            Assert.AreEqual(ghost.Position, new Vector2(1, 2));
         }
 
 
         private GameState MyGameState()
-        {//2 3
+        {
             return GameState.Parse
 (@"w w w w w w
 w p p 1 p w
 w p p p p w
-w p p P p w
 w p p p p w
+w P p p p w
 w w w w w w");
         }
 

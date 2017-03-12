@@ -25,7 +25,7 @@ namespace PacManLibrary
     public class Ghost : IMovable, ICollidable
     {
         private Pacman pacman;
-        private Vector2 target;
+        private Vector2 pos;
         private Pen pen;
         private Maze maze;
         private Direction direction;
@@ -63,11 +63,10 @@ namespace PacManLibrary
             this.Position = new Vector2(pos.X, pos.Y);
             this.maze = g.Maze;
             this.pen = g.Pen;
-            this.target = new Vector2(target.X, target.Y);
             this.colour = colour;
             this.Points = 300;
 
-            this.Direction = Direction.Left;
+            this.direction = Direction.Left;
 
             switch (start)
             {
@@ -105,8 +104,39 @@ namespace PacManLibrary
         {
             get { return direction; }
 
-            set { direction = value; }
+            set { direction = MovePosition(value); }
         }
+
+        /// <summary>
+        /// The method will update the position of our Ghost depending on the direction given.
+        /// </summary>
+        /// <param name="dir">dir tells where gonna be the next mvoe of our ghost so we update his Position vector</param>
+        /// <returns></returns>
+        private Direction MovePosition(Direction dir)
+        {
+            if (pos.Y + 1 >= maze.Size || pos.X >= maze.Size
+                || pos.Y < 0 || pos.X < 0)
+                throw new IndexOutOfRangeException("The ghost cannot go away from the maze.");
+
+            switch (dir)
+            {
+                case Direction.Up:
+                    pos.Y -= 1;
+                    break;
+                case Direction.Down:
+                    pos.Y += 1;
+                    break;
+                case Direction.Left:
+                    pos.X -= 1;
+                    break;
+                case Direction.Right:
+                    pos.X += 1;
+                    break;
+            }
+
+            return dir;
+        }
+
 
         /// <summary>
         /// The Position property returns a vector of the
@@ -114,9 +144,9 @@ namespace PacManLibrary
         /// </summary>
         public Vector2 Position
         {
-            get { return new Vector2(target.X, target.Y); }
+            get { return new Vector2(pos.X, pos.Y); }
 
-            set { target = value; }
+            set { pos = value; }
         }
 
         /// <summary>
@@ -172,6 +202,8 @@ namespace PacManLibrary
         /// <summary>
         /// The method ChangeState  take an Enum type GhostState and change
         /// the state of our current ghost depending the state given.
+        /// Also, if we switch to scare mode a timer is activated and the ghosts are feared
+        /// for 9 seconds.
         /// </summary>
         /// <param name="state">state is an Enum that represent the new state that we gonna give to our ghost</param>
         public void ChangeState(GhostState state)
@@ -181,7 +213,7 @@ namespace PacManLibrary
                 case GhostState.Chase:
                     this.state = GhostState.Chase;
 
-                    currentState = new Chase(this, maze, pacman, target);
+                    currentState = new Chase(this, maze, pacman, pacman.Position);
                     break;
 
                 case GhostState.Scared:
@@ -194,7 +226,7 @@ namespace PacManLibrary
 
                 case GhostState.Released:
                     this.state = GhostState.Chase;
-                    currentState = new Chase(this, maze, pacman, target);
+                    currentState = new Chase(this, maze, pacman, pacman.Position);
                     break;
             }
             Console.WriteLine(this.state + "<");

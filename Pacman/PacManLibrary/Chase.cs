@@ -48,30 +48,30 @@ namespace PacManLibrary
 
             List<Tile> places = maze.GetAvailableNeighbours(ghost.Position, ghost.Direction);
             Tile current = maze[(int)ghost.Position.X, (int)ghost.Position.Y];
-
+            Tile lastPos = maze[(int)target.X, (int)target.Y];
+            
             //A ghost should not be stuck somewhere
             if (places.Count == 0)
                 throw new Exception("I cannot go further.");
 
+            Console.WriteLine();
+
             Random rand = new Random();
             int choice = rand.Next(places.Count);
             //determine direction
-            if (target.X - ghost.Position.X > 0)
+            if (places[choice].Position.X == ghost.Position.X + 1)
                 ghost.Direction = Direction.Right;
-            else if (target.Y - ghost.Position.Y > 0)
+            else if (places[choice].Position.X == ghost.Position.X - 1)
                 ghost.Direction = Direction.Left;
-            else if (target.Y - ghost.Position.Y < 0)
+            else if (places[choice].Position.Y == ghost.Position.Y - 1)
                 ghost.Direction = Direction.Up;
             else
                 ghost.Direction = Direction.Down;
             ghost.Position = places[choice].Position;
 
 
-
             if (target.X == ghost.Position.X && target.Y == ghost.Position.Y)
             {
-                Console.WriteLine("Hit The Target");
-                Console.WriteLine(target.X + " " + ghost.Position.X + "--"+ target.Y + " " + ghost.Position.Y);
                 target.X = pacman.Position.X;
                 target.Y = pacman.Position.Y;
             }

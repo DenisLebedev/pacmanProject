@@ -62,7 +62,7 @@ namespace PacManTest
         /// <summary>
         /// This method will test the is empty method in The tile abstract
         /// class. This test case will test a wall tile which the expected 
-        /// result will be false.
+        /// result will be true.
         /// </summary>
         [TestMethod]
         public void TileIsEMpty2Test()
@@ -70,7 +70,7 @@ namespace PacManTest
             GameState game = GetGameState();
             Console.WriteLine(game.Maze[0, 0].IsEmpty());
 
-            Assert.AreEqual(game.Maze[0, 0].IsEmpty(), false);
+            Assert.AreEqual(game.Maze[0, 0].IsEmpty(), true);
         }
         /// <summary>
         /// This test case will test the collide event, in this test I will 
@@ -130,6 +130,12 @@ namespace PacManTest
 
             Assert.AreEqual(ghost.CurrenState,GhostState.Scared);
         }
+        /// <summary>
+        /// This test case will test if when pacman has the sam point as
+        /// a ghost if the event is triggered that pacman must lose a life
+        /// in ScoreLives class, the expected result will be 2, being the amount
+        /// of lives he has left.
+        /// </summary>
         [TestMethod]
         public void Colide5Test()
         {
@@ -140,15 +146,10 @@ namespace PacManTest
             Pacman pacman = new Pacman(game);
 
             game.GhostPack.Add(ghost);
-            game.Pacman.Position = new Vector2(1, 1);
-            ghost.Position = new Vector2(1, 1);
+            game.Pacman.Position = new Vector2(17, 11);          
+            game.GhostPack.CheckCollideGhosts(pacman.Position);
 
-            //game.Pacman.CheckCollisions();
-            //game.GhostPack.GetEnumerator().Current.Collide();
-
-            Console.WriteLine(game.Pacman.Position + "\t"   + game.Score.Lives);
-
-            Assert.AreEqual(1, 1);
+            Assert.AreEqual(game.Score.Lives, 2);
         }
         /// <summary>
         /// This test case will show that the GetDistance method in the
@@ -169,9 +170,6 @@ namespace PacManTest
             Assert.AreEqual(f1, f2);
 
         }
-
-
-
 
         private GameState GetGameState()
         {

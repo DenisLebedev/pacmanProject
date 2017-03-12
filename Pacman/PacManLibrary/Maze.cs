@@ -40,7 +40,7 @@ namespace PacManLibrary
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns></returns>
-        public Tile this[int x,int y]
+        public Tile this[int y,int x]
         {
             get
             {

@@ -69,18 +69,43 @@ namespace PacManTest
 
             Assert.AreEqual(game.Score.Score, 200);
         }
+        /// <summary>
+        /// Here we will test when pacman moves over an energizer
+        /// if the the Collide method is called depending the type of 
+        /// the object. To get the expected result the score will be incremented.
+        /// </summary>
         [TestMethod]
         public void CheckCollision3Test()
         {
             GameState game = GetGameState();
             game.Pacman.Position = new Vector2(2,1);
-            //move R,R,L,R
+
             game.Pacman.Move(Direction.Down);
 
-            Console.WriteLine(game.Score.Score + "\t" + game.Pacman.Position  + "\n" + 
-                game.Maze[ (int)game.Pacman.Position.X,(int) game.Pacman.Position.Y].Member());
 
             Assert.AreEqual(game.Score.Score, 500);
+        }
+        /// <summary>
+        /// In this test case we will test if pacman eats an energizer and then is
+        /// able to eat a ghost. To test this if the score is 800 at the end it worked 
+        /// beacause all the events were trigered properly to increase the score in scorelives
+        /// an energizer is worth 500 and a ghost is worth 300.
+        /// </summary>
+        [TestMethod]
+        public void CheckCollision4Test()
+        {
+            GameState game = GetGameState();
+            game.Pacman.Position = new Vector2(2, 1);
+
+            game.Pacman.Move(Direction.Down);
+
+            game.Pacman.Position = new Vector2(9, 11);
+            game.GhostPack.CheckCollideGhosts(new Vector2(9, 11));
+
+            Console.WriteLine(game.Score.Score);
+
+
+            Assert.AreEqual(game.Score.Score, 800);
         }
         private GameState GetGameState()
         {

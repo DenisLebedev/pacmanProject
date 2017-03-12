@@ -143,14 +143,34 @@ namespace PacManTest
             game.Pacman.Position = new Vector2(1, 1);
             ghost.Position = new Vector2(1, 1);
 
-            game.Pacman.CheckCollisions();
-           
+            //game.Pacman.CheckCollisions();
+            //game.GhostPack.GetEnumerator().Current.Collide();
 
-            Console.WriteLine(game.Pacman.Position + "\t" + game.GhostPack.CheckCollideGhosts() 
-                + "\n" + game.Score.Lives);
+            Console.WriteLine(game.Pacman.Position + "\t"   + game.Score.Lives);
 
             Assert.AreEqual(1, 1);
         }
+        /// <summary>
+        /// This test case will show that the GetDistance method in the
+        /// tile class works by creating two vectors comparing the distance
+        /// and then comparing that distance to tiles within the maze (which are
+        /// vector2 themselves) and using the same points.
+        /// </summary>
+        [TestMethod]
+        public void GetDistanceTest()
+        {
+            GameState game = GetGameState();
+            Vector2 p1 = new Vector2(0, 0);
+            Vector2 p2 = new Vector2(10, 10);
+
+            float f1 = Vector2.Distance(p1, p2);
+            float f2 = game.Maze[0, 0].GetDistance(game.Maze[10,10].Position);
+
+            Assert.AreEqual(f1, f2);
+
+        }
+
+
 
 
         private GameState GetGameState()

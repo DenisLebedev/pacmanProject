@@ -35,6 +35,7 @@ namespace PacManTest
         /// This method will test the Points proprety to check
         /// if we are allowed to write from it (set).
         /// </summary>
+        /*
         [TestMethod]
         [ExpectedException(typeof(Exception))]
         public void EnerGizerPointsPropWriteTest()
@@ -44,7 +45,7 @@ namespace PacManTest
           //  e.Points = 100;
             
         }
-
+        */
         /// <summary>
         /// This is a helper method in order to create a GameState
         /// object for use within this test class.

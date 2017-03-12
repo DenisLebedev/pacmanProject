@@ -60,6 +60,7 @@
     <Compile Include="ScoreAndLivesTest.cs" />
     <Compile Include="PelletTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TileTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PacManLibrary\PacManLibrary.csproj">

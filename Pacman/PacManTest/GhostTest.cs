@@ -49,10 +49,17 @@ namespace PacManTest
         [TestMethod]
         public void TestPropPosition()
         {
-            Ghost ghost = new Ghost(GetGameState(), new Vector2(10, 10), new Vector2(15, 15),
+            GameState game = GetGameState();
+            Ghost ghost = new Ghost(game, new Vector2(11, 10), new Vector2(15, 15),
                 GhostState.Scared, new Color(255, 0, 0));
 
-            Assert.AreEqual(ghost.Position, new Vector2(10, 10));
+            
+
+            Console.WriteLine(game.Maze[5,5].Member());
+
+
+
+            Assert.AreEqual(ghost.Position, new Vector2(11, 10));
         }
 
         [TestMethod]
@@ -100,6 +107,7 @@ w p p p p w
 w P 1 p p w
 w w w w w w");
         }
+
 
 
         private GameState GetGameState()

@@ -179,22 +179,37 @@ namespace PacManLibrary
             get;
             private set;
         }
+        /// <summary>
+        /// The GhostPack proprety will return a GhostPack object
+        /// that was initialized within the GameState class
+        /// </summary>
         public GhostPack GhostPack
         {
             get;
             private set;
         }
+        /// <summary>
+        /// The Maze propprety containg the maze initialized in the 
+        /// GameState class
+        /// </summary>
         public Maze Maze
         {
             get;
             private set;
         }
-
+        /// <summary>
+        /// The Pen propprety containg the pen initialized in the 
+        /// GameState class
+        /// </summary>
         public Pen Pen
         {
             get;
             private set;
         }
+        /// <summary>
+        /// The Score propprety containg the ScoreLives class in the 
+        /// GameState class
+        /// </summary>
         public ScoreAndLives Score
         {
             get;

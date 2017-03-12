@@ -24,7 +24,6 @@ namespace PacManTest
             Pellet pellet = new Pellet();
 
             Assert.AreEqual(pellet.Points, 100);
-
         }
     }
 }

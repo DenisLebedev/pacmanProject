@@ -60,7 +60,7 @@ namespace PacManLibrary
         }
         /// <summary>
         /// The Member method will return the IColidable object, which
-        /// represents either a pellet or an energizer.
+        /// represents either a pellet, an energizer or a ghost.
         /// </summary>
         /// <returns></returns>
         public override ICollidable Member()

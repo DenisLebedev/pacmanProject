@@ -40,7 +40,7 @@ namespace PacManLibrary
         }
         /// <summary>
         /// Since this class is a wall so a wall never contains
-        /// something therefor makes it empty all the time     
+        /// something therefore makes it empty all the time     
         /// </summary>
         public override bool IsEmpty()
         {

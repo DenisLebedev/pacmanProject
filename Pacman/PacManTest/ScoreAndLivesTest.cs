@@ -81,24 +81,21 @@ namespace PacManTest
 
         }
 
+        /// <summary>
+        /// When pacman won a message is printed, but a new way
+        /// gonna be handled when we gonna do the second phase.
+        /// </summary>
         [TestMethod]
         public void TestPacmanWon()
         {
             GameState g = EmptyGame();
-            try
-            {
-                g.Maze.CheckMembersLeft();
-            }catch(Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-
+            g.Maze.CheckMembersLeft();
         }
 
         private GameState EmptyGame()
         {
             return GameState.Parse
-            (@"w P m w
+(@"w P m w
 w m m w
 w m m w
 w m m w");

@@ -45,7 +45,7 @@ namespace PacManLibrary
                         temp.Collision += game.Score.IncrementScore;
                         board[x, y] = new Path(x, y, temp);
                     }
-                    else if (strArr[x, y] == "w")
+                    else if (strArr[x, y] == "w" || strArr[x, y].Replace("\r", "") == "w")
                     {
                         board[x, y] = new Wall(x, y);
                     }
@@ -79,6 +79,8 @@ namespace PacManLibrary
                     {
                         board[x, y] = new Path(x, y, null);
                     }
+                    else
+                        throw new ArgumentException("Illegal character to build the maze.");
 
                 }
             }

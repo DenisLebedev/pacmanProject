@@ -96,7 +96,7 @@ namespace PacManTest
         {
             return GameState.Parse
 (@"w P m w
-w m m w
+w x m w
 w m m w
 w m m w");
         }

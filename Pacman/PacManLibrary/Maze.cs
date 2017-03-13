@@ -139,7 +139,6 @@ namespace PacManLibrary
             {
                 for (int j = 0; j < maze.GetLength(1) && chk; j++)
                 {
-                    Console.WriteLine("I: " + i + " J: " + j);
                     if (maze[i, j].IsEmpty())
                         chk = true;
                     else 

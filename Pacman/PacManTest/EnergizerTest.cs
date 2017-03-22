@@ -17,7 +17,7 @@ namespace PacManTest
         public void CreatingEnergizer()
         {
             GhostPack gp = new GhostPack();
-            Energizer e = new Energizer(gp);
+            Energizer e = new Energizer(gp); 
             Assert.AreEqual(e.ToString(), new Energizer(new GhostPack()).ToString());
         }
         /// <summary>

@@ -56,9 +56,9 @@ namespace PacManLibrary
         /// </summary>
         public void ScareGhosts()
         {
-            for (int i = 0; i < ghosts.Count; i++)
+           foreach (Ghost g in ghosts)
             {
-                ghosts.ElementAt(i).ChangeState(GhostState.Scared);
+                g.ChangeState(GhostState.Scared);
             }
         }
 

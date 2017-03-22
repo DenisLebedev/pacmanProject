@@ -27,13 +27,13 @@ namespace PacManLibrary
 
         public int Lives
         {
-            set { lives = value; }
-            get { return this.lives; }
+            set;
+            get;
         }
         public int Score
         {
-            set { score = value; }
-            get { return score; }
+            set;
+            get;
         }
         public void DeadPacman()
         {

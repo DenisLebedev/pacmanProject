@@ -39,7 +39,7 @@ namespace PacManLibrary
         public Vector2 Position
         {
             set { position = value; }
-            get { return new Vector2(position.X, position.Y); }
+            get { return position; }
         }
         /// <summary>
         /// The Move metohd will be taske dto move the pacman around the 

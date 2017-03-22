@@ -30,7 +30,7 @@ namespace PacManLibrary
         /// </summary>
         public virtual Vector2 Position
         {
-            get { return new Vector2(tile.X, tile.Y); }
+            get { return tile; }
         }
 
         /// <summary>

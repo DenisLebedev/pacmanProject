@@ -44,18 +44,10 @@ namespace PacManLibrary
         {
             get
             {
-                if (x < 0 || y < 0 || y >= Size || x >= Size)
-                {
-                    throw new IndexOutOfRangeException("index out of bounds");
-                }
                 return this.maze[y, x];
             }
             set
             {
-                if (x < 0 || y < 0 || Size < y || Size < x)
-                {
-                    throw new IndexOutOfRangeException("index out of bounds");
-                }
                 this[y, x] = value;
             }
         }

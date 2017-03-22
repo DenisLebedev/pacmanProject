@@ -35,11 +35,7 @@ namespace PacManLibrary
         /// </summary>
         public override bool IsEmpty()
         {
-            if (member == null)
-            {
-                return true;
-            }
-            return false;
+            return member == null;
         }
         /// <summary>
         /// The Collide method is design to call the collide method

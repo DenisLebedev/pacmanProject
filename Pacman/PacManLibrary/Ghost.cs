@@ -116,7 +116,7 @@ namespace PacManLibrary
         /// </summary>
         public Vector2 Position
         {
-            get { return new Vector2(pos.X, pos.Y); }
+            get { return pos; }
 
             set { pos = value; }
         }

@@ -34,7 +34,6 @@ namespace PacManLibrary
             this.maze = maze;
             this.target = new Vector2(target.X, target.Y);
             this.pacman = pacman;
-
         }
 
         /// <summary>
@@ -45,10 +44,8 @@ namespace PacManLibrary
         /// </summary>
         public void Move()
         {
-
             List<Tile> places = maze.GetAvailableNeighbours(ghost.Position, ghost.Direction);
             Tile current = maze[(int)ghost.Position.X, (int)ghost.Position.Y];
-            Tile lastPos = maze[(int)target.X, (int)target.Y];
             
             //A ghost should not be stuck somewhere
             if (places.Count == 0)
@@ -66,7 +63,6 @@ namespace PacManLibrary
             else
                 ghost.Direction = Direction.Down;
             ghost.Position = places[choice].Position;
-
 
             if (target.X == ghost.Position.X && target.Y == ghost.Position.Y)
             {

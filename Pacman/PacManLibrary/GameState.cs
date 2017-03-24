@@ -33,11 +33,11 @@ namespace PacManLibrary
 
             string[,] strArr = game.GetFinalArray(file);
 
-            Tile[,] board = new Tile[strArr.GetLength(0), strArr.GetLength(1)];
+            Tile[,] board = new Tile[strArr.GetLength(1), strArr.GetLength(0)];
 
-            for(int y = 0; y < board.GetLength(0); y++)
+            for(int x = 0; x < board.GetLength(0); x++)
             {
-                for(int x = 0; x < board.GetLength(1); x++)
+                for(int y = 0; y < board.GetLength(1); y++)
                 {
                     if (strArr[x, y] == "p")
                     {
@@ -189,7 +189,8 @@ namespace PacManLibrary
             {
                 for (int j = 0; j < Result[i].Length; j++)
                 {
-                    finalArr[i, j] = Result[i][j];
+                    //tranpose
+                    finalArr[j, i] = Result[i][j];
                 }
             }
 

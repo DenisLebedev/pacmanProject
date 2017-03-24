@@ -64,39 +64,31 @@ namespace PacManGame
             {
                 for (int x = 0; x < maze.Size; x++)
                 {
-                    if (maze[y, x] is Wall)
+                    if (maze[x, y] is Wall)
                     {
-                        spriteBatch.Draw(wallImage, new Rectangle(y * 32, x * 32, 32, 32), Color.White);
+                        spriteBatch.Draw(wallImage, new Rectangle(x * 32, y * 32, 32, 32), Color.White);
                     }
-                    if (maze[y, x] is Path)
+                    if (maze[x, y] is Path)
                     {
                         //there is a pellet
-                        if (maze[y, x].Member() is Pellet && maze[y, x].IsEmpty() == false)
+                        if (maze[x, y].Member() is Pellet && maze[x, y].IsEmpty() == false)
                         {
-                            spriteBatch.Draw(pelletImage, new Rectangle(y * 32, x * 32, 32, 32), Color.White);
+                            spriteBatch.Draw(pelletImage, new Rectangle(x * 32, y * 32, 32, 32), Color.White);
                         }
                        
                         //there is an energizer
-                        if (maze[y, x].Member() is Energizer && maze[y, x].IsEmpty() == false)
+                        if (maze[x, y].Member() is Energizer && maze[x, y].IsEmpty() == false)
                         {
-                            spriteBatch.Draw(energizerImage, new Rectangle(y * 32, x * 32, 32, 32), Color.White);
+                            spriteBatch.Draw(energizerImage, new Rectangle(x * 32, y * 32, 32, 32), Color.White);
                         }
                         //there is no member
-                        if (maze[y, x].IsEmpty() == true)
+                        if (maze[x, y].IsEmpty() == true)
                         {
-                            spriteBatch.Draw(emptyImage, new Rectangle(y * 32, x * 32, 32, 32), Color.White);
+                            spriteBatch.Draw(emptyImage, new Rectangle(x * 32, y * 32, 32, 32), Color.White);
                         }
 
 
                     }//end of path if
-                    if (maze[y, x] is Pacman)
-                    {
-                        spriteBatch.Draw(pacmanImage, new Rectangle(y * 32, x * 32, 32, 32), Color.White);
-                    }
-                    if (maze[y, x] is Ghost)
-                    {
-                        spriteBatch.Draw(ghostImage, new Rectangle(y * 32, x * 32, 32, 32), Color.White);
-                    }
 
                 }//end of j loop
             }//end of i loop

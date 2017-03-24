@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using PacManLibrary;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace PacManGame
 {
@@ -17,6 +18,9 @@ namespace PacManGame
         private SpriteBatch spriteBatch;
         private Texture2D pacmanImage;
 
+        KeyboardState oldState;
+        int counter;
+        int threshold;
 
         public PacmanSprite(Game1 game, GameState gs) : base(game)
         {
@@ -25,6 +29,7 @@ namespace PacManGame
         }
         public override void Initialize()
         {
+            oldState = Keyboard.GetState();
             base.Initialize();
         }
         protected override void LoadContent()
@@ -35,17 +40,45 @@ namespace PacManGame
         }
         public override void Update(GameTime gameTime)
         {
+            keyBoard();
             base.Update(gameTime);
+            
         }
         public override void Draw(GameTime gameTime)
         {
             spriteBatch.Begin();
-            spriteBatch.Draw(pacmanImage, new Rectangle(10 * 32, 17 * 32, 32, 32), Color.White);
+            spriteBatch.Draw(pacmanImage, new Rectangle((int)pacman.Position.X * 32, (int)pacman.Position.Y * 32, 32, 32), Color.White);
             spriteBatch.End();
             base.Draw(gameTime);
         }
         private void keyBoard()
         {
+            KeyboardState newState = Keyboard.GetState();
+            //right
+            if (newState.IsKeyDown(Keys.Right))
+            {
+                pacman.Move(Direction.Right);
+              
+            }
+            //left
+            else if (newState.IsKeyDown(Keys.Left))
+            {
+                pacman.Move(Direction.Left);
+
+            }
+            //up
+            else if (newState.IsKeyDown(Keys.Up))
+            {
+                pacman.Move(Direction.Up);
+
+            }
+            //down
+            else if (newState.IsKeyDown(Keys.Down))
+            {
+                pacman.Move(Direction.Down);
+
+            }
+             oldState = newState;
 
         }
 

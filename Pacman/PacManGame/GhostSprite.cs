@@ -58,11 +58,15 @@ namespace PacManGame
         public override void Draw(GameTime gameTime)
         {
             spriteBatch.Begin();
-
+            
 
             foreach (Ghost g in gs.GhostPack)
             {
-                spriteBatch.Draw(imgGhost, new Rectangle((int)(g.Position.X) * 32,
+                if(g.CurrenState == GhostState.Scared)
+                    spriteBatch.Draw(imgGhost, new Rectangle((int)(g.Position.X) * 32,
+                                           (int)(g.Position.Y) * 32, 32, 32), new Color(new Vector3(0, 0, 255)));
+                else
+                    spriteBatch.Draw(imgGhost, new Rectangle((int)(g.Position.X) * 32,
                                            (int)(g.Position.Y) * 32, 32, 32), g.Colour);
             }
             

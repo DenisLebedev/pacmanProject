@@ -56,31 +56,31 @@ namespace PacManGame
 
             spriteBatch.Begin();
 
-            for (int i = 0; i < maze.Size; i++)
+            for (int y = 0; y < maze.Size; y++)
             {
-                for (int j = 0; j < maze.Size; j++)
+                for (int x = 0; x < maze.Size; x++)
                 {
-                    if (maze[i, j] is Wall)
+                    if (maze[y, x] is Wall)
                     {
-                        spriteBatch.Draw(wallImage, new Rectangle(i * 32, j * 32, 32, 32), Color.White);
+                        spriteBatch.Draw(wallImage, new Rectangle(y * 32, x * 32, 32, 32), Color.White);
                     }
-                    if (maze[i, j] is Path)
+                    if (maze[y, x] is Path)
                     {
                         //there is a pellet
-                        if (maze[i, j].Member() is Pellet && maze[i, j].IsEmpty() == false)
+                        if (maze[y, x].Member() is Pellet && maze[y, x].IsEmpty() == false)
                         {
-                            spriteBatch.Draw(pelletImage, new Rectangle(i * 32, j * 32, 32, 32), Color.White);
+                            spriteBatch.Draw(pelletImage, new Rectangle(y * 32, x * 32, 32, 32), Color.White);
                         }
                        
                         //there is an energizer
-                        if (maze[i, j].Member() is Energizer && maze[i, j].IsEmpty() == false)
+                        if (maze[y, x].Member() is Energizer && maze[y, x].IsEmpty() == false)
                         {
-                            spriteBatch.Draw(energizerImage, new Rectangle(i * 32, j * 32, 32, 32), Color.White);
+                            spriteBatch.Draw(energizerImage, new Rectangle(y * 32, x * 32, 32, 32), Color.White);
                         }
                         //there is no member
-                        if (maze[i, j].IsEmpty() == true)
+                        if (maze[y, x].IsEmpty() == true)
                         {
-                            spriteBatch.Draw(emptyImage, new Rectangle(i * 32, j * 32, 32, 32), Color.White);
+                            spriteBatch.Draw(emptyImage, new Rectangle(y * 32, x * 32, 32, 32), Color.White);
                         }
 
 

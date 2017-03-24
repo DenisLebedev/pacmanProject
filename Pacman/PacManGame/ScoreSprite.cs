@@ -17,6 +17,7 @@ namespace PacManGame
         private Game1 game;
         private GameState gs;
 
+
         public ScoreSprite(Game1 game, GameState gs) : base(game)
         {
             this.game = game;
@@ -51,7 +52,8 @@ namespace PacManGame
             {
                 spriteBatch.DrawString
                 (font, "GAME OVER", new Vector2(10 * 32, 5 * 32), Color.DarkKhaki);
-            }
+
+             }
 
 
             spriteBatch.End();

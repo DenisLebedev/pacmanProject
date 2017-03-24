@@ -111,10 +111,11 @@ namespace PacManLibrary
         /// a message to the current program to resend the file. The main
         /// game program is not given/done yet so a message is gonna be printed.
         /// </summary>
-        private static void GameOver()
+        private static bool GameOver()
         {
             
             Console.WriteLine("You loose looser.");
+            return true;
         }
 
         /// <summary>

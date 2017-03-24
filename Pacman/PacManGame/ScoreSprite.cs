@@ -46,6 +46,14 @@ namespace PacManGame
             //lives
             spriteBatch.DrawString
                 (font, "Lives Left: " + gs.Score.Lives, new Vector2(25 * 32, 1 * 32), Color.White);
+
+            if (gs.Score.Lives < 1)
+            {
+                spriteBatch.DrawString
+                (font, "GAME OVER", new Vector2(10 * 32, 5 * 32), Color.DarkKhaki);
+            }
+
+
             spriteBatch.End();
 
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PacManLibrary
 {
-    public delegate void Game();
+    public delegate bool Game();
     public class ScoreAndLives
     {
         private GameState gameState;
@@ -40,6 +40,7 @@ namespace PacManLibrary
             Lives -= 1;
             if (Lives < 1)
             {
+                Lives = 0;
                 if (GameOver != null) GameOver(); 
             }
         }

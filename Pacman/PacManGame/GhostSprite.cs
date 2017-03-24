@@ -22,14 +22,13 @@ namespace PacManGame
         private GameState gs;
 
         private int counter;
-        private int limit;
+        private int limit = 8;
 
         public GhostSprite(Game1 game, GameState gs) : base(game)
         {
             this.gs = gs;
             this.game = game;
             counter = 0;
-            limit = 10;
         }
 
         public override void Initialize()
@@ -49,8 +48,12 @@ namespace PacManGame
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-
-            gs.GhostPack.Move();
+            counter++;
+            if (counter == limit)
+            {
+                gs.GhostPack.Move();
+                counter = 0;
+            }
         }
 
         public override void Draw(GameTime gameTime)

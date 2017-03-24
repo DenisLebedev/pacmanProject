@@ -112,6 +112,7 @@ namespace PacManLibrary
         /// </summary>
         private static void GameOver()
         {
+            
             Console.WriteLine("You loose looser.");
         }
 
@@ -138,7 +139,7 @@ namespace PacManLibrary
                 case "1":
                     Ghost.ReleasedPos = new Vector2(x, y);
                     ghost = new Ghost(game, new Vector2(x, y), pacman.Position,
-                            GhostState.Chase, new Color(255, 0, 0));              
+                            GhostState.Chase, new Color(255, 0, 0));                              
                     break;
                 //green
                 case "2":
@@ -164,6 +165,7 @@ namespace PacManLibrary
             {
                 ghost.Collision += scoreAndLives.IncrementScore;
                 ghost.DeadPacman += scoreAndLives.DeadPacman;
+                ghost.DeadPacman += game.GhostPack.ResetGhosts;
             }
             else
             {

@@ -65,7 +65,6 @@ namespace PacManLibrary
         public void AddToPen(Ghost ghost)
         {
             ghosts.Enqueue(ghost);
-            Console.WriteLine("Ghosts queue: " + ghosts.Count + " pen list" + pen.Count);
             ghost.Position = pen[ghosts.Count-1].Position;
             Timer t = new Timer((ghosts.Count * 1000));
             t.Enabled = true;

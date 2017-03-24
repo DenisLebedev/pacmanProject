@@ -24,7 +24,7 @@ namespace PacManGame
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            gs = this.LoadLevel("levels.csv");
+            gs = this.LoadLevel("levelsPen.csv");
         }
 
         /// <summary>

@@ -17,6 +17,7 @@ namespace PacManGame
 
         MazeSprite mazeSprite;
         GhostSprite ghostSprite;
+        PacmanSprite pacmanSprite;
 
         public Game1()
         {
@@ -37,12 +38,14 @@ namespace PacManGame
           
             
             mazeSprite = new MazeSprite(this, gs.Maze);
+            pacmanSprite = new PacmanSprite(this, gs);
             Components.Add(mazeSprite);
 
 
             graphics.PreferredBackBufferHeight = 750;
             graphics.PreferredBackBufferWidth = 750;
-            graphics.ApplyChanges();
+            graphics.ApplyChanges();
+
             base.Initialize();
         }
 
@@ -98,10 +101,7 @@ namespace PacManGame
 
         private GameState LoadLevel(string file)
         {
-            //file ->levels.csv
-
             string temp = "";
-            //string path = "..\\..\\..\\" + file;
             using (StreamReader sr = new StreamReader(file))
             {
                 temp = sr.ReadToEnd();

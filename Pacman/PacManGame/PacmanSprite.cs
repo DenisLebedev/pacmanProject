@@ -20,12 +20,14 @@ namespace PacManGame
 
         KeyboardState oldState;
         int counter;
-        int threshold;
+        int limit;
 
         public PacmanSprite(Game1 game, GameState gs) : base(game)
         {
             this.game = game;
             this.pacman = gs.Pacman;
+            counter = 0;
+            limit = 8;
         }
         public override void Initialize()
         {
@@ -40,7 +42,12 @@ namespace PacManGame
         }
         public override void Update(GameTime gameTime)
         {
-            keyBoard();
+            counter++;
+            if (counter == limit)
+            {
+                keyBoard();
+                counter = 0;
+            }
             base.Update(gameTime);
             
         }

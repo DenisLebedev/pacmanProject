@@ -45,9 +45,6 @@ namespace PacManGame
             energizerImage = game.Content.Load<Texture2D>("energizer");
             pelletImage = game.Content.Load<Texture2D>("pellet");
             emptyImage = game.Content.Load<Texture2D>("empty");
-            pacmanImage = game.Content.Load<Texture2D>("pacman");
-            ghostImage = game.Content.Load<Texture2D>("ghost");
-
             base.LoadContent();
         }
         public override void Update(GameTime gameTime)

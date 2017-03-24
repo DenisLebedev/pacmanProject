@@ -54,6 +54,7 @@ namespace PacManLibrary
             if (Collision != null) {
                 Collision(this);
                 ghosts.ScareGhosts();
+                
             }        
         }
     }

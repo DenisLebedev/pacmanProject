@@ -24,7 +24,7 @@ namespace PacManLibrary
         /// </summary>
         public Pen()
         {
-            this.ghosts = new Queue<Ghost>();
+            this.ghosts = new Queue<Ghost>(4);
             this.timers = new List<Timer>();
             pen = new List<Tile>();
         }
@@ -65,7 +65,8 @@ namespace PacManLibrary
         public void AddToPen(Ghost ghost)
         {
             ghosts.Enqueue(ghost);
-            ghost.Position = pen[ghosts.Count - 1].Position;
+            Console.WriteLine("Ghosts queue: " + ghosts.Count + " pen list" + pen.Count);
+            ghost.Position = pen[ghosts.Count-1].Position;
             Timer t = new Timer((ghosts.Count * 1000));
             t.Enabled = true;
             t.Elapsed += Release;

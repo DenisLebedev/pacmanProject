@@ -11,7 +11,7 @@ namespace PacManGame
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
-
+        public static readonly int speedLimit = 8;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         GameState gs;

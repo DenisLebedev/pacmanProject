@@ -24,6 +24,7 @@ namespace PacManLibrary
     /// </summary>
     public class Ghost : IMovable, ICollidable
     {
+        public static Vector2 ReleasedPos { get; set; }
         private Pacman pacman;
         private Vector2 pos;
         private Pen pen;
@@ -71,20 +72,7 @@ namespace PacManLibrary
 
             this.direction = Direction.Left;
 
-            switch (start)
-            {
-                case GhostState.Chase:
-                    this.currentState = new Chase(this, g.Maze, g.Pacman, target);
-                    this.state = start;
-                    break;
-                case GhostState.Scared:
-                    this.currentState = new Scared(this, g.Maze);
-                    this.state = start;
-                    scared.Interval = 9000;
-                    scared.Enabled = true;
-                    scared.Elapsed += UpdateState;
-                    break;
-            }
+            this.ChangeState(start);
         }
 
         /// <summary>
@@ -203,6 +191,7 @@ namespace PacManLibrary
                 case GhostState.Released:
                     this.state = GhostState.Chase;
                     currentState = new Chase(this, maze, pacman, pacman.Position);
+                    this.Position = ReleasedPos;
                     break;
             }
         }
@@ -218,7 +207,7 @@ namespace PacManLibrary
         {
             Timer t = (Timer)sender;
             t.Enabled = false;
-            this.ChangeState(GhostState.Chase);
+            this.ChangeState(GhostState.Chase);        
         }
 
     }

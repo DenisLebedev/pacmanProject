@@ -63,11 +63,14 @@ namespace PacManLibrary
                     else if (strArr[x, y] == "1" || strArr[x, y] == "2"
                        || strArr[x, y] == "3" || strArr[x, y] == "4")
                     {
-                        game.GhostPack.Add(CreateGhost(strArr[x, y], x, y, game, game.Pacman, game.Score));
+
                         Tile temp = new Path(x, y, null);
                         board[x, y] = temp;
                         if (strArr[x, y] != "1")
                             game.Pen.AddTile(temp);
+                        game.GhostPack.Add(CreateGhost(strArr[x, y], x, y, game, game.Pacman, game.Score, game.Pen));
+                        
+                        
                     }
                     else if (strArr[x, y] == "x")
                     {
@@ -75,7 +78,7 @@ namespace PacManLibrary
                         game.Pen.AddTile(temp);
                         board[x, y] = temp;
                     }
-                    else if (strArr[x, y] == "m")
+                    else if (strArr[x, y] == "m" || strArr[x, y] == "1")
                     {
                         board[x, y] = new Path(x, y, null);
                     }
@@ -125,7 +128,7 @@ namespace PacManLibrary
         /// <param name="scoreAndLives"></param>
         /// <returns></returns>
         private static Ghost CreateGhost(string num, int x, int y, 
-                           GameState game, Pacman pacman, ScoreAndLives scoreAndLives)
+                           GameState game, Pacman pacman, ScoreAndLives scoreAndLives, Pen pen)
         {
             Ghost ghost = null;
 
@@ -133,23 +136,27 @@ namespace PacManLibrary
             {
                 //red
                 case "1":
+                    Ghost.ReleasedPos = new Vector2(x, y);
                     ghost = new Ghost(game, new Vector2(x, y), pacman.Position,
                             GhostState.Chase, new Color(255, 0, 0));              
                     break;
                 //green
                 case "2":
                     ghost = new Ghost(game, new Vector2(x, y), pacman.Position,
-                     GhostState.Chase, new Color(50, 205, 50));
+                     GhostState.Released, new Color(50, 205, 50));
+                    pen.AddToPen(ghost);
                     break;
                 //hot pink
                 case "3":
                     ghost = new Ghost(game, new Vector2(x, y), pacman.Position,
-                     GhostState.Chase, new Color(255, 105, 180));
+                     GhostState.Released, new Color(255, 105, 180));
+                    pen.AddToPen(ghost);
                     break;
                 //orange
                 case "4":
                     ghost = new Ghost(game, new Vector2(x, y), pacman.Position,
-                     GhostState.Chase, new Color(255, 165, 0));
+                     GhostState.Released, new Color(255, 165, 0));
+                    pen.AddToPen(ghost);
                     break;
             }    
 

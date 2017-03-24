@@ -22,7 +22,6 @@ namespace PacManGame
         private GameState gs;
 
         private int counter;
-        private int limit = 8;
 
         public GhostSprite(Game1 game, GameState gs) : base(game)
         {
@@ -49,7 +48,7 @@ namespace PacManGame
         {
             base.Update(gameTime);
             counter++;
-            if (counter == limit)
+            if (counter == Game1.speedLimit)
             {
                 gs.GhostPack.Move();
                 counter = 0;

@@ -1,22 +1,25 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.IO;
+using PacManLibrary;
 
 namespace PacManGame
 {
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Game1 : Game
+    public class Game1 : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
+        GameState game;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            game = this.LoadLevel("levels.csv");
         }
 
         /// <summary>
@@ -80,5 +83,23 @@ namespace PacManGame
 
             base.Draw(gameTime);
         }
+
+
+        private GameState LoadLevel(string file)
+        {
+            //file ->levels.csv
+
+            string temp = "";
+            //string path = "..\\..\\..\\" + file;
+            using (StreamReader sr = new StreamReader(file))
+            {
+                temp = sr.ReadToEnd();
+                temp = temp.Replace(',', ' ');
+            }
+
+            return GameState.Parse(temp);
+        }
+
+
     }
 }

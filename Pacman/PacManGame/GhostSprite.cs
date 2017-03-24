@@ -19,6 +19,7 @@ namespace PacManGame
         private SpriteBatch spriteBatch;
         private Texture2D imgGhost;
         private Game1 game;
+        private GameState gs;
 
         public GhostSprite(Game1 game) : base(game)
         {

@@ -15,6 +15,7 @@ namespace PacManGame
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         GameState gs;
+        ScoreSprite scoreSprite;
 
         MazeSprite mazeSprite;
         GhostSprite ghostSprite;
@@ -36,18 +37,20 @@ namespace PacManGame
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-          
-            
+
+
             mazeSprite = new MazeSprite(this, gs.Maze);
             pacmanSprite = new PacmanSprite(this, gs);
             ghostSprite = new GhostSprite(this, gs);
+            scoreSprite = new ScoreSprite(this, gs);
             Components.Add(mazeSprite);
             Components.Add(ghostSprite);
             Components.Add(pacmanSprite);
+            Components.Add(scoreSprite);
 
 
-            graphics.PreferredBackBufferHeight = 750;
-            graphics.PreferredBackBufferWidth = 750;
+            graphics.PreferredBackBufferHeight = 1000;
+            graphics.PreferredBackBufferWidth = 1000;
             graphics.ApplyChanges();
 
             base.Initialize();
@@ -95,7 +98,7 @@ namespace PacManGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black); 
+            GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here
 

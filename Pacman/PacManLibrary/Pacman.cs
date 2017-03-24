@@ -15,6 +15,7 @@ namespace PacManLibrary
     /// </summary>
    public class Pacman
     {
+        public static Vector2 OrigPos { get; set; }
         private GameState controller;
         private Maze maze;
         private Vector2 position;
@@ -30,7 +31,6 @@ namespace PacManLibrary
         {
             this.controller = gameState;
             this.maze = gameState.Maze;
- 
         }
         /// <summary>
         /// The Position prop will set and return a vector2 containg

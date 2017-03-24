@@ -59,18 +59,19 @@ namespace PacManGame
         {
             spriteBatch.Begin();
 
-            foreach(Ghost g in gs.GhostPack)
+
+            foreach (Ghost g in gs.GhostPack)
             {
                 spriteBatch.Draw(imgGhost, new Rectangle((int)(g.Position.X) * 32,
                                            (int)(g.Position.Y) * 32, 32, 32), g.Colour);
             }
+            
 
             spriteBatch.End();
 
             base.Draw(gameTime);
 
         }
-
 
     }
 }

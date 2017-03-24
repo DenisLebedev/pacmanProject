@@ -58,6 +58,7 @@ namespace PacManLibrary
                     else if (strArr[x, y] == "P")
                     {
                         game.Pacman.Position = new Vector2(x, y);
+                        Pacman.OrigPos = game.Pacman.Position;
                         board[x, y] = new Path(x, y, null);
                     }
                     else if (strArr[x, y] == "1" || strArr[x, y] == "2"
@@ -137,9 +138,10 @@ namespace PacManLibrary
             {
                 //red
                 case "1":
-                    Ghost.ReleasedPos = new Vector2(x, y);
+                    
                     ghost = new Ghost(game, new Vector2(x, y), pacman.Position,
-                            GhostState.Chase, new Color(255, 0, 0));                              
+                            GhostState.Chase, new Color(255, 0, 0));
+                    Ghost.ReleasedPos = ghost.Position;
                     break;
                 //green
                 case "2":

@@ -146,7 +146,10 @@ namespace PacManLibrary
             {
                 if (CurrenState == GhostState.Chase
                     && DeadPacman != null)
+                {
+                    pacman.Position = Pacman.OrigPos;
                     DeadPacman();
+                }
                 else if (CurrenState == GhostState.Scared
                     && Collision != null)
                 {

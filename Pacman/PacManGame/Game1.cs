@@ -39,7 +39,10 @@ namespace PacManGame
             
             mazeSprite = new MazeSprite(this, gs.Maze);
             pacmanSprite = new PacmanSprite(this, gs);
+            ghostSprite = new GhostSprite(this, gs);
             Components.Add(mazeSprite);
+            Components.Add(ghostSprite);
+            Components.Add(pacmanSprite);
 
 
             graphics.PreferredBackBufferHeight = 750;

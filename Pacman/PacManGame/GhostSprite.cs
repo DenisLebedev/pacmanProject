@@ -21,9 +21,15 @@ namespace PacManGame
         private Game1 game;
         private GameState gs;
 
-        public GhostSprite(Game1 game) : base(game)
+        private int counter;
+        private int limit;
+
+        public GhostSprite(Game1 game, GameState gs) : base(game)
         {
+            this.gs = gs;
             this.game = game;
+            counter = 0;
+            limit = 10;
         }
 
         public override void Initialize()
@@ -39,5 +45,30 @@ namespace PacManGame
 
             base.LoadContent();
         }
+
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+
+            gs.GhostPack.Move();
+        }
+
+        public override void Draw(GameTime gameTime)
+        {
+            spriteBatch.Begin();
+
+            foreach(Ghost g in gs.GhostPack)
+            {
+                spriteBatch.Draw(imgGhost, new Rectangle((int)(g.Position.Y) * 32,
+                                           (int)(g.Position.X) * 32, 32, 32), g.Colour);
+            }
+
+            spriteBatch.End();
+
+            base.Draw(gameTime);
+
+        }
+
+
     }
 }

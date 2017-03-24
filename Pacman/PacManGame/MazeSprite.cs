@@ -26,6 +26,8 @@ namespace PacManGame
         private Texture2D energizerImage;
         private Texture2D emptyImage;
         private Game1 game;
+        private Texture2D pacmanImage;
+        private Texture2D ghostImage;
 
         public MazeSprite(Game1 game, Maze maze) : base(game)
         {
@@ -43,6 +45,8 @@ namespace PacManGame
             energizerImage = game.Content.Load<Texture2D>("energizer");
             pelletImage = game.Content.Load<Texture2D>("pellet");
             emptyImage = game.Content.Load<Texture2D>("empty");
+            pacmanImage = game.Content.Load<Texture2D>("pacman");
+            ghostImage = game.Content.Load<Texture2D>("ghost");
 
             base.LoadContent();
         }
@@ -85,6 +89,14 @@ namespace PacManGame
 
 
                     }//end of path if
+                    if (maze[y, x] is Pacman)
+                    {
+                        spriteBatch.Draw(pacmanImage, new Rectangle(y * 32, x * 32, 32, 32), Color.White);
+                    }
+                    if (maze[y, x] is Ghost)
+                    {
+                        spriteBatch.Draw(ghostImage, new Rectangle(y * 32, x * 32, 32, 32), Color.White);
+                    }
 
                 }//end of j loop
             }//end of i loop

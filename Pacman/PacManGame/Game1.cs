@@ -13,13 +13,16 @@ namespace PacManGame
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        GameState game;
+        GameState gs;
+
+        MazeSprite mazeSprite;
+        GhostSprite ghostSprite;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-            game = this.LoadLevel("levels.csv");
+            gs = this.LoadLevel("levels.csv");
         }
 
         /// <summary>
@@ -31,7 +34,10 @@ namespace PacManGame
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+          
+            
+            mazeSprite = new MazeSprite(this, gs.Maze);
+            Components.Add(mazeSprite);
             base.Initialize();
         }
 

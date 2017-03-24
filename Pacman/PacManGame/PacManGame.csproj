@@ -52,7 +52,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\empty.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>

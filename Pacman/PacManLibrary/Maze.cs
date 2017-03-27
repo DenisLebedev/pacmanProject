@@ -124,7 +124,7 @@ namespace PacManLibrary
         /// and energizers left on the field, if so it will fire the
         /// PacmanWon event.
         /// </summary>
-        public void CheckMembersLeft()
+        public bool CheckMembersLeft()
         {
             bool chk = true;
             for (int i = 0; i < maze.GetLength(0) && chk; i++)
@@ -140,9 +140,11 @@ namespace PacManLibrary
             if (chk)
             {
                 if (PacmanWon != null) PacmanWon();
+
+                return true;
             }
 
-           
+            return false;
         }
         
     }

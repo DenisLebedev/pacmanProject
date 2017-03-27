@@ -10,8 +10,7 @@ namespace PacManLibrary
     public class ScoreAndLives
     {
         private GameState gameState;
-        private int lives;
-        private int score;
+
         public ScoreAndLives (GameState state)
         {
             gameState = state;
@@ -51,6 +50,7 @@ namespace PacManLibrary
         }
         public bool GameWon()
         {
+            
             return true;
         }
     }

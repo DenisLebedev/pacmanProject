@@ -42,6 +42,7 @@ namespace PacManTest
 
             Assert.AreEqual(game1.Score.Score, 100);
         }
+        /*
 
         [TestMethod]
         public void TestRemoveLive()
@@ -56,7 +57,7 @@ namespace PacManTest
             Assert.AreEqual(g.Score.Lives, 2);
             
         }
-
+        */
         /// <summary>
         /// The method will test if the current pacman will loose all his health
         /// because we did not finishing to implement the game we cannot restart
@@ -65,6 +66,7 @@ namespace PacManTest
         /// When our health is at 0 we should trigger an event in our game to let it know,
         /// but we are implementing that in the second phase. So a message is enough for now.
         /// </summary>
+        /*
         [TestMethod]
         public void TestGameOver()
         {
@@ -80,6 +82,7 @@ namespace PacManTest
 
 
         }
+        */
 
         /// <summary>
         /// When pacman won a message is printed, but a new way

@@ -52,7 +52,8 @@ namespace PacManGame
         public override void Draw(GameTime gameTime)
         {
             spriteBatch.Begin();
-            spriteBatch.Draw(pacmanImage, new Rectangle((int)pacman.Position.X * 32, (int)pacman.Position.Y * 32, 32, 32), Color.White);
+            spriteBatch.Draw
+              (pacmanImage, new Rectangle((int)pacman.Position.X * 32, (int)pacman.Position.Y * 32, 32, 32), Color.White);
             spriteBatch.End();
             base.Draw(gameTime);
         }
@@ -63,25 +64,21 @@ namespace PacManGame
             if (newState.IsKeyDown(Keys.Right))
             {
                 pacman.Move(Direction.Right);
-              
             }
             //left
             else if (newState.IsKeyDown(Keys.Left))
             {
                 pacman.Move(Direction.Left);
-
             }
             //up
             else if (newState.IsKeyDown(Keys.Up))
             {
                 pacman.Move(Direction.Up);
-
             }
             //down
             else if (newState.IsKeyDown(Keys.Down))
             {
                 pacman.Move(Direction.Down);
-
             }
              oldState = newState;
 

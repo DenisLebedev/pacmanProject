@@ -16,7 +16,7 @@ namespace PacManGame
         SpriteBatch spriteBatch;
         GameState gs;
         ScoreSprite scoreSprite;
-
+        //sprites
         MazeSprite mazeSprite;
         GhostSprite ghostSprite;
         PacmanSprite pacmanSprite;

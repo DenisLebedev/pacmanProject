@@ -55,17 +55,30 @@ namespace PacManLibrary
             int choice = rand.Next(places.Count);
             //determine direction
             if (places[choice].Position.X == ghost.Position.X + 1)
+            {
                 ghost.Direction = Direction.Right;
+                ghost.Collide();
+            }
             else if (places[choice].Position.X == ghost.Position.X - 1)
+            {
                 ghost.Direction = Direction.Left;
+                ghost.Collide();
+            }
             else if (places[choice].Position.Y == ghost.Position.Y - 1)
+            {
                 ghost.Direction = Direction.Up;
+                ghost.Collide();
+            }
             else
+            {
                 ghost.Direction = Direction.Down;
+                ghost.Collide();
+            }
             ghost.Position = places[choice].Position;
 
             //if (target.X == ghost.Position.X && target.Y == ghost.Position.Y)
             //{
+                
                 target.X = pacman.Position.X;
                 target.Y = pacman.Position.Y;
             //}

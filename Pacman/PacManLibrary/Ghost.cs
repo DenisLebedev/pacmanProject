@@ -164,7 +164,8 @@ namespace PacManLibrary
         /// </summary>
         public void Reset()
         {
-            pen.AddToPen(this);
+            if(!pen.InPen(this))
+                pen.AddToPen(this);
         }
 
         /// <summary>
@@ -186,7 +187,7 @@ namespace PacManLibrary
                 case GhostState.Scared:
                     this.state = GhostState.Scared;
                     currentState = new Scared(this, maze);
-                    scared.Interval = 9000;
+                    scared.Interval = 7000;
                     scared.Enabled = true;
                     scared.Elapsed += UpdateState;
                     break;

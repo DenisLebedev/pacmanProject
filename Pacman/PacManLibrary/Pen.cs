@@ -16,7 +16,7 @@ namespace PacManLibrary
    public class Pen
     {
         private Queue<Ghost> ghosts; //fifo structure to release the appropriate ghost
-        private List<Timer> timers; //multiple times since more than 1 Ghost may be in teh Pen
+        private List<Timer> timers; //multiple times since more than 1 Ghost may be in the Pen
         private List<Tile> pen; //list of the Tiles that make up the Pen, so two ghosts aren't placed on teh same Tile
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace PacManLibrary
         /// </summary>
         public Pen()
         {
-            this.ghosts = new Queue<Ghost>(4);
+            this.ghosts = new Queue<Ghost>();
             this.timers = new List<Timer>();
             pen = new List<Tile>();
         }
@@ -66,10 +66,15 @@ namespace PacManLibrary
         {
             ghosts.Enqueue(ghost);
             ghost.Position = pen[ghosts.Count-1].Position;
-            Timer t = new Timer((ghosts.Count * 1000));
+            Timer t = new Timer((ghosts.Count * 700));
             t.Enabled = true;
             t.Elapsed += Release;
             timers.Add(t);
+        }
+
+        public bool InPen(Ghost g)
+        {
+            return ghosts.Contains(g); 
         }
     }
 }

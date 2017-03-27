@@ -38,6 +38,7 @@ namespace PacManLibrary
         public void DeadPacman()
         {
             Lives -= 1;
+            gameState.GhostPack.ResetGhosts();
             if (Lives < 1)
             {
                 Lives = 0;

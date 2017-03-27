@@ -29,7 +29,7 @@ namespace PacManGame
             this.gs = gs;
             this.game = game;
             counter = 0;
-            speedLimit = 8;
+            speedLimit = 50000;
         }
 
         public override void Initialize()
@@ -48,13 +48,14 @@ namespace PacManGame
 
         public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
+            
             counter++;
             if (counter == speedLimit)
             {
                 gs.GhostPack.Move();
                 gs.GhostPack.CheckCollideGhosts(gs.Pacman.Position);
                 counter = 0;
+                base.Update(gameTime);
             }
         }
 
@@ -68,14 +69,14 @@ namespace PacManGame
                 if (g.CurrenState == GhostState.Scared)
                 {
                     spriteBatch.Draw(imgGhost, new Rectangle((int)(g.Position.X) * 32,
-                                           (int)(g.Position.Y) * 32, 32, 32), new Rectangle((int)(g.Position.X) * 32, (int)(g.Position.Y) * 32, 96,32)
+                                           (int)(g.Position.Y) * 32, 32, 32), new Rectangle(0,0, 32, 32)
                                               , new Color(new Vector3(0, 0, 255)));
                     speedLimit = 12;
                 }
                 else
                 {
                     spriteBatch.Draw(imgGhost, new Rectangle((int)(g.Position.X) * 32,
-                                           (int)(g.Position.Y) * 32, 32, 32), new Rectangle((int)(g.Position.X) * 32, (int)(g.Position.Y) * 32, 96, 32), g.Colour);
+                                           (int)(g.Position.Y) * 32, 32, 32), new Rectangle(0, 0, 32, 32), Color.White);
                     speedLimit = 8;
                 }
             }

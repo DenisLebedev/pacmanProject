@@ -29,10 +29,16 @@ namespace PacManGame
         private Texture2D pacmanImage;
         private Texture2D ghostImage;
 
+        private int frame;
+        private int framecounter;
+
         public MazeSprite(Game1 game, Maze maze) : base(game)
         {
             this.game = game;
             this.maze = maze;
+            frame = 1;
+            framecounter = 0;
+
         }
         public override void Initialize()
         {
@@ -70,7 +76,8 @@ namespace PacManGame
                         //there is a pellet
                         if (maze[x, y].Member() is Pellet && maze[x, y].IsEmpty() == false)
                         {
-                            spriteBatch.Draw(pelletImage, new Rectangle(x * 32, y * 32, 32, 32), Color.White);
+                            spriteBatch.Draw(pelletImage, new Rectangle(x * 32, y * 32, 32, 32), new Rectangle(0, 32 * frame, 32, 32), Color.White);
+
                         }
                        
                         //there is an energizer
@@ -83,7 +90,12 @@ namespace PacManGame
                         {
                             spriteBatch.Draw(emptyImage, new Rectangle(x * 32, y * 32, 32, 32), Color.White);
                         }
-
+                        if (framecounter > 30) {
+                            frame++;
+                            framecounter = 0;
+                            if (frame > 7){ frame = 0; }
+                        }
+                        framecounter++;
 
                     }//end of path if
 

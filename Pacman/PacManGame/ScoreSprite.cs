@@ -16,7 +16,7 @@ namespace PacManGame
 
         private Game1 game;
         private GameState gs;
-
+        private Texture2D gameoverImage;
 
         public ScoreSprite(Game1 game, GameState gs) : base(game)
         {
@@ -31,6 +31,12 @@ namespace PacManGame
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             font = game.Content.Load<SpriteFont>("score");
+
+          
+                gameoverImage = game.Content.Load<Texture2D>("gameover");
+
+            
+
             base.LoadContent();
         }
         public override void Update(GameTime gameTime)
@@ -41,6 +47,12 @@ namespace PacManGame
         {
 
             spriteBatch.Begin();
+            //game over
+            if (gs.Score.Lives < 1)
+            {
+                spriteBatch.Draw
+              (gameoverImage, new Rectangle(5 * 32, 10 * 32, 480, 110), Color.White);
+            }
             //points
             spriteBatch.DrawString
                 (font, "Your score is: " + gs.Score.Score, new Vector2(25 * 32, 0 * 32), Color.White);
@@ -48,12 +60,7 @@ namespace PacManGame
             spriteBatch.DrawString
                 (font, "Lives Left: " + gs.Score.Lives, new Vector2(25 * 32, 1 * 32), Color.White);
 
-            if (gs.Score.Lives < 1)
-            {
-                spriteBatch.DrawString
-                (font, "GAME OVER", new Vector2(10 * 32, 5 * 32), Color.DarkKhaki);
-
-             }
+          
 
 
             spriteBatch.End();

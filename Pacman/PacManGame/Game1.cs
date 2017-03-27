@@ -49,7 +49,7 @@ namespace PacManGame
             Components.Add(scoreSprite);
 
 
-            graphics.PreferredBackBufferHeight = 1000;
+            graphics.PreferredBackBufferHeight = 736;
             graphics.PreferredBackBufferWidth = 1000;
             graphics.ApplyChanges();
 

@@ -63,7 +63,7 @@ namespace PacManGame
                 {
                     if (maze[x, y] is Wall)
                     {
-                        spriteBatch.Draw(wallImage, new Rectangle(x * 32, y * 32, 32, 32), Color.White);
+                        spriteBatch.Draw(wallImage, new Rectangle(x * 32, y * 32, 32, 32), Color.LimeGreen);
                     }
                     if (maze[x, y] is Path)
                     {

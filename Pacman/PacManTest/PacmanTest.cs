@@ -26,7 +26,7 @@ namespace PacManTest
             GameState game = GetGameState();
             game.Pacman.Move(Direction.Right);
 
-            Assert.AreEqual(game.Pacman.Position, new Vector2(17,12));
+            Assert.AreEqual(game.Pacman.Position, new Vector2(12,17));
         }
         /// <summary>
         /// This test case will truy to move the pacman up, however since
@@ -39,7 +39,7 @@ namespace PacManTest
             GameState game = GetGameState();
             game.Pacman.Move(Direction.Up);
 
-            Assert.AreEqual(game.Pacman.Position, new Vector2(17, 11));
+            Assert.AreEqual(game.Pacman.Position, new Vector2(11, 17));
         }
         /// <summary>
         /// This test case will test if the score in ScoreLives
@@ -83,7 +83,7 @@ namespace PacManTest
         public void CheckCollision3Test()
         {
             GameState game = GetGameState();
-            game.Pacman.Position = new Vector2(2,1);
+            game.Pacman.Position = new Vector2(1,2);
 
             game.Pacman.Move(Direction.Down);
 
@@ -100,11 +100,11 @@ namespace PacManTest
         public void CheckCollision4Test()
         {
             GameState game = GetGameState();
-            game.Pacman.Position = new Vector2(2, 1);
+            game.Pacman.Position = new Vector2(1, 2);
 
             game.Pacman.Move(Direction.Down);
 
-            game.Pacman.Position = new Vector2(10, 11);
+            game.Pacman.Position = new Vector2(10, 10);
             game.GhostPack.CheckCollideGhosts(game.Pacman.Position);
           
             Assert.AreEqual(game.Score.Score, 800);

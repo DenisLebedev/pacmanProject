@@ -47,7 +47,7 @@ namespace PacManTest
         public void TestRemoveLive()
         { 
             GameState g = MyGameState();
-            Ghost ghost = new Ghost(g, new Vector2(4, 1), new Vector2(4, 1),
+            Ghost ghost = new Ghost(g, new Vector2(1, 4), new Vector2(1, 4),
                 GhostState.Chase, new Color(255, 0, 0));
             ghost.Collision += g.Score.IncrementScore;
             ghost.DeadPacman += g.Score.DeadPacman;
@@ -69,7 +69,7 @@ namespace PacManTest
         public void TestGameOver()
         {
             GameState g = MyGameState();
-            Ghost ghost = new Ghost(g, new Vector2(4, 1), new Vector2(4, 1),
+            Ghost ghost = new Ghost(g, new Vector2(1, 4), new Vector2(1, 4),
                 GhostState.Chase, new Color(255, 0, 0));
             ghost.Collision += g.Score.IncrementScore;
             ghost.DeadPacman += g.Score.DeadPacman;

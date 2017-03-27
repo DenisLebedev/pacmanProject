@@ -20,7 +20,7 @@ namespace PacManTest
         {
             GameState game1 = GetGameState();
             Pacman pacman = new Pacman(game1); //17, 11
-            pacman.Position = new Vector2(17, 11);
+            pacman.Position = new Vector2(11, 17);
 
             Assert.AreEqual(game1.Pacman.Position, pacman.Position);
         }
@@ -59,9 +59,9 @@ namespace PacManTest
             GameState game1 = GetGameState();
             GhostPack ghosts = new GhostPack();
             Energizer energizer = new Energizer(ghosts);
-            Tile path = new Path(3, 1, energizer);        
+            Tile path = new Path(1, 3, energizer);        
 
-            Assert.AreEqual(game1.Maze[3, 1].Member().ToString(), path.Member().ToString());
+            Assert.AreEqual(game1.Maze[1, 3].Member().ToString(), path.Member().ToString());
         }
         /// <summary>
         /// This test method is reponsible for testing 

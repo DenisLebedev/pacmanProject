@@ -39,7 +39,7 @@ namespace PacManTest
             Tile tile = new Path(1, 1, new Pellet());
             GameState game = GetGameState();
 
-            Assert.AreEqual(game.Maze[5,6].CanEnter(), false);
+            Assert.AreEqual(game.Maze[6,5].CanEnter(), false);
         }
         /// <summary>
         /// This test case will test if the CanEnter method when
@@ -116,7 +116,7 @@ namespace PacManTest
         public void Colide3Test()
         {
             GameState game = GetGameState();
-            game.Maze[3, 1].Collide();
+            game.Maze[1, 3].Collide();
 
             Assert.AreEqual(game.Score.Score, 500);
         }
@@ -133,7 +133,7 @@ namespace PacManTest
             GhostState.Chase, new Color(255, 0, 0));
 
             game.GhostPack.Add(ghost);
-            game.Maze[3, 1].Collide();
+            game.Maze[1, 3].Collide();
 
             Assert.AreEqual(ghost.CurrenState,GhostState.Scared);
         }

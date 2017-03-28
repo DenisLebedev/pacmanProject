@@ -20,11 +20,11 @@ namespace PacManGame
         private Texture2D winImage;
         private bool pause;
 
-        public ScoreSprite(Game1 game, GameState gs, bool pause) : base(game)
+        public ScoreSprite(Game1 game, GameState gs) : base(game)
         {
             this.game = game;
             this.gs = gs;
-            this.pause = pause;
+            this.pause = true;
             gs.Maze.PacmanWon += PacWon;
         }
 

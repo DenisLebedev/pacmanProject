@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using System.IO;
 using PacManLibrary;
 using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
 
 namespace PacManGame
 {
@@ -23,6 +24,11 @@ namespace PacManGame
         PacmanSprite pacmanSprite;
 
         Song song;
+        SoundEffect mysong;
+        SoundEffectInstance mysong2;
+
+        SoundEffect mybackSong;
+        SoundEffectInstance mybackSong2;
 
 
         public Game1()
@@ -30,6 +36,7 @@ namespace PacManGame
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             gs = this.LoadLevel("levelsPen.csv");
+        
         }
 
         /// <summary>
@@ -66,22 +73,19 @@ namespace PacManGame
         /// </summary>
         protected override void LoadContent()
         {
+            mysong = Content.Load<SoundEffect>("scaredGhostSong");
+            mysong2 = mysong.CreateInstance();
+            mysong2.IsLooped = true;
+            
+
+            mybackSong = Content.Load<SoundEffect>("normalSong");
+            mybackSong2 = mybackSong.CreateInstance();
+            
+            
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            foreach (Ghost g in gs.GhostPack)
-            {
-                /*
-                    this.song = Content.Load<Song>("scaredGhostSong");
-                    MediaPlayer.Play(song);
-                    MediaPlayer.IsRepeating = true;
-                    MediaPlayer.MediaStateChanged += MediaPlayer_MediaStateChanged;
-               */
-                    this.song = Content.Load<Song>("normalSong");
-                    MediaPlayer.Play(song);
-                    MediaPlayer.IsRepeating = true;
-                    MediaPlayer.MediaStateChanged += MediaPlayer_MediaStateChanged;
+           
                 
-            }
             // TODO: use this.Content to load your game content here
         }
         void MediaPlayer_MediaStateChanged(object sender, System.
@@ -111,8 +115,33 @@ namespace PacManGame
             
                 if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                     Exit();
+            foreach (Ghost g in gs.GhostPack)
+            {
+            if (g.CurrenState == GhostState.Scared)
+            {
+                    mybackSong2.Stop();
+                    mysong2.Play();
+               
 
-                // TODO: Add your update logic here
+                /*
+                MediaPlayer.Play(song);
+                MediaPlayer.IsRepeating = true;
+                MediaPlayer.MediaStateChanged += MediaPlayer_MediaStateChanged;
+                */
+            }
+            else
+            {
+                    mysong2.Stop();
+                    mybackSong2.Play();
+                   
+                    /*
+                    this.song = Content.Load<Song>("normalSong");
+                    MediaPlayer.Play(song);
+                    MediaPlayer.IsRepeating = true;
+                    MediaPlayer.MediaStateChanged += MediaPlayer_MediaStateChanged;
+                    */
+                }
+        }
 
                 base.Update(gameTime);
           

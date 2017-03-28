@@ -163,15 +163,15 @@
 /processorParam:TextureFormat=Color
 /build:pacmanLeft.png
 
-#begin normalSong.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
+#begin normalSong.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:normalSong.mp3
+/build:normalSong.wav
 
-#begin scaredGhostSong.mp3
-/importer:Mp3Importer
-/processor:SongProcessor
+#begin scaredGhostSong.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:scaredGhostSong.mp3
+/build:scaredGhostSong.wav
 

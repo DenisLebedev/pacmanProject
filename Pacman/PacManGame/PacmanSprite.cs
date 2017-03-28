@@ -27,12 +27,17 @@ namespace PacManGame
         private Texture2D dImage;
         private Texture2D uImage;
 
+        private int frameR;
+        private int framecounter;
+
         public PacmanSprite(Game1 game, GameState gs) : base(game)
         {
             this.gs = gs;
             this.game = game;
             this.pacman = gs.Pacman;
             counter = 0;
+            framecounter = 1;
+            frameR = 1;
         }
         public override void Initialize()
         {
@@ -66,7 +71,7 @@ namespace PacManGame
                 {
                 case Direction.Right:
                     spriteBatch.Draw
-                (rImage, new Rectangle((int)pacman.Position.X * 32, (int)pacman.Position.Y * 32, 32, 32), Color.White);
+                (rImage, new Rectangle((int)pacman.Position.X * 32, (int)pacman.Position.Y * 32, 32, 32), new Rectangle(0, 32 * frameR, 32, 32), Color.White);
                     break;
                 case Direction.Left:
                     spriteBatch.Draw
@@ -81,7 +86,15 @@ namespace PacManGame
                 (uImage, new Rectangle((int)pacman.Position.X * 32, (int)pacman.Position.Y * 32, 32, 32), Color.White);
                     break;
                 }
-            
+
+            if (framecounter > 2000)
+            {
+                frameR++;
+                framecounter = 0;
+                if (frameR > 5) { frameR = 0; }
+            }
+            framecounter++;
+
             spriteBatch.End();
             base.Draw(gameTime);
         }

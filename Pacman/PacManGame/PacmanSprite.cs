@@ -47,10 +47,10 @@ namespace PacManGame
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            lImage = game.Content.Load<Texture2D>("left");
-            uImage = game.Content.Load<Texture2D>("up");
-            rImage = game.Content.Load<Texture2D>("right");
-            dImage = game.Content.Load<Texture2D>("down");
+            lImage = game.Content.Load<Texture2D>("pacmanLeft");
+            uImage = game.Content.Load<Texture2D>("pacmanUp");
+            rImage = game.Content.Load<Texture2D>("pacmanRight");
+            dImage = game.Content.Load<Texture2D>("pacmanDown");
             base.LoadContent();
         }
         public override void Update(GameTime gameTime)
@@ -71,8 +71,7 @@ namespace PacManGame
                 {
                 case Direction.Right:
                     spriteBatch.Draw
-                (rImage, new Rectangle((int)pacman.Position.X * 32, (int)pacman.Position.Y * 32, 32, 32), new Rectangle(0, 32 * frameR, 32, 32), Color.White);
-                    break;
+                 (rImage, new Rectangle((int)pacman.Position.X * 32, (int)pacman.Position.Y * 32, 32, 32), Color.White); break;
                 case Direction.Left:
                     spriteBatch.Draw
                 (lImage, new Rectangle((int)pacman.Position.X * 32, (int)pacman.Position.Y * 32, 32, 32), Color.White);

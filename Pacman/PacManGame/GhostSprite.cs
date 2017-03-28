@@ -17,7 +17,7 @@ namespace PacManGame
     {
         //to render
         private SpriteBatch spriteBatch;
-        private Texture2D imgGhost;
+        private List<Texture2D> imgGhost;
         private Game1 game;
         private GameState gs;
 
@@ -29,6 +29,7 @@ namespace PacManGame
 
         public GhostSprite(Game1 game, GameState gs) : base(game)
         {
+            imgGhost = new List<Texture2D>(4);
             this.gs = gs;
             this.game = game;
             counter = 0;
@@ -45,7 +46,11 @@ namespace PacManGame
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            imgGhost = game.Content.Load<Texture2D>("ghost");
+            imgGhost.Add(game.Content.Load<Texture2D>("ghost1"));
+            imgGhost.Add(game.Content.Load<Texture2D>("ghost2"));
+            imgGhost.Add(game.Content.Load<Texture2D>("ghost3"));
+            imgGhost.Add(game.Content.Load<Texture2D>("ghost4"));
+
 
 
             base.LoadContent();
@@ -54,43 +59,45 @@ namespace PacManGame
         public override void Update(GameTime gameTime)
         {
             
-            counter++;
-            if (counter == speedLimit)
+   
+            if (counter > speedLimit)
             {
                 gs.GhostPack.Move();
                 gs.GhostPack.CheckCollideGhosts(gs.Pacman.Position);
                 counter = 0;
                 base.Update(gameTime);
             }
+            counter++;
         }
 
         public override void Draw(GameTime gameTime)
         {
             spriteBatch.Begin();
-            
 
+            int tempC = 0;
             foreach (Ghost g in gs.GhostPack)
             {
                 if (g.CurrenState == GhostState.Scared)
                 {
-                    spriteBatch.Draw(imgGhost, new Rectangle((int)(g.Position.X) * 32,
+                    spriteBatch.Draw(imgGhost.ElementAt(tempC), new Rectangle((int)(g.Position.X) * 32,
                                            (int)(g.Position.Y) * 32, 32, 32), new Rectangle(32 * frameGP, 0, 32, 32)
                                               , new Color(new Vector3(0, 0, 255)));
                     speedLimit = 12;
                 }
                 else
                 {
-                    spriteBatch.Draw(imgGhost, new Rectangle((int)(g.Position.X) * 32,
+                    spriteBatch.Draw(imgGhost.ElementAt(tempC), new Rectangle((int)(g.Position.X) * 32,
                                            (int)(g.Position.Y) * 32, 32, 32), new Rectangle(32 * frameGP, 0, 32, 32), Color.White);
                     speedLimit = 8;
                 }
+                tempC++;
             }
 
-            if (framecounter > 2000)
+            if (framecounter > 60)
             {
                 frameGP++;
                 framecounter = 0;
-                if (frameGP > 2) { frameGP = 0; }
+                if (frameGP > 1) { frameGP = 0; }
             }
             framecounter++;
 

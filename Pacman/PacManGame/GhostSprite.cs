@@ -24,12 +24,17 @@ namespace PacManGame
         private int counter;
         private int speedLimit;
 
+        private int frameGP;
+        private int framecounter;
+
         public GhostSprite(Game1 game, GameState gs) : base(game)
         {
             this.gs = gs;
             this.game = game;
             counter = 0;
-            speedLimit = 50000;
+            speedLimit = 30;
+            framecounter = 1;
+            frameGP = 1;
         }
 
         public override void Initialize()
@@ -69,18 +74,26 @@ namespace PacManGame
                 if (g.CurrenState == GhostState.Scared)
                 {
                     spriteBatch.Draw(imgGhost, new Rectangle((int)(g.Position.X) * 32,
-                                           (int)(g.Position.Y) * 32, 32, 32), new Rectangle(0,0, 32, 32)
+                                           (int)(g.Position.Y) * 32, 32, 32), new Rectangle(32 * frameGP, 0, 32, 32)
                                               , new Color(new Vector3(0, 0, 255)));
                     speedLimit = 12;
                 }
                 else
                 {
                     spriteBatch.Draw(imgGhost, new Rectangle((int)(g.Position.X) * 32,
-                                           (int)(g.Position.Y) * 32, 32, 32), new Rectangle(0, 0, 32, 32), g.Colour);
+                                           (int)(g.Position.Y) * 32, 32, 32), new Rectangle(32 * frameGP, 0, 32, 32), Color.White);
                     speedLimit = 8;
                 }
             }
-            
+
+            if (framecounter > 2000)
+            {
+                frameGP++;
+                framecounter = 0;
+                if (frameGP > 2) { frameGP = 0; }
+            }
+            framecounter++;
+
 
             spriteBatch.End();
 

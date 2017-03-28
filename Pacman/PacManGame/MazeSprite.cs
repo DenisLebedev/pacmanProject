@@ -26,8 +26,6 @@ namespace PacManGame
         private Texture2D energizerImage;
         private Texture2D emptyImage;
         private Game1 game;
-        private Texture2D pacmanImage;
-        private Texture2D ghostImage;
 
         private int frameP;
         private int frameE;

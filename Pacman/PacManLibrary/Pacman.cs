@@ -55,13 +55,15 @@ namespace PacManLibrary
                     {
                         Position = new Vector2(Position.X, Position.Y + 1);
                         CheckCollisions();
+                        maze.CheckMembersLeft();
                     }
                     break;
                 case Direction.Left:
                     if (maze[(int)Position.X - 1, (int)Position.Y ].CanEnter())
                     {
                         Position = new Vector2(Position.X - 1, Position.Y );
-                        CheckCollisions();
+                        CheckCollisions();                 
+                        maze.CheckMembersLeft();
                     }
                     break;
                 case Direction.Up:
@@ -69,6 +71,7 @@ namespace PacManLibrary
                     {
                         Position = new Vector2(Position.X , Position.Y - 1);
                         CheckCollisions();
+                        maze.CheckMembersLeft();
                     }
                     break;
                 case Direction.Right:
@@ -76,6 +79,7 @@ namespace PacManLibrary
                     {
                         Position = new Vector2(Position.X + 1, Position.Y );
                         CheckCollisions();
+                        maze.CheckMembersLeft();
                     }
                     break;
             }     

@@ -13,7 +13,6 @@ using PacManLibrary;
 
 namespace PacManGame
 {
-
     public class MazeSprite : DrawableGameComponent
     {
         //the business logic
@@ -69,7 +68,7 @@ namespace PacManGame
                 {
                     if (maze[x, y] is Wall)
                     {
-                        spriteBatch.Draw(wallImage, new Rectangle(x * 32, y * 32, 32, 32), Color.LimeGreen);
+                        spriteBatch.Draw(wallImage, new Rectangle(x * 32, y * 32, 32, 32), Color.HotPink);
                     }
                     if (maze[x, y] is Path)
                     {

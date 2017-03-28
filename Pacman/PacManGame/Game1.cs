@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.IO;
 using PacManLibrary;
+using Microsoft.Xna.Framework.Media;
 
 namespace PacManGame
 {
@@ -20,6 +21,8 @@ namespace PacManGame
         MazeSprite mazeSprite;
         GhostSprite ghostSprite;
         PacmanSprite pacmanSprite;
+
+        Song song;
 
 
         public Game1()
@@ -65,8 +68,28 @@ namespace PacManGame
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            foreach (Ghost g in gs.GhostPack)
+            {
+                /*
+                    this.song = Content.Load<Song>("scaredGhostSong");
+                    MediaPlayer.Play(song);
+                    MediaPlayer.IsRepeating = true;
+                    MediaPlayer.MediaStateChanged += MediaPlayer_MediaStateChanged;
+               */
+                    this.song = Content.Load<Song>("normalSong");
+                    MediaPlayer.Play(song);
+                    MediaPlayer.IsRepeating = true;
+                    MediaPlayer.MediaStateChanged += MediaPlayer_MediaStateChanged;
+                
+            }
             // TODO: use this.Content to load your game content here
+        }
+        void MediaPlayer_MediaStateChanged(object sender, System.
+                                          EventArgs e)
+        {
+            // 0.0f is silent, 1.0f is full volume
+            MediaPlayer.Volume -= 0.1f;
+            MediaPlayer.Play(song);
         }
 
         /// <summary>

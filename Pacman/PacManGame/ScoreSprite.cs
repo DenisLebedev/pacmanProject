@@ -18,16 +18,19 @@ namespace PacManGame
         private GameState gs;
         private Texture2D gameoverImage;
         private Texture2D winImage;
+        private bool pacmanWon;
 
         public ScoreSprite(Game1 game, GameState gs) : base(game)
         {
             this.game = game;
             this.gs = gs;
             gs.Maze.PacmanWon += PacWon;
+            pacmanWon = false;
         }
 
         private bool PacWon()
         {
+            pacmanWon = true;
             return true;
         }
 
@@ -58,7 +61,7 @@ namespace PacManGame
                 spriteBatch.Draw
               (gameoverImage, new Rectangle(5 * 32, 10 * 32, 480, 110), Color.White);
             }
-            if (gs.Maze.CheckMembersLeft())
+            if (pacmanWon)
             {
                 spriteBatch.Draw
               (winImage, new Rectangle(5 * 32, 10 * 32, 480, 110), Color.White);

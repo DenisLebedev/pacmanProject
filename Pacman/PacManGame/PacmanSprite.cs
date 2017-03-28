@@ -22,10 +22,10 @@ namespace PacManGame
         int counter;
 
         Direction dir;
-        private Texture2D rImage;
-        private Texture2D lImage;
-        private Texture2D dImage;
-        private Texture2D uImage;
+        private Texture2D pacmanRight;
+        private Texture2D pacmanLeft;
+        private Texture2D pacmanDown;
+        private Texture2D pacmanUp;
 
         private int frameR;
         private int framecounter;
@@ -47,10 +47,10 @@ namespace PacManGame
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            lImage = game.Content.Load<Texture2D>("pacmanLeft");
-            uImage = game.Content.Load<Texture2D>("pacmanUp");
-            rImage = game.Content.Load<Texture2D>("pacmanRight");
-            dImage = game.Content.Load<Texture2D>("pacmanDown");
+            pacmanLeft = game.Content.Load<Texture2D>("pacmanLeft");
+            pacmanUp = game.Content.Load<Texture2D>("pacmanUp");
+            pacmanRight = game.Content.Load<Texture2D>("pacmanRight");
+            pacmanDown = game.Content.Load<Texture2D>("pacmanDown");
             base.LoadContent();
         }
         public override void Update(GameTime gameTime)
@@ -71,18 +71,18 @@ namespace PacManGame
                 {
                 case Direction.Right:
                     spriteBatch.Draw
-                 (rImage, new Rectangle((int)pacman.Position.X * 32, (int)pacman.Position.Y * 32, 32, 32), Color.White); break;
+                 (pacmanRight, new Rectangle((int)pacman.Position.X * 32, (int)pacman.Position.Y * 32, 32, 32), Color.White); break;
                 case Direction.Left:
                     spriteBatch.Draw
-                (lImage, new Rectangle((int)pacman.Position.X * 32, (int)pacman.Position.Y * 32, 32, 32), Color.White);
+                (pacmanLeft, new Rectangle((int)pacman.Position.X * 32, (int)pacman.Position.Y * 32, 32, 32), Color.White);
                     break;
                 case Direction.Down:
                     spriteBatch.Draw
-                (dImage, new Rectangle((int)pacman.Position.X * 32, (int)pacman.Position.Y * 32, 32, 32), Color.White);
+                (pacmanDown, new Rectangle((int)pacman.Position.X * 32, (int)pacman.Position.Y * 32, 32, 32), Color.White);
                     break;
                 case Direction.Up:
                     spriteBatch.Draw
-                (uImage, new Rectangle((int)pacman.Position.X * 32, (int)pacman.Position.Y * 32, 32, 32), Color.White);
+                (pacmanUp, new Rectangle((int)pacman.Position.X * 32, (int)pacman.Position.Y * 32, 32, 32), Color.White);
                     break;
                 }
 

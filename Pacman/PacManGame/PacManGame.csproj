@@ -54,7 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\pacmanUp.png" />
+    <Content Include="Content\pacmanLeft.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>

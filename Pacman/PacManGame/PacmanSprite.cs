@@ -76,15 +76,18 @@ namespace PacManGame
                 break;
             case Direction.Left:
                 spriteBatch.Draw
-            (pacmanLeft, new Rectangle((int)pacman.Position.X * 32, (int)pacman.Position.Y * 32, 32, 32), Color.White);
+            (pacmanLeft, new Rectangle((int)pacman.Position.X * 32, (int)pacman.Position.Y * 32, 32, 32),
+                                                     new Rectangle(0, 32 * frameR, 32, 32), Color.White); 
                 break;
             case Direction.Down:
                 spriteBatch.Draw
-            (pacmanDown, new Rectangle((int)pacman.Position.X * 32, (int)pacman.Position.Y * 32, 32, 32), Color.White);
-                break;
+            (pacmanDown, new Rectangle((int)pacman.Position.X * 32, (int)pacman.Position.Y * 32, 32, 32),
+                                                     new Rectangle(32 * frameR, 0, 32, 32), Color.White);
+                    break;
             case Direction.Up:
                 spriteBatch.Draw
-            (pacmanUp, new Rectangle((int)pacman.Position.X * 32, (int)pacman.Position.Y * 32, 32, 32), Color.White);
+            (pacmanUp, new Rectangle((int)pacman.Position.X * 32, (int)pacman.Position.Y * 32, 32, 32),
+                                                   new Rectangle(32 * frameR, 0, 32, 32), Color.White);
                 break;
             }
 

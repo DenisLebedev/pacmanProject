@@ -29,14 +29,16 @@ namespace PacManGame
         private Texture2D pacmanImage;
         private Texture2D ghostImage;
 
-        private int frame;
+        private int frameP;
+        private int frameE;
         private int framecounter;
 
         public MazeSprite(Game1 game, Maze maze) : base(game)
         {
             this.game = game;
             this.maze = maze;
-            frame = 1;
+            frameP = 1;
+            frameE = 1;
             framecounter = 0;
 
         }
@@ -76,24 +78,26 @@ namespace PacManGame
                         //there is a pellet
                         if (maze[x, y].Member() is Pellet && maze[x, y].IsEmpty() == false)
                         {
-                            spriteBatch.Draw(pelletImage, new Rectangle(x * 32, y * 32, 32, 32), new Rectangle(0, 32 * frame, 32, 32), Color.White);
+                            spriteBatch.Draw(pelletImage, new Rectangle(x * 32, y * 32, 32, 32), new Rectangle(0, 32 * frameP, 32, 32), Color.White);
 
                         }
                        
                         //there is an energizer
                         if (maze[x, y].Member() is Energizer && maze[x, y].IsEmpty() == false)
                         {
-                            spriteBatch.Draw(energizerImage, new Rectangle(x * 32, y * 32, 32, 32), Color.White);
+                            spriteBatch.Draw(energizerImage, new Rectangle(x * 32, y * 32, 32, 32), new Rectangle(0, 32 * frameE, 32, 32), Color.White);
                         }
                         //there is no member
                         if (maze[x, y].IsEmpty() == true)
                         {
                             spriteBatch.Draw(emptyImage, new Rectangle(x * 32, y * 32, 32, 32), Color.White);
                         }
-                        if (framecounter > 30) {
-                            frame++;
+                        if (framecounter > 2000) {
+                            frameP++;
+                            frameE++;
                             framecounter = 0;
-                            if (frame > 7){ frame = 0; }
+                            if (frameP > 6){ frameP = 0; }
+                            if (frameE > 4) { frameE = 0; }
                         }
                         framecounter++;
 

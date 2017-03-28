@@ -21,6 +21,8 @@ namespace PacManGame
         GhostSprite ghostSprite;
         PacmanSprite pacmanSprite;
 
+        bool pause = false;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -84,12 +86,14 @@ namespace PacManGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            
+                if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+                    Exit();
 
-            // TODO: Add your update logic here
+                // TODO: Add your update logic here
 
-            base.Update(gameTime);
+                base.Update(gameTime);
+          
         }
 
         /// <summary>

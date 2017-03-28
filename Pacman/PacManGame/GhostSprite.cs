@@ -76,7 +76,7 @@ namespace PacManGame
                 else
                 {
                     spriteBatch.Draw(imgGhost, new Rectangle((int)(g.Position.X) * 32,
-                                           (int)(g.Position.Y) * 32, 32, 32), new Rectangle(0, 0, 32, 32), Color.White);
+                                           (int)(g.Position.Y) * 32, 32, 32), new Rectangle(0, 0, 32, 32), g.Colour);
                     speedLimit = 8;
                 }
             }

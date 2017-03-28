@@ -14,7 +14,7 @@ namespace PacManGame
     {
         private Game1 game;
         private Pacman pacman;
-
+        private GameState gs;
         private SpriteBatch spriteBatch;
         private Texture2D pacmanImage;
 
@@ -29,6 +29,7 @@ namespace PacManGame
 
         public PacmanSprite(Game1 game, GameState gs) : base(game)
         {
+            this.gs = gs;
             this.game = game;
             this.pacman = gs.Pacman;
             counter = 0;
@@ -60,7 +61,8 @@ namespace PacManGame
         }
         public override void Draw(GameTime gameTime)
         {
-            spriteBatch.Begin();           
+            spriteBatch.Begin();
+                     
                 switch (dir)
             {
                 case Direction.Right:
@@ -85,32 +87,35 @@ namespace PacManGame
         }
         private void keyBoard()
         {
-            KeyboardState newState = Keyboard.GetState();
-            //right
-            if (newState.IsKeyDown(Keys.Right))
+            if (gs.Score.Lives >= 1)
             {
-                dir = Direction.Right;
-                pacman.Move(Direction.Right);
+                KeyboardState newState = Keyboard.GetState();
+                //right
+                if (newState.IsKeyDown(Keys.Right))
+                {
+                    dir = Direction.Right;
+                    pacman.Move(Direction.Right);
+                }
+                //left
+                else if (newState.IsKeyDown(Keys.Left))
+                {
+                    dir = Direction.Left;
+                    pacman.Move(Direction.Left);
+                }
+                //up
+                else if (newState.IsKeyDown(Keys.Up))
+                {
+                    dir = Direction.Up;
+                    pacman.Move(Direction.Up);
+                }
+                //down
+                else if (newState.IsKeyDown(Keys.Down))
+                {
+                    dir = Direction.Down;
+                    pacman.Move(Direction.Down);
+                }
+                oldState = newState;
             }
-            //left
-            else if (newState.IsKeyDown(Keys.Left))
-            {
-                dir = Direction.Left;
-                pacman.Move(Direction.Left);
-            }
-            //up
-            else if (newState.IsKeyDown(Keys.Up))
-            {
-                dir = Direction.Up;
-                pacman.Move(Direction.Up);
-            }
-            //down
-            else if (newState.IsKeyDown(Keys.Down))
-            {
-                dir = Direction.Down;
-                pacman.Move(Direction.Down);
-            }
-             oldState = newState;
 
         }
 

@@ -54,7 +54,7 @@ namespace PacManGame
             if (counter == Game1.speedLimit)
             {
                 keyBoard();
-                counter = 0;
+                counter = 0;               
             }
             base.Update(gameTime);
             
@@ -62,9 +62,8 @@ namespace PacManGame
         public override void Draw(GameTime gameTime)
         {
             spriteBatch.Begin();
-                     
                 switch (dir)
-            {
+                {
                 case Direction.Right:
                     spriteBatch.Draw
                 (rImage, new Rectangle((int)pacman.Position.X * 32, (int)pacman.Position.Y * 32, 32, 32), Color.White);
@@ -81,14 +80,13 @@ namespace PacManGame
                     spriteBatch.Draw
                 (uImage, new Rectangle((int)pacman.Position.X * 32, (int)pacman.Position.Y * 32, 32, 32), Color.White);
                     break;
-            }
+                }
+            
             spriteBatch.End();
             base.Draw(gameTime);
         }
         private void keyBoard()
         {
-            if (gs.Score.Lives >= 1)
-            {
                 KeyboardState newState = Keyboard.GetState();
                 //right
                 if (newState.IsKeyDown(Keys.Right))
@@ -115,7 +113,7 @@ namespace PacManGame
                     pacman.Move(Direction.Down);
                 }
                 oldState = newState;
-            }
+            
 
         }
 

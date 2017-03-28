@@ -20,7 +20,7 @@ namespace PacManGame
         MazeSprite mazeSprite;
         GhostSprite ghostSprite;
         PacmanSprite pacmanSprite;
-
+        private bool pause;
 
         public Game1()
         {
@@ -43,7 +43,7 @@ namespace PacManGame
             mazeSprite = new MazeSprite(this, gs.Maze);
             pacmanSprite = new PacmanSprite(this, gs);
             ghostSprite = new GhostSprite(this, gs);
-            scoreSprite = new ScoreSprite(this, gs);
+            scoreSprite = new ScoreSprite(this, gs, pause);
             Components.Add(mazeSprite);
             Components.Add(ghostSprite);
             Components.Add(pacmanSprite);

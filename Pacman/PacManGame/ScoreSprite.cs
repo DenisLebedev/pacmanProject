@@ -18,11 +18,13 @@ namespace PacManGame
         private GameState gs;
         private Texture2D gameoverImage;
         private Texture2D winImage;
+        private bool pause;
 
-        public ScoreSprite(Game1 game, GameState gs) : base(game)
+        public ScoreSprite(Game1 game, GameState gs, bool pause) : base(game)
         {
             this.game = game;
             this.gs = gs;
+            this.pause = pause;
             gs.Maze.PacmanWon += PacWon;
         }
 
@@ -43,8 +45,6 @@ namespace PacManGame
             gameoverImage = game.Content.Load<Texture2D>("gameover");
             winImage = game.Content.Load<Texture2D>("win");
 
-
-
             base.LoadContent();
         }
         public override void Update(GameTime gameTime)
@@ -53,18 +53,19 @@ namespace PacManGame
         }
         public override void Draw(GameTime gameTime)
         {
-
             spriteBatch.Begin();
             //game over
             if (gs.Score.Lives < 1)
             {
                 spriteBatch.Draw
               (gameoverImage, new Rectangle(5 * 32, 10 * 32, 480, 110), Color.White);
+                pause = false;
             }
             if (gs.Maze.CheckMembersLeft())
             {
                 spriteBatch.Draw
               (winImage, new Rectangle(5 * 32, 10 * 32, 480, 110), Color.White);
+                pause = false;
             }
             //points
             spriteBatch.DrawString
@@ -73,13 +74,10 @@ namespace PacManGame
             spriteBatch.DrawString
                 (font, "Lives Left: " + gs.Score.Lives, new Vector2(25 * 32, 1 * 32), Color.White);
 
-          
-
-
             spriteBatch.End();
-
-
             base.Draw(gameTime);
         }
+        public bool Pause { get { return this.pause; } }
+
     }
 }

@@ -88,7 +88,7 @@ namespace PacManGame
                         //there is no member
                         if (maze[x, y].IsEmpty() == true)
                         {
-                            spriteBatch.Draw(emptyImage, new Rectangle(x * 32, y * 32, 32, 32), Color.White);
+                            spriteBatch.Draw(emptyImage, new Rectangle(x * 32, y * 32, 32, 32), Color.Black);
                         }
                         if (framecounter > 2000) {
                             frameP++;

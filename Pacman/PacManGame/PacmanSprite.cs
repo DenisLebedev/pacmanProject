@@ -16,8 +16,7 @@ namespace PacManGame
         private Pacman pacman;
         private GameState gs;
         private SpriteBatch spriteBatch;
-        private Texture2D pacmanImage;
-
+          
         KeyboardState oldState;
         int counter;
 
@@ -36,6 +35,7 @@ namespace PacManGame
             this.game = game;
             this.pacman = gs.Pacman;
             counter = 0;
+
             framecounter = 1;
             frameR = 1;
         }
@@ -67,26 +67,29 @@ namespace PacManGame
         public override void Draw(GameTime gameTime)
         {
             spriteBatch.Begin();
-                switch (dir)
-                {
-                case Direction.Right:
+            switch (dir)
+            {
+            case Direction.Right:
                     spriteBatch.Draw
-                 (pacmanRight, new Rectangle((int)pacman.Position.X * 32, (int)pacman.Position.Y * 32, 32, 32), Color.White); break;
-                case Direction.Left:
-                    spriteBatch.Draw
-                (pacmanLeft, new Rectangle((int)pacman.Position.X * 32, (int)pacman.Position.Y * 32, 32, 32), Color.White);
-                    break;
-                case Direction.Down:
-                    spriteBatch.Draw
-                (pacmanDown, new Rectangle((int)pacman.Position.X * 32, (int)pacman.Position.Y * 32, 32, 32), Color.White);
-                    break;
-                case Direction.Up:
-                    spriteBatch.Draw
-                (pacmanUp, new Rectangle((int)pacman.Position.X * 32, (int)pacman.Position.Y * 32, 32, 32), Color.White);
-                    break;
-                }
+                 (pacmanRight, new Rectangle((int)pacman.Position.X * 32, (int)pacman.Position.Y * 32, 32, 32),
+                                                          new Rectangle(0, 32 * frameR, 32, 32), Color.White);
+                break;
+            case Direction.Left:
+                spriteBatch.Draw
+            (pacmanLeft, new Rectangle((int)pacman.Position.X * 32, (int)pacman.Position.Y * 32, 32, 32), Color.White);
+                break;
+            case Direction.Down:
+                spriteBatch.Draw
+            (pacmanDown, new Rectangle((int)pacman.Position.X * 32, (int)pacman.Position.Y * 32, 32, 32), Color.White);
+                break;
+            case Direction.Up:
+                spriteBatch.Draw
+            (pacmanUp, new Rectangle((int)pacman.Position.X * 32, (int)pacman.Position.Y * 32, 32, 32), Color.White);
+                break;
+            }
 
-            if (framecounter > 2000)
+            
+            if (framecounter > 5)
             {
                 frameR++;
                 framecounter = 0;

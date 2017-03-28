@@ -18,13 +18,11 @@ namespace PacManGame
         private GameState gs;
         private Texture2D gameoverImage;
         private Texture2D winImage;
-        private bool pause;
 
         public ScoreSprite(Game1 game, GameState gs) : base(game)
         {
             this.game = game;
             this.gs = gs;
-            this.pause = true;
             gs.Maze.PacmanWon += PacWon;
         }
 
@@ -59,13 +57,11 @@ namespace PacManGame
             {
                 spriteBatch.Draw
               (gameoverImage, new Rectangle(5 * 32, 10 * 32, 480, 110), Color.White);
-                pause = false;
             }
             if (gs.Maze.CheckMembersLeft())
             {
                 spriteBatch.Draw
               (winImage, new Rectangle(5 * 32, 10 * 32, 480, 110), Color.White);
-                pause = false;
             }
             //points
             spriteBatch.DrawString
@@ -77,7 +73,6 @@ namespace PacManGame
             spriteBatch.End();
             base.Draw(gameTime);
         }
-        public bool Pause { get { return this.pause; } }
 
     }
 }

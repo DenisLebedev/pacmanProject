@@ -3,13 +3,14 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.IO;
 using PacManLibrary;
-using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Audio;
 
 namespace PacManGame
 {
     /// <summary>
-    /// This is the main type for your game.
+    /// Game1 class will control most of all our componnents in the game.
+    /// The class control all our component that creates the game and the audio.
+    /// Everything depend on Game1 class because it containing everything.
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
@@ -23,15 +24,16 @@ namespace PacManGame
         GhostSprite ghostSprite;
         PacmanSprite pacmanSprite;
 
+        //scared music
         SoundEffect mysong;
         SoundEffectInstance mysong2;
-
+        //background music
         SoundEffect mybackSong;
         SoundEffectInstance mybackSong2;
 
-        private Texture2D gameoverImage;
-
-
+        /// <summary>
+        /// The constructor load the level and initialize variables
+        /// </summary>
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -48,9 +50,8 @@ namespace PacManGame
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
 
-
+            //Adding all the components needed for the game to work properly
             mazeSprite = new MazeSprite(this, gs.Maze);
             pacmanSprite = new PacmanSprite(this, gs);
             ghostSprite = new GhostSprite(this, gs);
@@ -60,7 +61,7 @@ namespace PacManGame
             Components.Add(pacmanSprite);
             Components.Add(scoreSprite);
 
-
+            //window size
             graphics.PreferredBackBufferHeight = 736;
             graphics.PreferredBackBufferWidth = 1000;
             graphics.ApplyChanges();
@@ -74,12 +75,12 @@ namespace PacManGame
         /// </summary>
         protected override void LoadContent()
         {
-            gameoverImage = this.Content.Load<Texture2D>("gameover");
+            //music for scared ghost
             mysong = Content.Load<SoundEffect>("scaredGhostSong");
             mysong2 = mysong.CreateInstance();
             mysong2.IsLooped = true;
             
-
+            //backgrund music
             mybackSong = Content.Load<SoundEffect>("normalSong");
             mybackSong2 = mybackSong.CreateInstance();
             
@@ -108,45 +109,38 @@ namespace PacManGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            //musicCounter is used to ensure that all ghost are not scared before changing music
             int musicCounter = 0;
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+
             foreach (Ghost g in gs.GhostPack)
             {
-            if (g.CurrenState == GhostState.Scared)
-            {
-                    musicCounter++;
-                    if (musicCounter > 0)
-                    {
-                        mybackSong2.Stop();
-                        mysong2.Play();
-                    }
-               
+                if (g.CurrenState == GhostState.Scared)
+                {
+                        //add to the counter if a ghost is scared
+                        musicCounter++;
+                        //until you have a scared ghost play
+                        if (musicCounter > 0)
+                        {
+                            mybackSong2.Stop();
+                            mysong2.Play();
+                        }
+                }
+                else
+                {       
+                        //remove only if you have a scared ghost
+                        if(musicCounter > 0)
+                            musicCounter--;
 
-                /*
-                MediaPlayer.Play(song);
-                MediaPlayer.IsRepeating = true;
-                MediaPlayer.MediaStateChanged += MediaPlayer_MediaStateChanged;
-                */
-            }
-            else
-            {  
-                    if(musicCounter > 0)
-                        musicCounter--;
-                    if (musicCounter == 0)
-                    {
-                        mysong2.Stop();
-                        mybackSong2.Play();
-                    }
-                   
-                    /*
-                    this.song = Content.Load<Song>("normalSong");
-                    MediaPlayer.Play(song);
-                    MediaPlayer.IsRepeating = true;
-                    MediaPlayer.MediaStateChanged += MediaPlayer_MediaStateChanged;
-                    */
+                        //No scared ghost so you can play the right music
+                        if (musicCounter == 0)
+                        {
+                            mysong2.Stop();
+                            mybackSong2.Play();
+                        }
                 }
         }
 
@@ -160,6 +154,7 @@ namespace PacManGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            //If pacman lost OR win remove the ghost and pacman
             if (scoreSprite.PacLost || scoreSprite.PacWinner)
             {
                 Components.Remove(pacmanSprite);
@@ -171,7 +166,12 @@ namespace PacManGame
             base.Draw(gameTime);
         }
 
-
+        /// <summary>
+        /// The method gonna read from a file to create the maze.
+        /// When the method is done it returning a GameState loaded.
+        /// </summary>
+        /// <param name="file"></param>
+        /// <returns></returns>
         private GameState LoadLevel(string file)
         {
             string temp = "";

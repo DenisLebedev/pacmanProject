@@ -79,8 +79,8 @@ namespace PacManGame
    
             if (counterSpeed > speedLimit)
             {
-                gs.GhostPack.Move();
                 gs.GhostPack.CheckCollideGhosts(gs.Pacman.Position);
+                gs.GhostPack.Move();
                 counterSpeed = 0;
                 base.Update(gameTime);
             }

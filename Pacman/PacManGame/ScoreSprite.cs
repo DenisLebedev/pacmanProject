@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 
 namespace PacManGame
 {
+    /// <summary>
+    /// ScoreSprite class is reponsible for the score table being diplayed
+    /// and will also handle the events if pacman wins and or loses.
+    /// </summary>
     class ScoreSprite : DrawableGameComponent
     {
         private SpriteFont font;
@@ -18,11 +22,21 @@ namespace PacManGame
         private GameState gs;
         private Texture2D gameoverImage;
         private Texture2D winImage;
-        private bool pacmanWon;
 
+        /// <summary>
+        ///  This prop will return a bool that determines 
+        /// </summary>
         public bool PacLost { get { return gs.Score.Lives < 1; } }
+        /// <summary>
+        /// 
+        /// </summary>
         public bool PacWinner { get; private set; }
-
+        /// <summary>
+        /// The constructor will take a Game1 object (the current game being run) and a GameState
+        /// and will assign them appropriately amd will register the pacmanwon event.
+        /// </summary>
+        /// <param name="game"></param>
+        /// <param name="gs"></param>
         public ScoreSprite(Game1 game, GameState gs) : base(game)
         {
             this.game = game;
@@ -30,18 +44,19 @@ namespace PacManGame
             gs.Maze.PacmanWon += PacWon;
             PacWinner = false;
         }
-
+        /// <summary>
+        /// This method is the event handler for when the pacman
+        /// wins.
+        /// </summary>
+        /// <returns></returns>
         private bool PacWon()
         {
-            pacmanWon = true;
             PacWinner = true;
             return true;
         }
-
-        public override void Initialize()
-        {
-            base.Initialize();
-        }
+        /// <summary>
+        /// 
+        /// </summary>
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -52,10 +67,19 @@ namespace PacManGame
 
             base.LoadContent();
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
         }
+        /// <summary>
+        /// The draw method will create the string to be displayed and will represent 
+        /// the score board and it will also display the game over as well as the game won sprites.
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Draw(GameTime gameTime)
         {
             spriteBatch.Begin();
@@ -65,7 +89,7 @@ namespace PacManGame
                 spriteBatch.Draw
               (gameoverImage, new Rectangle(5 * 32, 10 * 32, 480, 110), Color.White);
             }
-            if (pacmanWon)
+            if (PacWinner)
             {
                 spriteBatch.Draw
               (winImage, new Rectangle(5 * 32, 10 * 32, 480, 110), Color.White);

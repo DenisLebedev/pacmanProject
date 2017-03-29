@@ -35,7 +35,7 @@ namespace PacManGame
         private int framecounter;
         /// <summary>
         /// The constructor will take in the current game build as well as a maze objec
-        /// in order to have the same reffrance as the one being used in the Game1 class
+        /// in order to have the same reffrance as the one being used in the Game1 class.
         /// </summary>
         /// <param name="game"></param>
         /// <param name="maze"></param>
@@ -48,10 +48,9 @@ namespace PacManGame
             framecounter = 0;
 
         }
-        public override void Initialize()
-        {
-            base.Initialize();
-        }
+        /// <summary>
+        /// 
+        /// </summary>
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -61,14 +60,13 @@ namespace PacManGame
             emptyImage = game.Content.Load<Texture2D>("empty");
             base.LoadContent();
         }
-        public override void Update(GameTime gameTime)
-        {
-            base.Update(gameTime);
-        }
+        /// <summary>
+        /// The draw method will iterate through the maze and depending which
+        /// type an element is will draw onto the screen.
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Draw(GameTime gameTime)
         {
-
-
             spriteBatch.Begin();
 
             for (int y = 0; y < maze.Size; y++)
@@ -77,7 +75,7 @@ namespace PacManGame
                 {
                     if (maze[x, y] is Wall)
                     {
-                        spriteBatch.Draw(wallImage, new Rectangle(x * 32, y * 32, 32, 32), Color.HotPink);
+                        spriteBatch.Draw(wallImage, new Rectangle(x * 32, y * 32, 32, 32), Color.LemonChiffon);
                     }
                     if (maze[x, y] is Path)
                     {
@@ -86,8 +84,7 @@ namespace PacManGame
                         {
                             spriteBatch.Draw(pelletImage, new Rectangle(x * 32, y * 32, 32, 32), new Rectangle(0, 32 * frameP, 32, 32), Color.White);
 
-                        }
-                       
+                        }                       
                         //there is an energizer
                         if (maze[x, y].Member() is Energizer && maze[x, y].IsEmpty() == false)
                         {
@@ -106,7 +103,6 @@ namespace PacManGame
                             if (frameE > 4) { frameE = 0; }
                         }
                         framecounter++;
-
                     }//end of path if
 
                 }//end of j loop

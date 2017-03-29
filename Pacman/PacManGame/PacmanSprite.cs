@@ -10,7 +10,11 @@ using Microsoft.Xna.Framework.Input;
 
 namespace PacManGame
 {
-    class PacmanSprite: DrawableGameComponent
+    /// <summary>
+    /// PacmanSprite class is reponsible for drawing and handaling the 
+    /// movement the pacman.
+    /// </summary>
+    class PacmanSprite : DrawableGameComponent
     {
         private Game1 game;
         private Pacman pacman;
@@ -19,7 +23,7 @@ namespace PacManGame
           
         KeyboardState oldState;
         int counter;
-
+        //used to change the imge dpending on the direction of pacman
         Direction dir;
         private Texture2D pacmanRight;
         private Texture2D pacmanLeft;
@@ -29,7 +33,13 @@ namespace PacManGame
         private int frameR;
         private int framecounter;
         private int speedLimit;
-
+        /// <summary>
+        /// The cunstrocter will set a gamstate objec and the Game1.
+        /// It will also set helper variables in order to set the speed the pacman
+        /// moves (FPS).
+        /// </summary>
+        /// <param name="game"></param>
+        /// <param name="gs"></param>
         public PacmanSprite(Game1 game, GameState gs) : base(game)
         {
             this.gs = gs;
@@ -41,11 +51,17 @@ namespace PacManGame
             framecounter = 1;
             frameR = 1;
         }
+        /// <summary>
+        /// 
+        /// </summary>
         public override void Initialize()
         {
             oldState = Keyboard.GetState();
             base.Initialize();
         }
+        /// <summary>
+        /// 
+        /// </summary>
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -55,6 +71,10 @@ namespace PacManGame
             pacmanDown = game.Content.Load<Texture2D>("pacmanDown");
             base.LoadContent();
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
             counter++;
@@ -66,6 +86,11 @@ namespace PacManGame
             base.Update(gameTime);
             
         }
+        /// <summary>
+        /// The draw method will draw the pacman image onto the screen dpeending
+        /// on the direction of the key pressed is.
+        /// </summary>
+        /// <param name="gameTime"></param>
         public override void Draw(GameTime gameTime)
         {
             spriteBatch.Begin();
@@ -105,6 +130,9 @@ namespace PacManGame
             spriteBatch.End();
             base.Draw(gameTime);
         }
+        /// <summary>
+        /// The keyBoard method will handle key board in[ut from the user.
+        /// </summary>
         private void keyBoard()
         {
                 KeyboardState newState = Keyboard.GetState();

@@ -153,7 +153,7 @@ namespace PacManGame
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
-        {
+        { 
             //If pacman lost OR win remove the ghost and pacman
             if (scoreSprite.PacLost || scoreSprite.PacWinner)
             {

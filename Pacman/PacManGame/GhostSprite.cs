@@ -46,7 +46,7 @@ namespace PacManGame
 
             counterSpeed = 0;
             //A ghost canot go faster than seedLimit which is the same as PacMan
-            speedLimit = 10;
+            speedLimit = 8;
             framecounter = 1;
             frameGP = 1;
         }
@@ -113,7 +113,7 @@ namespace PacManGame
                     //Using 4 different pictures for the ghost
                     spriteBatch.Draw(imgGhost[tempC], new Rectangle((int)(g.Position.X) * 32,
                                            (int)(g.Position.Y) * 32, 32, 32), new Rectangle(32 * frameGP, 0, 32, 32), Color.White);
-                    speedLimit = 10;
+                    speedLimit = 8;
                 }
                 tempC++;
             }

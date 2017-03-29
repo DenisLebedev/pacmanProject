@@ -37,7 +37,7 @@ namespace PacManGame
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             gs = this.LoadLevel("levelsPen.csv");
-        
+            
         }
 
         /// <summary>
@@ -160,21 +160,15 @@ namespace PacManGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            if (!scoreSprite.PacLost)
+            if (scoreSprite.PacLost || scoreSprite.PacWinner)
             {
-                GraphicsDevice.Clear(Color.Black);
-
-                base.Draw(gameTime);
+                Components.Remove(pacmanSprite);
+                Components.Remove(ghostSprite);
             }
-            else
-            {
-                spriteBatch.Begin();
-                spriteBatch.Draw
-              (gameoverImage, new Rectangle(5 * 32, 10 * 32, 480, 110), Color.White);
-                spriteBatch.End();
-                base.Draw(gameTime);
 
-            }
+            GraphicsDevice.Clear(Color.Black);
+
+            base.Draw(gameTime);
         }
 
 

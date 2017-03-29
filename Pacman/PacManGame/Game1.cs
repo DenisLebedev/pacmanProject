@@ -112,15 +112,21 @@ namespace PacManGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            
-                if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                    Exit();
+            int musicCounter = 0;
+
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+                Exit();
+
             foreach (Ghost g in gs.GhostPack)
             {
             if (g.CurrenState == GhostState.Scared)
             {
-                    mybackSong2.Stop();
-                    mysong2.Play();
+                    musicCounter++;
+                    if (musicCounter > 0)
+                    {
+                        mybackSong2.Stop();
+                        mysong2.Play();
+                    }
                
 
                 /*
@@ -130,9 +136,14 @@ namespace PacManGame
                 */
             }
             else
-            {
-                    mysong2.Stop();
-                    mybackSong2.Play();
+            {  
+                    if(musicCounter > 0)
+                        musicCounter--;
+                    if (musicCounter == 0)
+                    {
+                        mysong2.Stop();
+                        mybackSong2.Play();
+                    }
                    
                     /*
                     this.song = Content.Load<Song>("normalSong");

@@ -18,6 +18,7 @@ namespace PacManGame
         //to render
         private SpriteBatch spriteBatch;
         private List<Texture2D> imgGhost;
+        private Texture2D imgScaredG;
         private Game1 game;
         private GameState gs;
 
@@ -51,7 +52,7 @@ namespace PacManGame
             imgGhost.Add(game.Content.Load<Texture2D>("ghost3"));
             imgGhost.Add(game.Content.Load<Texture2D>("ghost4"));
 
-
+            imgScaredG = game.Content.Load<Texture2D>("scaredG1");
 
             base.LoadContent();
         }
@@ -75,13 +76,14 @@ namespace PacManGame
             spriteBatch.Begin();
 
             int tempC = 0;
+            
             foreach (Ghost g in gs.GhostPack)
             {
                 if (g.CurrenState == GhostState.Scared)
                 {
-                    spriteBatch.Draw(imgGhost.ElementAt(tempC), new Rectangle((int)(g.Position.X) * 32,
+                    spriteBatch.Draw(imgScaredG, new Rectangle((int)(g.Position.X) * 32,
                                            (int)(g.Position.Y) * 32, 32, 32), new Rectangle(32 * frameGP, 0, 32, 32)
-                                              , new Color(new Vector3(0, 0, 255)));
+                                              , Color.White);
                     speedLimit = 12;
                 }
                 else
@@ -99,8 +101,6 @@ namespace PacManGame
                 framecounter = 0;
                 if (frameGP > 1) { frameGP = 0; }
             }
-            framecounter++;
-
 
             spriteBatch.End();
 

@@ -66,7 +66,7 @@ namespace PacManGame
         protected override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            pacmanLeft = game.Content.Load<Texture2D>("pacmanLeft");
+            pacmanLeft = game.Content.Load<Texture2D>("pacmanLeft"); 
             pacmanUp = game.Content.Load<Texture2D>("pacmanUp");
             pacmanRight = game.Content.Load<Texture2D>("pacmanRight");
             pacmanDown = game.Content.Load<Texture2D>("pacmanDown");

@@ -44,7 +44,7 @@ namespace PacManLibrary
         /// </summary>
         public void Move()
         {
-            List<Tile> places = maze.GetAvailableNeighbours(ghost.Position, ghost.Direction);
+            /*List<Tile> places = maze.GetAvailableNeighbours(ghost.Position, ghost.Direction);
             Tile current = maze[(int)ghost.Position.X, (int)ghost.Position.Y];
             
             //A ghost should not be stuck somewhere
@@ -54,36 +54,71 @@ namespace PacManLibrary
             Random rand = new Random();
             int choice = rand.Next(places.Count);
             //determine direction
-            if (places[choice].Position.X == ghost.Position.X + 1)
+
+
+            if (
+                places[choice].Position.X - ghost.Position.X > 0)
             {
                 ghost.Direction = Direction.Right;
-                ghost.Collide();
             }
-            else if (places[choice].Position.X == ghost.Position.X - 1)
+            else if (
+                places[choice].Position.X - ghost.Position.X < 0)
             {
                 ghost.Direction = Direction.Left;
-                ghost.Collide();
             }
-            else if (places[choice].Position.Y == ghost.Position.Y - 1)
+            else if (
+                places[choice].Position.Y - ghost.Position.Y < 0)
             {
                 ghost.Direction = Direction.Up;
-                ghost.Collide();
             }
             else
             {
                 ghost.Direction = Direction.Down;
-                ghost.Collide();
             }
             ghost.Position = places[choice].Position;
 
-            //if (target.X == ghost.Position.X && target.Y == ghost.Position.Y)
-            //{
-                
+            if (ghost.Position.X == target.X && ghost.Position.Y == target.Y)
+            {
                 target.X = pacman.Position.X;
                 target.Y = pacman.Position.Y;
-            //}
+            }*/
 
+            Tile current = maze[(int)ghost.Position.X, (int)ghost.Position.Y];
+            List<Tile> places = maze.GetAvailableNeighbours(ghost.Position, ghost.Direction);
+            int numPosible = places.Count;
+            int i = 0;
+            int choice = 0;
+            float dist = places[i].GetDistance(pacman.Position + target);
+
+            for (i = 0; i < numPosible; i++)
+            {
+                if (places[i].GetDistance(pacman.Position + target) < dist)
+                {
+                    dist = places[i].GetDistance(pacman.Position + target);
+                    choice = i;
+                }
+            }
+
+            if (places[choice].Position.X == ghost.Position.X + 1)
+                ghost.Direction = Direction.Right;
+            else if (places[choice].Position.X == ghost.Position.X - 1)
+                ghost.Direction = Direction.Left;
+            else if (places[choice].Position.Y == ghost.Position.Y - 1)
+                ghost.Direction = Direction.Up;
+            else
+                ghost.Direction = Direction.Down;
+
+            ghost.Position = places[choice].Position;
+
+
+            if (ghost.Position.X == target.X && ghost.Position.Y == target.Y)
+            {
+                target.X = pacman.Position.X;
+                target.Y = pacman.Position.Y;
+            }
         }
+
+    
     }
 
 }

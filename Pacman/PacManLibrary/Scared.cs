@@ -69,22 +69,18 @@ namespace PacManLibrary
             if (places[choice].Position.X == ghost.Position.X + 1)
             {
                 ghost.Direction = Direction.Right;
-                ghost.Collide();
             }
             else if (places[choice].Position.X == ghost.Position.X - 1)
             {
                 ghost.Direction = Direction.Left;
-                ghost.Collide();
             }
             else if (places[choice].Position.Y == ghost.Position.Y - 1)
             {
                 ghost.Direction = Direction.Up;
-                ghost.Collide();
             }
             else
             {
                 ghost.Direction = Direction.Down;
-                ghost.Collide();
             }
             ghost.Position = places[choice].Position;
         }

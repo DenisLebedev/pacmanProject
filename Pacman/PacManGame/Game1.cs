@@ -25,11 +25,11 @@ namespace PacManGame
         PacmanSprite pacmanSprite;
 
         //scared music
-        SoundEffect mysong;
-        SoundEffectInstance mysong2;
+        SoundEffect scaredSong;
+        SoundEffectInstance scaredSong2;
         //background music
-        SoundEffect mybackSong;
-        SoundEffectInstance mybackSong2;
+        SoundEffect normalSong;
+        SoundEffectInstance normalSong2;
 
         /// <summary>
         /// The constructor load the level and initialize variables
@@ -76,13 +76,13 @@ namespace PacManGame
         protected override void LoadContent()
         {
             //music for scared ghost
-            mysong = Content.Load<SoundEffect>("scaredGhostSong");
-            mysong2 = mysong.CreateInstance();
-            mysong2.IsLooped = true;
+            scaredSong = Content.Load<SoundEffect>("scaredGhostSong");
+            scaredSong2 = scaredSong.CreateInstance();
+            scaredSong2.IsLooped = true;
             
             //backgrund music
-            mybackSong = Content.Load<SoundEffect>("normalSong");
-            mybackSong2 = mybackSong.CreateInstance();
+            normalSong = Content.Load<SoundEffect>("normalSong");
+            normalSong2 = normalSong.CreateInstance();
             
             
             // Create a new SpriteBatch, which can be used to draw textures.
@@ -125,8 +125,8 @@ namespace PacManGame
                         //until you have a scared ghost play
                         if (musicCounter > 0)
                         {
-                            mybackSong2.Stop();
-                            mysong2.Play();
+                            normalSong2.Stop();
+                            scaredSong2.Play();
                         }
                 }
                 else
@@ -138,8 +138,8 @@ namespace PacManGame
                         //No scared ghost so you can play the right music
                         if (musicCounter == 0)
                         {
-                            mysong2.Stop();
-                            mybackSong2.Play();
+                            scaredSong2.Stop();
+                            normalSong2.Play();
                         }
                 }
         }

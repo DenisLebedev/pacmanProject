@@ -20,17 +20,21 @@ namespace PacManGame
         private Texture2D winImage;
         private bool pacmanWon;
 
+        public bool PacLost { get { return gs.Score.Lives < 1; } }
+        public bool PacWinner { get; private set; }
+
         public ScoreSprite(Game1 game, GameState gs) : base(game)
         {
             this.game = game;
             this.gs = gs;
             gs.Maze.PacmanWon += PacWon;
-            pacmanWon = false;
+            PacWinner = false;
         }
 
         private bool PacWon()
         {
             pacmanWon = true;
+            PacWinner = true;
             return true;
         }
 

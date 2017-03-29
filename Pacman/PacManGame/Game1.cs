@@ -13,22 +13,23 @@ namespace PacManGame
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
-        public static readonly int speedLimit = 8;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         GameState gs;
         ScoreSprite scoreSprite;
+
         //sprites
         MazeSprite mazeSprite;
         GhostSprite ghostSprite;
         PacmanSprite pacmanSprite;
 
-        Song song;
         SoundEffect mysong;
         SoundEffectInstance mysong2;
 
         SoundEffect mybackSong;
         SoundEffectInstance mybackSong2;
+
+        private Texture2D gameoverImage;
 
 
         public Game1()
@@ -73,6 +74,7 @@ namespace PacManGame
         /// </summary>
         protected override void LoadContent()
         {
+            gameoverImage = this.Content.Load<Texture2D>("gameover");
             mysong = Content.Load<SoundEffect>("scaredGhostSong");
             mysong2 = mysong.CreateInstance();
             mysong2.IsLooped = true;
@@ -88,13 +90,7 @@ namespace PacManGame
                 
             // TODO: use this.Content to load your game content here
         }
-        void MediaPlayer_MediaStateChanged(object sender, System.
-                                          EventArgs e)
-        {
-            // 0.0f is silent, 1.0f is full volume
-            MediaPlayer.Volume -= 0.1f;
-            MediaPlayer.Play(song);
-        }
+
 
         /// <summary>
         /// UnloadContent will be called once per game and is the place to unload
@@ -164,12 +160,21 @@ namespace PacManGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            if (!scoreSprite.PacLost)
+            {
+                GraphicsDevice.Clear(Color.Black);
 
-            GraphicsDevice.Clear(Color.Black);
+                base.Draw(gameTime);
+            }
+            else
+            {
+                spriteBatch.Begin();
+                spriteBatch.Draw
+              (gameoverImage, new Rectangle(5 * 32, 10 * 32, 480, 110), Color.White);
+                spriteBatch.End();
+                base.Draw(gameTime);
 
-            // TODO: Add your drawing code here
-
-            base.Draw(gameTime);
+            }
         }
 
 

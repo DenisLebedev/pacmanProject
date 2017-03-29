@@ -28,6 +28,7 @@ namespace PacManGame
 
         private int frameR;
         private int framecounter;
+        private int speedLimit;
 
         public PacmanSprite(Game1 game, GameState gs) : base(game)
         {
@@ -35,6 +36,7 @@ namespace PacManGame
             this.game = game;
             this.pacman = gs.Pacman;
             counter = 0;
+            speedLimit = 10;
 
             framecounter = 1;
             frameR = 1;
@@ -56,7 +58,7 @@ namespace PacManGame
         public override void Update(GameTime gameTime)
         {
             counter++;
-            if (counter == Game1.speedLimit)
+            if (counter >= speedLimit)
             {
                 keyBoard();
                 counter = 0;               

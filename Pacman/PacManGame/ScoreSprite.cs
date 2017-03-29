@@ -55,7 +55,8 @@ namespace PacManGame
             return true;
         }
         /// <summary>
-        /// 
+        /// This method will load all the necessary resources, such as the images
+        /// that will be used to create the sprites.
         /// </summary>
         protected override void LoadContent()
         {
@@ -89,6 +90,7 @@ namespace PacManGame
                 spriteBatch.Draw
               (gameoverImage, new Rectangle(5 * 32, 10 * 32, 480, 110), Color.White);
             }
+            // winner
             if (PacWinner)
             {
                 spriteBatch.Draw

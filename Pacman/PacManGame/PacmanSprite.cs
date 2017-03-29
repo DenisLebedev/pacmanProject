@@ -60,7 +60,8 @@ namespace PacManGame
             base.Initialize();
         }
         /// <summary>
-        /// 
+        /// This method will load all the necessary resources, such as the images
+        /// that will be used to create the sprites.
         /// </summary>
         protected override void LoadContent()
         {
@@ -72,7 +73,8 @@ namespace PacManGame
             base.LoadContent();
         }
         /// <summary>
-        /// 
+        /// The update method is modifide inorder to give a speed llimit to
+        /// pacman.
         /// </summary>
         /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)

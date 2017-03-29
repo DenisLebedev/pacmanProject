@@ -49,7 +49,8 @@ namespace PacManGame
 
         }
         /// <summary>
-        /// 
+        /// This method will load all the necessary resources, such as the images
+        /// that will be used to create the sprites.
         /// </summary>
         protected override void LoadContent()
         {

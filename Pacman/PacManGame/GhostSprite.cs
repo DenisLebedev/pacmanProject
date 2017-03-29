@@ -34,7 +34,7 @@ namespace PacManGame
             this.gs = gs;
             this.game = game;
             counter = 0;
-            speedLimit = 30;
+            speedLimit = 10;
             framecounter = 1;
             frameGP = 1;
         }
@@ -84,13 +84,13 @@ namespace PacManGame
                     spriteBatch.Draw(imgScaredG, new Rectangle((int)(g.Position.X) * 32,
                                            (int)(g.Position.Y) * 32, 32, 32), new Rectangle(32 * frameGP, 0, 32, 32)
                                               , Color.White);
-                    speedLimit = 12;
+                    speedLimit = 14;
                 }
                 else
                 {
                     spriteBatch.Draw(imgGhost.ElementAt(tempC), new Rectangle((int)(g.Position.X) * 32,
                                            (int)(g.Position.Y) * 32, 32, 32), new Rectangle(32 * frameGP, 0, 32, 32), Color.White);
-                    speedLimit = 8;
+                    speedLimit = 10;
                 }
                 tempC++;
             }

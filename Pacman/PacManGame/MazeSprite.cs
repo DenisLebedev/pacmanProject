@@ -13,6 +13,10 @@ using PacManLibrary;
 
 namespace PacManGame
 {
+    /// <summary>
+    /// The MazeSprite class is responsible for drawing all the wall, path (plus members) 
+    /// on to the board.
+    /// </summary>
     public class MazeSprite : DrawableGameComponent
     {
         //the business logic
@@ -29,7 +33,12 @@ namespace PacManGame
         private int frameP;
         private int frameE;
         private int framecounter;
-
+        /// <summary>
+        /// The constructor will take in the current game build as well as a maze objec
+        /// in order to have the same reffrance as the one being used in the Game1 class
+        /// </summary>
+        /// <param name="game"></param>
+        /// <param name="maze"></param>
         public MazeSprite(Game1 game, Maze maze) : base(game)
         {
             this.game = game;
@@ -68,7 +77,7 @@ namespace PacManGame
                 {
                     if (maze[x, y] is Wall)
                     {
-                        spriteBatch.Draw(wallImage, new Rectangle(x * 32, y * 32, 32, 32), Color.HotPink);
+                        spriteBatch.Draw(wallImage, new Rectangle(x * 32, y * 32, 32, 32), Color.Purple);
                     }
                     if (maze[x, y] is Path)
                     {
